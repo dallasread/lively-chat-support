@@ -7,6 +7,15 @@
   <li><?php _e("Purchase an addon (SMS, Surveys, Triggers, or Multiple Agents)!", "lively-chat-support"); ?></li>
 </ol>
 
+<h2><?php _e( "Need more features?", "lively-chat-support" ); ?></h2>
+<ul>
+  <li>&rarr; <b>Triggers</b>: automatically start conversations with your visitors based on certain conditions (<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=2BKE7U7LNT46U"><?php echo sprintf( __("Buy Now - $40") ); ?></a>).</li>
+  <li>&rarr; <b>Surveys</b>: get instant answers from your visitors (<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=T4Y8KB4RJLURW"><?php echo sprintf( __("Buy Now - $40") ); ?></a>).</li>
+  <li>&rarr; <b>SMS</b>: receive and respond to messages on your mobile phone (<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=R6WMR5FYAA2DU"><?php echo sprintf( __("Buy Now - $40") ); ?></a>).</li>
+  <li>&rarr; <b>Multi-agent</b>: use multiple agents (<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=M4F2RKSLV9X6Y"><?php echo sprintf( __("Buy Now - $40") ); ?></a>).</li>
+  <li>&rarr; <b>All 4 features for $99!</b> (<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4DNPUK74JEXFS"><?php echo sprintf( __("Buy Now - $99") ); ?></a>).</li>
+</ul>
+
 <h2><?php _e( "Need extra help?", "lively-chat-support" ); ?></h2>
 <ul>
   <li>&rarr; <?php echo sprintf( __("Download the <a href=\"%s\">Help PDF</a>."), content_url("plugins/lively-chat-support/assets/help.pdf") ); ?></li>

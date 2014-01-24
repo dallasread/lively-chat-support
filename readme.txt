@@ -1,10 +1,10 @@
 === Lively Chat Support ===
-Version: 1.0.10
+Version: 1.0.11
 URI: http://www.livelychatsupport.com
 Contributors: dallas22ca
 Author: Dallas Read
 Author URI: http://www.DallasRead.com
-Donate link: Just purchase an addon!
+Donate link: Purchase an addon!
 Tags: live chat, live support, online chat, customer service
 Requires at least: 3.6
 Tested up to: 3.6.1
@@ -15,17 +15,15 @@ The best FREE live chat support for your WP website (supports images) - forget t
 
 == Description ==
 
-Lively Chat Support is the last live customer support chat you'll ever need. Talk to your visitors in real time through your customizable chatbox (visit the Screenshots section for some samples).
-
-After you install Lively Chat Support, you'll be able to choose from our pre-built "Call To Action" images or upload your own.
-
-Lively Chat Support's "Offline Mode" works as a lead-capturing machine while you sleep. You can even customize your thank you message (maybe offer a freebie for signing up).
+Talk to your visitors in real time through your customizable chatbox (visit the Screenshots section for some samples).
 
 Lively Chat Support has a few premium addons to help you get the most out of your live chat:
 
 * **Chat from your phone** - perfect for the small business owner. Through SMS (text messages), you'll be able to stay in touch with the visitors on your website.
 * **Triggers** - start conversations based on your specified criteria. For example, if they've been on your checkout page too long, ask them "Do you need help checking out?".
 * **Surveys** - quick and unintrusive, surveys are a great way to learn more about your visitors (who love giving their input!).
+
+Lively Chat Support's "Offline Mode" works as a lead-capturing machine while you sleep. You can even customize your thank you message (maybe offer a freebie for signing up).
 
 == Installation ==
 
@@ -64,16 +62,27 @@ Each message you receive begins with a small token and a colon (eg. 4k2:). To re
 7. Schedule the hours you are available (pairs perfectly with our SMS Addon).
 
 == Feature Suggestions ==
+
 Here's some scheduled features to be added:
 
-* Automatic first message from agent
+* only allow self to be checked as initial agent
 * Detect which agents are online automatically
-* Button for visitors to "Introduce Yourself"
 * Don't require email address before starting a conversation.
-* Deleting history in chatbox should keep the chatbox on page
-* GTalk integration
+* Button for visitors to "Introduce Yourself"
+* Automatic first message from agent
+* Have a peek at audio files playing for new messages, new visitors, etc. (esp cross-browser)
+* alert to repeat (say once every 10-20 seconds) until a reply is sent
+* Store Offline Mode form submissions
 
 == Changelog ==
+
+= 1.0.11 =
+* Chatbox visibility - an easy way to show Lively on certain pages - no shortcode necessary!
+* Flushing caches when changes are made (supports W3 Total Cache and WP Super Cache)
+* Deleting history in chatbox should keep the 
+* Fixed a bug where quick, consecutive messages would fall through the cracks.
+* Caching support for Online/Offline/Hours features
+* Added Danish translation!
 
 = 1.0.10 =
 * menu item shows for all users, so agents don't have to be admins to chat.

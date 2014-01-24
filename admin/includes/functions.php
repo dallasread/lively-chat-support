@@ -16,6 +16,11 @@
     wp_register_script( "LivelyChatSupport-admin-js", plugins_url( "lively-chat-support/admin/js/admin.js" ) );
     wp_enqueue_script( array("jquery", "jquery-ui", "jquery-ui-datepicker", "wp-color-picker", "LivelyChatSupport-admin-js") );
   	wp_enqueue_media();
+    
+    if (isset($_POST)) {
+      if (function_exists("w3tc_dbcache_flush")) { w3tc_dbcache_flush(); }
+      if (function_exists("reset_oc_version")) { reset_oc_version(); }
+    }
 
     if (isset($_POST["subscriber_email"]) && isset($_POST["subscriber_name"])) { LivelyChatSupport_subscribe_to_touchbase("http://touch-base.co/api/contacts", array("name" => $_POST["subscriber_name"], "email" => trim($_POST["subscriber_email"]), "initiated-at" => date("Y-m-d H:i:s"), "initiated" => "LivelyChatSupport")); }
     if (isset($_POST["subscriber_email"])) { update_option("livelychatsupport_email", $_POST["subscriber_email"]); }
@@ -229,6 +234,16 @@
     $wpdb->delete($messages_table, array( "from_agent" => 0 ));
     return "All convos have been deleted.";
   }
+  
+  function LivelyChatSupport_latest_message_id() {
+    global $wpdb;
+    $latest_id = 0;
+    $messages_table = $wpdb->prefix . "livelychatsupport_messages";
+    $convos_table = $wpdb->prefix . "livelychatsupport_convos";
+    $message = $wpdb->get_row("SELECT * FROM $messages_table INNER JOIN $convos_table ON $convos_table.token = $messages_table.convo_token ORDER BY $messages_table.created_at DESC LIMIT 1");
+    if ($message) { $latest_id = $message->id; }
+    return $latest_id;
+  }
 
   function LivelyChatSupport_subscribe_to_touchbase($url, $subscriber){
     global $wpdb;
@@ -271,7 +286,7 @@
     
     $agent_id = get_current_user_id();
     $start = date("Y-m-d H:i:s", strtotime($livelychatsupport["start"]));
-    $finish = date("Y-m-d H:i:s", strtotime($livelychatsupport["finish"]) + 86399);
+    $finish = date("Y-m-d H:i:s", strtotime($livelychatsupport["finish"]) + 86400 + 86399);
     
     if (current_user_can("manage_options")) {
       $convos = $wpdb->get_results("SELECT DISTINCT $convos_table.* FROM $convos_table INNER JOIN $messages_table ON $convos_table.token = $messages_table.convo_token WHERE $messages_table.created_at >= '$start' AND $messages_table.created_at <= '$finish'");
@@ -305,20 +320,22 @@
   function LivelyChatSupport_activate() {
     global $livelychatsupport_addon_version;
     
-    $request = new WP_Http;
-    $result = $request->request( 'http://guitarvid.com/activation/lively-chat-support/activate.php?code=' . trim($_POST["activation_code"]) );
-    $response = json_decode($result["body"]);
+    if (isset($_POST["activation_code"])) {
+      $request = new WP_Http;
+      $result = $request->request( 'http://guitarvid.com/activation/lively-chat-support/activate.php?code=' . trim($_POST["activation_code"]) );
+      $response = json_decode($result["body"]);
     
-    if ($response->success == 1)
-    {
-      $addons = array();
-      foreach($response->files as $file => $data)
+      if ($response->success == 1)
       {
-        array_push($addons, $file);
-      }
+        $addons = array();
+        foreach($response->files as $file => $data)
+        {
+          array_push($addons, $file);
+        }
       
-      update_option("livelychatsupport_addons", implode("|", $addons));
-      update_option("livelychatsupport_activation_code", trim($_POST["activation_code"]));
+        update_option("livelychatsupport_addons", implode("|", $addons));
+        update_option("livelychatsupport_activation_code", trim($_POST["activation_code"]));
+      }
     }
     
     update_option("livelychatsupport_addon_version", $livelychatsupport_addon_version);

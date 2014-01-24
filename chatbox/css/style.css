@@ -134,6 +134,8 @@
 #livelychatsupport-chatbox .field label {
   display: inline-block;
   margin-bottom: 3px;
+	color: #333;
+	text-shadow: none;
 }
 
 #livelychatsupport-chatbox .field input[type="text"], #livelychatsupport-chatbox .field input[type="email"], #livelychatsupport-chatbox .field button, #livelychatsupport-chatbox .field textarea {

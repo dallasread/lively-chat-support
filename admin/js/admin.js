@@ -42,7 +42,7 @@ $lcsq(function($lcsq){
       }
     },
 
-    addMessage: function(content, from_agent, convo_token) {
+    addMessage: function(content, from_agent, convo_token, id) {
       var audio = $lcsq("#bell");
       var messages = $lcsq(".convo_" + convo_token + "_messages");
       if (from_agent != true) { audio[0].play(); }
@@ -55,7 +55,8 @@ $lcsq(function($lcsq){
         if (hours == 0) { hours = 12; }
         if (from_agent == true) { template.addClass("from_agent"); }
         
-        template.removeClass("message_template");
+        template.removeClass("message_template")
+				template.attr("id", "message_" + id).data("id", id);
         template.find(".body").text(content);
         template.find(".date").text(hours + ":" + (now.getMinutes() < 10 ? "0" : "") + now.getMinutes());
         template.hide();
@@ -82,34 +83,43 @@ $lcsq(function($lcsq){
         }
         else
         {
-          var message_waiting = $lcsq("<p class=\"message_waiting\"></p>");
-          $lcsq("#convo_" + convo.token).append(message_waiting);
+          if (!$lcsq("#convo_" + convo_token + " .message_waiting").length) {
+						var message_waiting = $lcsq("<p class=\"message_waiting\"></p>");
+						$lcsq("#convo_" + convo_token).append(message_waiting);
+					}
         }
       }
     },
 
     poll: function() {
+			var latest_id = 0;
       var url = $lcsq("#bell").data("url");
-      var timestamp = $lcsq("#bell").attr("data-timestamp");
+			
+			if (typeof $lcsq("#bell").data("latest_id") != "undefined") { 
+				latest_id = $lcsq("#bell").data("latest_id");
+			}
+
       $lcsq.post(
           ajaxurl, {
             "action": "poll",
-            "timestamp": timestamp
+            "latest_id": latest_id
           }, 
           function(response){
             var data = $lcsq.parseJSON(response);
             $lcsq(".chat").removeClass("chat_loading");
-            $lcsq("#bell").attr("data-timestamp", data["new_time"]);
+						$lcsq("#bell").data("latest_id", data.latest_id);
             
             for(i=0; i<data.messages.length; i++) {
             	var message = data.messages[i];
-              if (message.from_agent == "1") { var from_agent = true; } else { var from_agent = false; }
-              LivelyChatSupport.addMessage(message.body, from_agent, message.convo_token);
+							if (!$lcsq("#message_" + message.id).length) {
+	              if (message.from_agent == "1") { var from_agent = true; } else { var from_agent = false; }
+	              LivelyChatSupport.addMessage(message.body, from_agent, message.convo_token, message.id);
+							}
             }
             
             setTimeout(function(){
               LivelyChatSupport.poll();
-            }, 3500);
+            }, 3000);
           }
       );
     },

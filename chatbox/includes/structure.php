@@ -1,9 +1,13 @@
 <?php
 
 if (($convo->name != "" && $convo->email != "") || $convo->messages_count > 0 || LIVELYCHATSUPPORT_ADMIN == true) { $livelychatsupport_chatting = true; }
-  $livelychatsupport_states = LivelyChatSupport_state(isset($livelychatsupport_open), isset($livelychatsupport_offline), isset($livelychatsupport_chatting));
+$livelychatsupport_states = LivelyChatSupport_state(isset($livelychatsupport_open), false, isset($livelychatsupport_chatting));
+
+if (property_exists($convo, "agent_id")) { 
   $agent = LivelyChatSupport_agent($convo->agent_id);
-  
+} else {
+  $agent = LivelyChatSupport_agent();
+}
 ?>
 
 <style type="text/css">
@@ -12,7 +16,7 @@ if (($convo->name != "" && $convo->email != "") || $convo->messages_count > 0 ||
   #livelychatsupport-chatbox .powered_by, #livelychatsupport-chatbox .user_colour { color: <?php echo $livelychatsupport["colour"]; ?>; }
   #livelychatsupport-chatbox .cta_online_image { <?php echo $livelychatsupport["position"]; ?>: <?php echo $livelychatsupport["cta_online_image_offset_x"]; ?>px; bottom: <?php echo $livelychatsupport["cta_online_image_offset_y"] - 161; ?>px; }
   #livelychatsupport-chatbox .cta_offline_image { <?php echo $livelychatsupport["position"]; ?>: <?php echo $livelychatsupport["cta_offline_image_offset_x"]; ?>px; bottom: <?php echo $livelychatsupport["cta_offline_image_offset_y"] - 155; ?>px; }
-  #livelychatsupport-chatbox { <?php echo $livelychatsupport["position"]; ?>: 15px; }
+  #livelychatsupport-chatbox { <?php if (LIVELYCHATSUPPORT_ADMIN != true) { ?>display: none; <?php } ?><?php echo $livelychatsupport["position"]; ?>: 15px; }
   <?php if ($livelychatsupport["show_powered_by"] != "true") { echo "#livelychatsupport-chatbox .powered_by { display: none; }"; } ?>
 </style>
 
@@ -105,13 +109,17 @@ if (($convo->name != "" && $convo->email != "") || $convo->messages_count > 0 ||
   
   <div class="chat">
 
-    <ul class="messages" data-timestamp="<?php echo time(); ?>" data-url="<?php echo admin_url('admin-ajax.php'); ?>">
+    <ul class="messages" data-latest_id="0" data-url="<?php echo admin_url('admin-ajax.php'); ?>">
       <li class="chatting_with">
-        <img src="<?php echo $agent->avatar; ?>" />
-        <p>
-          <?php _e( "You're chatting with", "lively-chat-support" ); ?><br>
-          <strong><?php echo $agent->name; ?></strong>
-        </p>
+        <?php if ($agent->avatar != "") { ?>
+          <img src="<?php echo $agent->avatar; ?>" />
+        <?php } ?>
+        <?php if ($agent->name != "") { ?>
+          <p>
+            <?php _e( "You're chatting with", "lively-chat-support" ); ?><br>
+            <strong><?php echo $agent->name; ?></strong>
+          </p>
+        <?php } ?>
         <div class="clear"></div>
       </li>
       

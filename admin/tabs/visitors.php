@@ -4,7 +4,11 @@ if (current_user_can("can_livelychatsupport")) {
 
 global $wpdb;
 $convos_table = $wpdb->prefix . "livelychatsupport_convos";
-$convo = $wpdb->get_row("SELECT * FROM $convos_table WHERE token = '$_GET[convo_token]'");
+if (isset($_GET["convo_token"])) {
+  $convo = $wpdb->get_row("SELECT * FROM $convos_table WHERE token = '$_GET[convo_token]'");
+} else {
+  $convo = null;
+}
 
 if ($convo != null) {
   if (strtotime($livelychatsupport["start"]) >= strtotime($convo->updated_at)) {
@@ -130,7 +134,7 @@ $convos = LivelyChatSupport_find_visitors();
       </li>
     
       <?php foreach ($messages as $message) { ?>
-        <li class="message <?php if ($message->from_agent == 1) { echo "from_agent"; } ?>">
+        <li id="message_<?php echo $message->id; ?>" data-id="<?php echo $message->id; ?>" class="message <?php if ($message->from_agent == 1) { echo "from_agent"; } ?>">
           <p class="body"><?php echo stripslashes($message->body); ?></p>
           <p class="date"><?php echo strftime("%l:%M", strtotime($message->created_at) + get_option("gmt_offset") * 60 * 60); ?></p>
           <div class="clear"></div>
@@ -153,6 +157,7 @@ $convos = LivelyChatSupport_find_visitors();
 <?php } ?>
 
 <style type="text/css" media="print">
+  /* PRINT STYLES */
   .icon32, #all_pages, #wpfooter, #adminmenuback, #adminmenuwrap, .button-secondary, .button-primary, #wpadminbar, .nav-tab-wrapper, #online_convos, .right_help, button, input, textarea, .upsell { display: none !important; }
   #admin_chat { display: block !important; }
   #wpcontent, #wpbody, .wrap, .livelychatsupport-yield-with-sidebar { margin: 0 !important; width: 100% !important; float: none !important; }

@@ -61,7 +61,7 @@ $convo = (object) array(
     <div class="field">
       <label for="position">
         <?php _e( "Position on Screen", "lively-chat-support" ); ?><br>
-        <span class="livelychatsupport-detail"><?php _e( "Hint: Aligns image if present.", "lively-chat-support" ); ?></span>
+        <span class="livelychatsupport-detail"><?php _e( "Hint: Also aligns image if present.", "lively-chat-support" ); ?></span>
       </label><br>
       <select id="position" name="position">
         <option value="right" <?php if ($livelychatsupport["position"] == "right") { echo "selected='selected'"; } ?>><?php _e( "Bottom Right", "lively-chat-support" ); ?></option>
@@ -155,30 +155,28 @@ $convo = (object) array(
 
   <div class="clear"></div>
 
-  <!--<hr />
+  <hr />
   
   <h2 id="delete_convos_anchor"><?php _e( "Chatbox Visibility", "lively-chat-support" ); ?></h2>
   
   <div class="field">
     <label for="visible_pages"><?php _e( "Which pages should LivelyChat be shown on?", "lively-chat-support" ); ?></label><br>
-    <p>
-      If the page's url path is in the box below, the chatbox will be shown. Otherwise, your visitors won't see it. <b>*</b> is a wild card. <a href="#" class="show_example" data-example="visible_pages">Show Example</a>.
-    </p>
-    
-    <div class="visible_pages_example example">
+    <div class="">
       <ul>
-        <li><b style="background: #eee; padding: 0px 4px; ">*</b> would show the chatbox on every page of your site.</li>
-        <li><b style="background: #eee; padding: 0px 4px; ">/about</b> would only show the chatbox on your /about page.</li>
-        <li><b style="background: #eee; padding: 0px 4px; ">/articles/*</b> would only show the chatbox on pages that appear in an /articles directory.</li>
-        <li><b style="background: #eee; padding: 0px 4px; ">/articles/*, /about</b> would show the chatbox on your about page and pages that appear in an /articles directory.</li>
+        <li>&rarr; &nbsp;<b style="background: #eee; color: #1291C3; padding: 0px 4px; ">*</b> shows the chatbox on every page of your site.</li>
+        <li>&rarr; &nbsp;<b style="background: #eee; color: #1291C3 ; padding: 0px 4px; ">/about</b> shows the chatbox on your /about page.</li>
+        <li>&rarr; &nbsp;<b style="background: #eee; color: #1291C3 ; padding: 0px 4px; ">*awesome*</b> shows the chatbox on any page that contained the word awesome.</li>
+        <li>&rarr; &nbsp;<b style="background: #eee; color: #1291C3 ; padding: 0px 4px; ">/articles/*</b> shows the chatbox on pages that appear in an /articles directory.</li>
+        <li>&rarr; &nbsp;<b style="background: #eee; color: #1291C3 ; padding: 0px 4px; ">/articles/*, /about, /contact</b> shows the chatbox on your /about page, anything in the /articles directory, and the /contact page.</li>
+        <li>&rarr; &nbsp;<b style="background: #eee; color: #1291C3 ; padding: 0px 4px; ">!/contact</b> use a ! to hide the chat on a specific page (WARNING: only one page allowed)</li>
       </ul>
     </div>
-    <input type="text" name="visible_pages" value="<php echo $livelychatsupport["visible_pages"]; ?>" />
+    <input type="text" name="visible_pages" value="<?php echo $livelychatsupport["visible_pages"]; ?>" />
   </div>
   
   <div class="field">
-    <input type="submit" value="<php _e( "Save My Settings", "lively-chat-support" ); ?>" class="button-primary" />
-  </div>-->
+    <input type="submit" value="<?php _e( "Save My Settings", "lively-chat-support" ); ?>" class="button-primary" />
+  </div>
   
   <hr />
   
