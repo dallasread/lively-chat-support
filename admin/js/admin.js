@@ -45,6 +45,7 @@ $lcsq(function($lcsq){
     addMessage: function(content, from_agent, convo_token, id) {
       var audio = $lcsq("#bell");
       var messages = $lcsq(".convo_" + convo_token + "_messages");
+			content = $lcsq("<div />").html(content).text();
       if (from_agent != true) { audio[0].play(); }
       
       if (messages.length)

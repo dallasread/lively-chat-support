@@ -203,17 +203,17 @@ $lcsq(function($lcsq){
     
       cacheSupport: function() {
         var url = $lcsq("#livelychatsupport-chatbox .messages").data("url");
+
         $lcsq.post(url, {
           "action": "cache_support",
           "convo_token": $lcsq("#livelychatsupport-chatbox-token").val(),
         }, function(data){
           LivelyChatSupport_popups = [];
+					var online = false;
           data = $lcsq.parseJSON(data);
 
 					if (data.online == "online") {
-						$lcsq("#livelychatsupport-chatbox").removeClass("offline").show();
-					} else if (data.online == "offline") {
-						$lcsq("#livelychatsupport-chatbox").addClass("offline").show();
+						online = true;
 					} else if (data.online == "hidden") {
 						$lcsq("#livelychatsupport-chatbox").hide();
 					} else {
@@ -227,16 +227,18 @@ $lcsq(function($lcsq){
 							now_time = now_time + time_difference;
 
 							if (days[today.getDay()] == hour.day && now_time >= hour.open_at && now_time <= hour.close_at) {
-								$lcsq("#livelychatsupport-chatbox").removeClass("offline").show();
+								online = true;
 							}
 	          }
 					}
 					
-        
-          for(i=0; i<data.messages.length; i++) {
-            var message = data.messages[i];
-            LivelyChatSupport.addMessage(message.body, message.from_agent, false, message.id);
-          }
+					if (data.online != "hidden") {
+						if (online === false) {
+							$lcsq("#livelychatsupport-chatbox").addClass("offline").show();
+						} else {
+							$lcsq("#livelychatsupport-chatbox").removeClass("offline").show();							
+						}
+					}
         
           for(i=0; i<data.popups.length; i++) {
             var popup = data.popups[i];

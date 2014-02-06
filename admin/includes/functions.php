@@ -18,11 +18,10 @@
   	wp_enqueue_media();
     
     if (isset($_POST)) {
-      if (function_exists("w3tc_dbcache_flush")) { w3tc_dbcache_flush(); }
+      if (function_exists("flush_pgcache")) { flush_pgcache(); }
       if (function_exists("reset_oc_version")) { reset_oc_version(); }
     }
 
-    if (isset($_POST["subscriber_email"]) && isset($_POST["subscriber_name"])) { LivelyChatSupport_subscribe_to_touchbase("http://touch-base.co/api/contacts", array("name" => $_POST["subscriber_name"], "email" => trim($_POST["subscriber_email"]), "initiated-at" => date("Y-m-d H:i:s"), "initiated" => "LivelyChatSupport")); }
     if (isset($_POST["subscriber_email"])) { update_option("livelychatsupport_email", $_POST["subscriber_email"]); }
     if (isset($_POST["subscriber_name"])) { update_option("livelychatsupport_name", $_POST["subscriber_name"]); }
     if (isset($_POST["default_responder_id"])) { update_option("livelychatsupport_default_responder_id", $_POST["default_responder_id"]); }
@@ -249,13 +248,6 @@
     global $wpdb;
     
     if ($subscriber["email"] != "" && $subscriber["name"] != "") {
-      $ch = curl_init($url);
-      curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-      curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-      curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query(array("contacts[]" => $subscriber)));
-      curl_setopt($ch, CURLOPT_HTTPHEADER, array("Authorization: Token token=mc7Voj9EbYb0Moip9CPLGaCZoLc0vD4Y"));
-      $response = curl_exec($ch);
-      
       $wpdb->insert( 
       	$wpdb->prefix . "livelychatsupport_agents", 
         array(
@@ -263,10 +255,10 @@
           "avatar_url" => plugins_url("lively-chat-support/chatbox/assets/ctas/online/chat_bubbles.png")
       	)
       );
-    }
   
-    update_option("livelychatsupport_email", $subscriber["email"]);
-    update_option("livelychatsupport_name", $subscriber["name"]);
+      update_option("livelychatsupport_email", $subscriber["email"]);
+      update_option("livelychatsupport_name", $subscriber["name"]);
+    }
   }
   
   function LivelyChatSupport_add_convo() {

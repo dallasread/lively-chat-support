@@ -1,5 +1,5 @@
 === Lively Chat Support ===
-Version: 1.0.11
+Version: 1.0.12
 URI: http://www.livelychatsupport.com
 Contributors: dallas22ca
 Author: Dallas Read
@@ -75,6 +75,10 @@ Here's some scheduled features to be added:
 * Store Offline Mode form submissions
 
 == Changelog ==
+
+= 1.0.12 =
+* Mobile styling bug fix where chatbox title had white space above it.
+* Bug fixed where W3 Total Cache was not getting cleared.
 
 = 1.0.11 =
 * Chatbox visibility - an easy way to show Lively on certain pages - no shortcode necessary!

@@ -35,7 +35,32 @@ $upsells = array(
 $rand = array_rand($upsells, 1);
 $upsell = $upsells[$rand];
 
-?>
+if (isset($_POST["subscriber_email"]) && isset($_POST["subscriber_name"])) { ?>
+
+<script type="text/javascript">
+	this._RM || (this._RM = []);
+	_RM.push(["api_key", "VOTLf12Xko7afb1tnxBiZWMgU8AI3NjLIC8ZM5hV97eHf8"]);
+  _RM.push(["track", {
+    description: "{{ name }} installed {{ initiated }}.",
+    contact: {
+  		name: "<?php echo $_POST["subscriber_name"]; ?>",
+      email: "<?php echo $_POST["subscriber_email"]; ?>",
+  		key: window.location.host + "-lively"
+    },
+    domain: window.location.host,
+    initiated: "Lively Chat Support",
+    has_lively: 1
+  }]);
+	
+  (function() {
+    var rm = document.createElement("script"); rm.type = "text/javascript";
+		rm.async = true;  rm.src = "https://secure.remetric.com/track.js";
+		var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(rm, s);
+  })();
+</script>
+
+<?php } ?>
+
 <p class="upsell">
   <a href="<?php echo $upsell->url; ?>" target="_blank"><?php echo $upsell->cta; ?></a>
 </p>
