@@ -1,5 +1,5 @@
 === Lively Chat Support ===
-Version: 1.0.12
+Version: 1.0.13
 URI: http://www.livelychatsupport.com
 Contributors: dallas22ca
 Author: Dallas Read
@@ -75,6 +75,9 @@ Here's some scheduled features to be added:
 * Store Offline Mode form submissions
 
 == Changelog ==
+
+= 1.0.13 =
+* Nearly useless update.
 
 = 1.0.12 =
 * Mobile styling bug fix where chatbox title had white space above it.
