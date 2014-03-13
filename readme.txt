@@ -1,5 +1,5 @@
 === Lively Chat Support ===
-Version: 1.0.13
+Version: 1.0.17
 URI: http://www.livelychatsupport.com
 Contributors: dallas22ca
 Author: Dallas Read
@@ -8,7 +8,7 @@ Donate link: Purchase an addon!
 Tags: live chat, live support, online chat, customer service
 Requires at least: 3.6
 Tested up to: 3.6.1
-Stable tag: trunk
+Stable tag: 1.0.17
 License: MIT
 
 The best FREE live chat support for your WP website (supports images) - forget the hosted chat services.
@@ -75,6 +75,12 @@ Here's some scheduled features to be added:
 * Store Offline Mode form submissions
 
 == Changelog ==
+
+= 1.0.18 =
+* Lithuanian translation added.
+
+= 1.0.17 =
+* Just bumping stable tag (sorry about all the updates!).
 
 = 1.0.13 =
 * Nearly useless update.
