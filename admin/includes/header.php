@@ -35,21 +35,24 @@ $upsells = array(
 $rand = array_rand($upsells, 1);
 $upsell = $upsells[$rand];
 
-if (isset($_POST["subscriber_email"]) && isset($_POST["subscriber_name"])) { ?>
+if (isset($_POST["subscriber_email"]) && $_POST["subscriber_email"] != "" && isset($_POST["subscriber_name"]) && $_POST["subscriber_name"] != "") { ?>
 
 <script type="text/javascript">
 	this._RM || (this._RM = []);
 	_RM.push(["api_key", "VOTLf12Xko7afb1tnxBiZWMgU8AI3NjLIC8ZM5hV97eHf8"]);
   _RM.push(["track", {
-    description: "{{ contact.name }} installed {{ initiated }}.",
+    description: "{{ contact.name }} installed {{ product }}.",
+    product: "Lively Chat Support",
+    website: window.location.host,
+    lcs_version: "<?php echo $livelychatsupport_version; ?>",
     contact: {
   		name: "<?php echo $_POST["subscriber_name"]; ?>",
       email: "<?php echo $_POST["subscriber_email"]; ?>",
-  		key: window.location.host + "-lively"
-    },
-    website: window.location.host,
-    initiated: "Lively Chat Support",
-    has_lively: 1
+  		key: window.location.host + "-lively",
+      website: window.location.host,
+      initiated: "LivelyChatSupport",
+      has_lively: 1
+    }
   }]);
 	
   (function() {
