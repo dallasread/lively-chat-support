@@ -140,7 +140,7 @@
 	text-shadow: none;
 }
 
-#livelychatsupport-chatbox .field input[type="text"], #livelychatsupport-chatbox .field input[type="email"], #livelychatsupport-chatbox .field button, #livelychatsupport-chatbox .field textarea {
+#livelychatsupport-chatbox .field input[type="text"], #livelychatsupport-chatbox .field input[type="telephone"], #livelychatsupport-chatbox .field input[type="email"], #livelychatsupport-chatbox .field button, #livelychatsupport-chatbox .field textarea {
   width: 100%;
   box-sizing: border-box;
 	-moz-box-sizing: border-box;
@@ -187,7 +187,7 @@
   display: none;
 }
 
-#livelychatsupport-chatbox form[disabled] .field input[type="text"], #livelychatsupport-chatbox form[disabled] .field input[type="email"], #livelychatsupport-chatbox form[disabled] .field textarea {
+#livelychatsupport-chatbox form[disabled] .field input[type="text"], #livelychatsupport-chatbox form[disabled] .field input[type="email"], #livelychatsupport-chatbox form[disabled] .field input[type="telephone"], #livelychatsupport-chatbox form[disabled] .field textarea {
   background: #ddd;
   color: #777;
 }

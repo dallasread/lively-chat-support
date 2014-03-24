@@ -378,7 +378,7 @@ $lcsq(function($lcsq){
     });
 
     $lcsq(document).on("submit", "#livelychatsupport-register", function(){
-      if ($lcsq("#livelychatsupport-chatbox-name").val() == "" || $lcsq("#livelychatsupport-chatbox-email").val() == "" || $lcsq("#livelychatsupport-chatbox-email").val().indexOf("@") == -1)
+      if ($lcsq("#livelychatsupport-chatbox-phone").val() == "" || $lcsq("#livelychatsupport-chatbox-name").val() == "" || $lcsq("#livelychatsupport-chatbox-email").val() == "" || $lcsq("#livelychatsupport-chatbox-email").val().indexOf("@") == -1)
       {
         $lcsq("#livelychatsupport-chatbox .prompter .livelychatsupport-error").show(150);
         return false;
@@ -396,6 +396,7 @@ $lcsq(function($lcsq){
             "convo_token": $lcsq("#livelychatsupport-chatbox-token").val(),
             "Name": $lcsq("#livelychatsupport-chatbox-name").val(),
             "Email": $lcsq("#livelychatsupport-chatbox-email").val(),
+						"Phone": $lcsq("#livelychatsupport-chatbox-phone").val(),
             "Comment": $lcsq("#livelychatsupport-offline-body").val()
           });
         
@@ -407,7 +408,8 @@ $lcsq(function($lcsq){
             "action": "subscribe",
             "convo_token": $lcsq("#livelychatsupport-chatbox-token").val(),
             "Name": $lcsq("#livelychatsupport-chatbox-name").val(),
-            "Email": $lcsq("#livelychatsupport-chatbox-email").val()
+            "Email": $lcsq("#livelychatsupport-chatbox-email").val(),
+						"Phone": $lcsq("#livelychatsupport-chatbox-phone").val()
           });
         
           $lcsq("#livelychatsupport-chatbox").addClass("chatting");

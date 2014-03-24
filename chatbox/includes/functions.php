@@ -437,22 +437,24 @@
   }
   
   function LivelyChatSupport_subscribe() {
-    if (isset($_POST["convo_token"]) && isset($_POST["Email"]) && isset($_POST["Name"])) {
+    if (isset($_POST["convo_token"]) && isset($_POST["Email"]) && isset($_POST["Name"]) && isset($_POST["Phone"])) {
       global $wpdb;
       $livelychatsupport = LivelyChatSupport_details();
       $convo = LivelyChatSupport_convo($_POST["convo_token"]);
       $convos_table = $wpdb->prefix . "livelychatsupport_convos";
 
-      if (filter_var($_POST["Email"], FILTER_VALIDATE_EMAIL) && isset($_POST["Name"]))
+      if (filter_var($_POST["Email"], FILTER_VALIDATE_EMAIL) && isset($_POST["Name"]) && isset($_POST["Phone"]))
       {
         $name = filter_var($_POST["Name"], FILTER_SANITIZE_STRING);
         $email = filter_var($_POST["Email"], FILTER_SANITIZE_EMAIL);
+        $phone = filter_var($_POST["Phone"], FILTER_SANITIZE_STRING);
     
         $wpdb->update( 
         	$convos_table, 
         	array(
         	  "name" => $name,
-            "email" => $email
+            "email" => $email,
+            "phone" => $phone
         	),
           array(
             "token" => $_POST["convo_token"]

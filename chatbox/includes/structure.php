@@ -1,6 +1,6 @@
 <?php
 
-if (($convo->name != "" && $convo->email != "") || $convo->messages_count > 0 || LIVELYCHATSUPPORT_ADMIN == true) { $livelychatsupport_chatting = true; }
+if (($convo->name != "" && $convo->email != "" && $convo->phone != "") || $convo->messages_count > 0 || LIVELYCHATSUPPORT_ADMIN == true) { $livelychatsupport_chatting = true; }
 $livelychatsupport_states = LivelyChatSupport_state(isset($livelychatsupport_open), false, isset($livelychatsupport_chatting));
 
 if (property_exists($convo, "agent_id")) { 
@@ -85,6 +85,11 @@ if (property_exists($convo, "agent_id")) {
         <label for="livelychatsupport-chatbox-email"><?php _e( "What is your email?", "lively-chat-support" ); ?></label>
         <input id="livelychatsupport-chatbox-email" type="email" name="Email" value="<?php echo $convo->email; ?>">
       </div>
+    
+      <div class="field">
+        <label for="livelychatsupport-chatbox-phone"><?php _e( "What is your phone number?", "lively-chat-support" ); ?></label>
+        <input id="livelychatsupport-chatbox-phone" type="telephone" name="Phone" value="<?php echo $convo->phone; ?>">
+      </div>
       
       <div class="field livelychatsupport-offline-message">
         <label for="livelychatsupport-offline-body"><?php _e( "What is your question?", "lively-chat-support" ); ?></label>
@@ -92,7 +97,7 @@ if (property_exists($convo, "agent_id")) {
       </div>
       
       <div class="field livelychatsupport-error">
-        <p><?php _e( "Please provide a valid name, email, and question.", "lively-chat-support" ); ?></p>
+        <p><?php _e( "Please provide a valid name, email, phone number, and question.", "lively-chat-support" ); ?></p>
       </div>
     
       <div class="field">

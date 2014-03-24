@@ -88,6 +88,7 @@ $convos = LivelyChatSupport_find_visitors();
         <?php _e( "Agent:", "lively-chat-support" ); ?> <strong><?php echo LivelyChatSupport_agent($convo->agent_id)->name; ?></strong><br>
         <?php _e( "Location:", "lively-chat-support" ); ?> <strong><?php echo $convo->city; ?>, <?php echo $convo->province; ?></strong><br>
         <?php _e( "Email:", "lively-chat-support" ); ?> <strong><?php echo $convo->email; ?></strong><br>
+        <?php _e( "Phone:", "lively-chat-support" ); ?> <strong><?php echo $convo->phone; ?></strong><br>
         <?php _e( "IP:", "lively-chat-support" ); ?> <strong><?php echo $convo->ip; ?></strong><br>
         <?php _e( "Last seen:", "lively-chat-support" ); ?> <strong><?php echo date("D, M j, Y \a\\t g:ia", strtotime($convo->last_seen) + get_option("gmt_offset") * 60 * 60); ?></strong>
       </p>
