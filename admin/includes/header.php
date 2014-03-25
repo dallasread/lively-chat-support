@@ -3,9 +3,13 @@
 <?php
 $upsells = array(
   (object) array(
-    "cta" => __("Use surveys to engage visitors!", "lively-chat-support"),
-    "url" => "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=T4Y8KB4RJLURW"
+    "cta" => __("All 4 Add-ons & Support - $6.99/month!", "lively-chat-support"),
+    "url" => "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=864Y2KZLB2Y44"
   ),
+  //(object) array(
+  //  "cta" => __("Use surveys to engage visitors!", "lively-chat-support"),
+  //  "url" => "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=T4Y8KB4RJLURW"
+  //),
   (object) array(
     "cta" => __("Triggers engage visitors!", "lively-chat-support"),
     "url" => "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=2BKE7U7LNT46U"
@@ -14,22 +18,22 @@ $upsells = array(
     "cta" => __("Need Multiple Agents?", "lively-chat-support"),
     "url" => "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=M4F2RKSLV9X6Y"
   ),
-  (object) array(
-    "cta" => __("Chat with visitors from your phone!", "lively-chat-support"),
-    "url" => "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=R6WMR5FYAA2DU"
-  ),
+  //(object) array(
+  //  "cta" => __("Chat with visitors from your phone!", "lively-chat-support"),
+  //  "url" => "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=R6WMR5FYAA2DU"
+  //),
   (object) array(
     "cta" => __("4 Add-ons for only $99!", "lively-chat-support"),
     "url" => "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4DNPUK74JEXFS"
   ),
-  (object) array(
-    "cta" => "&hearts; " . __("Lively Chat Support? Donate!", "lively-chat-support"),
-    "url" => "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L5JZS6GEQ55XJ"
-  ),
-  (object) array(
-    "cta" => __("Have you seen LivelyChatSupport.com?", "lively-chat-support"),
-    "url" => "http://www.livelychatsupport.com"
-  )
+  //(object) array(
+  //  "cta" => "&hearts; " . __("Lively Chat Support? Donate!", "lively-chat-support"),
+  //  "url" => "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L5JZS6GEQ55XJ"
+  //),
+  //(object) array(
+  //  "cta" => __("Have you seen LivelyChatSupport.com?", "lively-chat-support"),
+  //  "url" => "http://www.livelychatsupport.com"
+  //)
 );
 
 $rand = array_rand($upsells, 1);
