@@ -113,6 +113,7 @@
       mini_token VARCHAR(3) NOT NULL,
       name VARCHAR(50),
       email VARCHAR(100),
+      phone VARCHAR(100),
       pending BOOLEAN DEFAULT 1 NOT NULL,
       messages_count MEDIUMINT(9) DEFAULT 0 NOT NULL,
       initiated BOOLEAN DEFAULT 0,

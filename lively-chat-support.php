@@ -45,7 +45,7 @@ global $livelychatsupport_version;
 global $livelychatsupport_db_version;
 global $livelychatsupport_addon_version;
 $livelychatsupport_version = "1.0.17";
-$livelychatsupport_db_version = 1.10;
+$livelychatsupport_db_version = 1.11;
 $livelychatsupport_addon_version = 1.4;
 
 if (LIVELYCHATSUPPORT_ADMIN == true) {
