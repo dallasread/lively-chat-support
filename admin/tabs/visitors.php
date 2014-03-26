@@ -1,7 +1,5 @@
 <?php
 
-if (current_user_can("can_livelychatsupport")) {
-
 global $wpdb;
 $convos_table = $wpdb->prefix . "livelychatsupport_convos";
 if (isset($_GET["convo_token"])) {
@@ -147,14 +145,6 @@ $convos = LivelyChatSupport_find_visitors();
 <?php } ?>
 
 </div>
-
-<?php } else { ?>
-  
-  <p>
-    Your Lively Chat Support profile is not activated. Visit the <a href="?page=livelychatsupport&tab=agents">Agents</a> page to activate it.
-  </p>
-  
-<?php } ?>
 
 <style type="text/css" media="print">
   /* PRINT STYLES */

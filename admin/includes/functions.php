@@ -116,6 +116,10 @@
       {
         $now = date("Y-m-d H:i:s", current_time("timestamp"));
         $questions = stripslashes($survey["questions"]);
+        $title = stripslashes($survey["title"]);
+        $urls = stripslashes($survey["urls"]);
+        $delay = stripslashes($survey["delay"]);
+        $thanks = stripslashes($survey["thanks"]);
         
         if ($survey["id"] != "template")
         {
@@ -130,11 +134,11 @@
             $wpdb->insert( 
             	$wpdb->prefix . "livelychatsupport_surveys", 
               array(
-                "title" => $survey["title"],
-            	  "urls" => $survey["urls"],
-                "delay" => $survey["delay"],
+                "title" => $title,
+            	  "urls" => $urls,
+                "delay" => $delay,
                 "questions" => $questions,
-                "thanks" => $survey["thanks"],
+                "thanks" => $thanks,
                 "created_at" => $now,
                 "updated_at" => $now
             	)
@@ -143,11 +147,11 @@
             $wpdb->update( 
             	$wpdb->prefix . "livelychatsupport_surveys", 
               array(
-                "title" => $survey["title"],
-            	  "urls" => $survey["urls"],
-                "delay" => $survey["delay"],
+                "title" => $title,
+            	  "urls" => $urls,
+                "delay" => $delay,
                 "questions" => $questions,
-                "thanks" => $survey["thanks"],
+                "thanks" => $thanks,
                 "updated_at" => $now
             	),
               array(

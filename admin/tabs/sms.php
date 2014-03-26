@@ -5,19 +5,20 @@ if (strpos($livelychatsupport["addons"], "sms") !== false) { ?>
   <form action="admin.php?page=livelychatsupport&tab=sms" method="post">
     <div class="updated">
       <p>
-        <?php _e( "For the SMS addon, there's some set up (I wish it could be easier...).", "lively-chat-support" ); ?><br>
+        <?php _e( "For the SMS to work, you'll need to purchase a phone number from which your website can send you messages.", "lively-chat-support" ); ?><br>
       </p>
       <ol>
         <li><?php _e( "Visit the Users > Your Profile page to add your mobile phone number (where you want to receive the SMS's).", "lively-chat-support" ); ?></li>
         <li><?php echo sprintf( __( "Sign up at <a href=\"%s\" target=\"_blank\">Twilio.com</a>.", "lively-chat-support" ), "https://www.twilio.com/try-twilio?from_livelychatsupport_wp_plugin=true" ); ?></li>
         <li>
           <a href="https://www.twilio.com/user/account/phone-numbers/available/local?from_livelychatsupport_wp_plugin=true" target="_blank"><?php _e( "Buy a number", "lively-chat-support" ); ?></a>. <?php _e( "You'll probably want a local number to avoid any long distance/international SMS charges.", "lively-chat-support" ); ?><br>
-          <b><?php _e( "DON'T GET A TOLL FREE (1-800/1-888/1-877) NUMBER - IT WILL NOT WORK.", "lively-chat-support" ); ?></b> <?php _e( "Place the phone number in the appropriate box below.", "lively-chat-support" ); ?>
+          <b><?php _e( "DON'T GET A TOLL FREE (1-800/1-888/1-877) NUMBER - IT WILL NOT WORK.", "lively-chat-support" ); ?></b> <?php _e( "Place the phone number in the appropriate box below INCUDING THE COUNTRY CODE (eg. 1 for North Amercia, 44 for UK).", "lively-chat-support" ); ?>
         </li>
-        <li><?php echo sprintf( __( "When prompted by Twilio, fill in the box for <b>Messaging</b> with \"%s\". <b>/xmlrpc.php?from_twilio=true</b> must be on the end of the url for the SMS addon to work. Save your Twilio changes.", "lively-chat-support" ), "http://www.yourdomain.com/xmlrpc.php?from_twilio=true"); ?></li>
-          <li><?php _e( "From the Twilio dashboard, copy your <b>ACCOUNT SID</b> and <b>AUTH TOKEN</b> into the boxes below.", "lively-chat-support" ); ?></li>
+        <li><?php echo sprintf( __( "When prompted by Twilio, fill in the box for <b>Messaging</b> with \"%s\".", "lively-chat-support" ), "http://www.yourdomain.com/xmlrpc.php?from_twilio=true"); ?></li>
+        <li><?php _e( "From the Twilio dashboard, copy your <b>ACCOUNT SID</b> and <b>AUTH TOKEN</b> into the boxes below.", "lively-chat-support" ); ?></li>
         <li><?php _e( "Click <b>Save My Credentials</b> on this page. You should receive an SMS confirming that everything's ready to go.", "lively-chat-support" ); ?></li>
-        <li><?php echo sprintf( __( "Go to the <a href=\"%s\">Schedule</a> page and choose <b>According to Office Hours</b> from the drop down list. Finally, add the hours you'd like to be available as an SMS customer support agent.", "lively-chat-support" ), "admin.php?page=livelychatsupport&tab=schedule" ); ?></li>
+        <li><?php echo sprintf( __( "Now, you must go to the <a href=\"%s\">Schedule</a> page and choose <b>According to Office Hours</b> from the drop down list. Finally, add the hours you'd like to be available as an SMS customer support agent.", "lively-chat-support" ), "admin.php?page=livelychatsupport&tab=schedule" ); ?></li>
+        <li><?php _e( "Thanks for supporting Lively Chat Support! Email dallas@excitecreative.ca if you need any help!", "lively-chat-support" ); ?></li>
       </ol>
     </div>
   
@@ -32,7 +33,7 @@ if (strpos($livelychatsupport["addons"], "sms") !== false) { ?>
     </div>
   
     <div class="field">
-      <label for=""><?php _e( "What is your Twilio Phone Number? (only numbers... no spaces, brackets, or plus sign)", "lively-chat-support" ); ?></label><br>
+      <label for=""><?php _e( "What is your Twilio Phone Number (including country code)?", "lively-chat-support" ); ?></label><br>
       <input type="text" name="twilio_phone" value="<?php echo $livelychatsupport["twilio_phone"]; ?>" />
     </div>
   

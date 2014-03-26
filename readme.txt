@@ -1,5 +1,5 @@
 === Lively Chat Support ===
-Version: 1.0.17
+Version: 1.0.18
 URI: http://www.livelychatsupport.com
 Contributors: dallas22ca
 Author: Dallas Read
@@ -8,7 +8,7 @@ Donate link: Purchase an addon!
 Tags: live chat, live support, online chat, customer service
 Requires at least: 3.6
 Tested up to: 3.6.1
-Stable tag: 1.0.17
+Stable tag: 1.0.18
 License: MIT
 
 The best FREE live chat support for your WP website (supports images) - forget the hosted chat services.
@@ -65,7 +65,6 @@ Each message you receive begins with a small token and a colon (eg. 4k2:). To re
 
 Here's some scheduled features to be added:
 
-* only allow self to be checked as initial agent
 * Detect which agents are online automatically
 * Don't require email address before starting a conversation.
 * Button for visitors to "Introduce Yourself"
@@ -77,7 +76,11 @@ Here's some scheduled features to be added:
 == Changelog ==
 
 = 1.0.18 =
+* Removed whitespace appearing at the top of the chat on mobile devices.
+* Instructions update for SMS.
+* Removed extra slashes in Survey's "Thank You" field.
 * Lithuanian translation added.
+* Monthly plans added for addons ($6.99/month).
 
 = 1.0.17 =
 * Just bumping stable tag (sorry about all the updates!).
