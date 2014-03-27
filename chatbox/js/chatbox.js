@@ -47,7 +47,8 @@ $lcsq(function($lcsq){
         LivelyChatSupport.scrollChatToBottom();
       },
     
-      poll: function() {
+      poll: function(on_page_load) {
+				if (typeof on_page_load === "undefined") { on_page_load = false; }
         if ($lcsq("#livelychatsupport-chatbox").hasClass("chatting") && $lcsq(".messages").length)
         {
 					var latest_id = 0;
@@ -72,7 +73,7 @@ $lcsq(function($lcsq){
                   	var message = data.messages[i];
 										if (!$lcsq("#message_" + message.id).length) {
 	                    if (message.from_agent == "1") { var from_agent = true; } else { var from_agent = false; }
-	                    LivelyChatSupport.addMessage(message.body, from_agent, true, message.id);
+	                    LivelyChatSupport.addMessage(message.body, from_agent, !on_page_load, message.id);
 										}
                   }
                 }
@@ -252,7 +253,7 @@ $lcsq(function($lcsq){
 
     $lcsq(document).ready(function(){
       LivelyChatSupport.scrollChatToBottom();
-      LivelyChatSupport.poll();
+      LivelyChatSupport.poll(true);
       LivelyChatSupport.cacheSupport();
     });
   

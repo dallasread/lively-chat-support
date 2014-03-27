@@ -8,7 +8,7 @@ if (strpos($livelychatsupport["addons"], "sms") !== false) { ?>
         <?php _e( "For the SMS to work, you'll need to purchase a phone number from which your website can send you messages.", "lively-chat-support" ); ?><br>
       </p>
       <ol>
-        <li><?php _e( "Visit the Users > Your Profile page to add your mobile phone number (where you want to receive the SMS's).", "lively-chat-support" ); ?></li>
+        <li><?php echo sprintf( __( "Visit the <a href=\"%s\">Agents</a> page to add your personal mobile phone number.", "lively-chat-support" ), "admin.php?page=livelychatsupport&tab=agents"); ?></li>
         <li><?php echo sprintf( __( "Sign up at <a href=\"%s\" target=\"_blank\">Twilio.com</a>.", "lively-chat-support" ), "https://www.twilio.com/try-twilio?from_livelychatsupport_wp_plugin=true" ); ?></li>
         <li>
           <a href="https://www.twilio.com/user/account/phone-numbers/available/local?from_livelychatsupport_wp_plugin=true" target="_blank"><?php _e( "Buy a number", "lively-chat-support" ); ?></a>. <?php _e( "You'll probably want a local number to avoid any long distance/international SMS charges.", "lively-chat-support" ); ?><br>
