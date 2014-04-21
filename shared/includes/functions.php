@@ -1,40 +1,54 @@
 <?php
+
+  function LivelyChatSupport_settings($update = false) {
+    if (!$update) { $update = array(); }
+    //FILTERS: nl2br(stripslashes
+      
+    $defaults = array(
+      "activation_code" => "",
+      "addons" => "",
+      "visible_pages" => "*",
+      "subscriber_name" => "",
+      "subscriber_email" => "",
+      "default_responder_id" => "",
+      "online" => "hours",
+      "colour" => "#570060",
+      "position" => "right",
+      "offline_thanks" => __("Thanks for contacting us. We'll get back to you as soon as we can.", "lively-chat-support"),
+      "cta_online_text" => __("Chat With Us Now!", "lively-chat-support"),
+      "cta_offline_text" => __("Need help? Email Us Here!", "lively-chat-support"),
+      "cta_online_image" => "",
+      "cta_online_image_offset_y" => 200,
+      "cta_online_image_offset_x" => 0,
+      "cta_offline_image" => "",
+      "cta_offline_image_offset_y" => 200,
+      "cta_offline_image_offset_x" => 0,
+      "sms_responder_id" => "",
+      "twilio_sid" => "",
+      "twilio_auth" => "",
+      "twilio_phone" => "",
+      "start" => date("F j, Y", current_time("timestamp")),
+      "finish" => date("F j, Y", current_time("timestamp")),
+      "show_powered_by" => "true"
+    );
+    
+    $merged_with_defaults = array_merge($defaults, $update);
+    
+    if (!empty($update)) {
+      $settings_json = json_decode( update_option("livelychatsupport_settings", json_encode($merged_with_defaults, true)), true );
+    } else {
+      $settings_json = json_decode(get_option("livelychatsupport_settings"), true);
+      $merged_with_defaults = array_merge($defaults, $settings_json);
+      return $merged_with_defaults;
+    }
+  }
   
   function LivelyChatSupport_details() {
     global $wpdb;
     $convos_table = $wpdb->prefix . "livelychatsupport_convos";
+    $settings_json = LivelyChatSupport_settings();
     
-    ini_set('display_errors',0);
-    ini_set('display_startup_errors',0);
-    error_reporting(0);
-  
-    return array(
-      "activation_code" => get_option("livelychatsupport_activation_code"),
-      "addons" => get_option("livelychatsupport_addons"),
-      "visible_pages" => stripslashes(get_option("livelychatsupport_visible_pages", "*")),
-      "subscriber_name" => get_option("livelychatsupport_name"),
-      "subscriber_email" => get_option("livelychatsupport_email"),
-      "default_responder_id" => get_option("livelychatsupport_default_responder_id"),
-      "online" => get_option("livelychatsupport_online", "hours"),
-      "colour" => get_option("livelychatsupport_colour", "#570060"),
-      "position" => get_option("livelychatsupport_position", "right"),
-      "offline_thanks" => nl2br(stripslashes(get_option("livelychatsupport_offline_thanks", __("Thanks for contacting us. We'll get back to you as soon as we can.", "lively-chat-support")))),
-      "cta_online_text" => stripslashes(get_option("livelychatsupport_cta_online_text", __("Chat With Us Now!", "lively-chat-support"))),
-      "cta_offline_text" => stripslashes(get_option("livelychatsupport_cta_offline_text", __("Need help? Email Us Here!", "lively-chat-support"))),
-      "cta_online_image" => get_option("livelychatsupport_cta_online_image", ""),
-      "cta_online_image_offset_y" => get_option("livelychatsupport_cta_online_image_offset_y", 200),
-      "cta_online_image_offset_x" => get_option("livelychatsupport_cta_online_image_offset_x", 0),
-      "cta_offline_image" => get_option("livelychatsupport_cta_offline_image", ""),
-      "cta_offline_image_offset_y" => get_option("livelychatsupport_cta_offline_image_offset_y", 200),
-      "cta_offline_image_offset_x" => get_option("livelychatsupport_cta_offline_image_offset_x", 0),
-      "sms_responder_id" => get_option("livelychatsupport_sms_responder_id"),
-      "twilio_sid" => get_option("livelychatsupport_twilio_sid"),
-      "twilio_auth" => get_option("livelychatsupport_twilio_auth"),
-      "twilio_phone" => get_option("livelychatsupport_twilio_phone"),
-      "start" => get_option("livelychatsupport_filter_start", date("F j, Y", current_time("timestamp"))),
-      "finish" => get_option("livelychatsupport_filter_finish", date("F j, Y", current_time("timestamp"))),
-      "show_powered_by" => get_option("livelychatsupport_show_powered_by", "true")
-    );
+    return $settings_json;
   }
   
   function LivelyChatSupport_poll(){
@@ -82,9 +96,9 @@
       $user->add_cap( 'can_livelychatsupport' );
       LivelyChatSupport_installation();
     }
-    
-    if (get_site_option( "livelychatsupport_addon_version" ) != $livelychatsupport_addon_version) {
-      LivelyChatSupport_activate();
+
+    if ((float) get_site_option( "livelychatsupport_addon_version", 0 ) < 1.5) {
+      LivelyChatSupport_settings_hash_updater();
     }
   }
   
@@ -186,7 +200,6 @@
     dbDelta( $triggers_sql );
     dbDelta( $surveys_sql );
     dbDelta( $hours_sql );
-    dbDelta( $agents_sql );
     
     if (!get_option("livelychatsupport_db_collation")) {
       $charset_collate = str_replace("DEFAULT ", "", $charset_collate);
@@ -312,6 +325,39 @@
         return "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?><success></success>";
       }
     }
+  }
+  
+  function LivelyChatSupport_settings_hash_updater() {
+    $old_settings = array(
+      "activation_code" => get_option("livelychatsupport_activation_code"),
+      "addons" => get_option("livelychatsupport_addons"),
+      "visible_pages" => stripslashes(get_option("livelychatsupport_visible_pages", "*")),
+      "subscriber_name" => get_option("livelychatsupport_name"),
+      "subscriber_email" => get_option("livelychatsupport_email"),
+      "default_responder_id" => get_option("livelychatsupport_default_responder_id"),
+      "online" => get_option("livelychatsupport_online", "hours"),
+      "colour" => get_option("livelychatsupport_colour", "#570060"),
+      "position" => get_option("livelychatsupport_position", "right"),
+      "offline_thanks" => nl2br(stripslashes(get_option("livelychatsupport_offline_thanks", __("Thanks for contacting us. We'll get back to you as soon as we can.", "lively-chat-support")))),
+      "cta_online_text" => stripslashes(get_option("livelychatsupport_cta_online_text", __("Chat With Us Now!", "lively-chat-support"))),
+      "cta_offline_text" => stripslashes(get_option("livelychatsupport_cta_offline_text", __("Need help? Email Us Here!", "lively-chat-support"))),
+      "cta_online_image" => get_option("livelychatsupport_cta_online_image", ""),
+      "cta_online_image_offset_y" => get_option("livelychatsupport_cta_online_image_offset_y", 200),
+      "cta_online_image_offset_x" => get_option("livelychatsupport_cta_online_image_offset_x", 0),
+      "cta_offline_image" => get_option("livelychatsupport_cta_offline_image", ""),
+      "cta_offline_image_offset_y" => get_option("livelychatsupport_cta_offline_image_offset_y", 200),
+      "cta_offline_image_offset_x" => get_option("livelychatsupport_cta_offline_image_offset_x", 0),
+      "sms_responder_id" => get_option("livelychatsupport_sms_responder_id"),
+      "twilio_sid" => get_option("livelychatsupport_twilio_sid"),
+      "twilio_auth" => get_option("livelychatsupport_twilio_auth"),
+      "twilio_phone" => get_option("livelychatsupport_twilio_phone"),
+      "start" => get_option("livelychatsupport_filter_start", date("F j, Y", current_time("timestamp"))),
+      "finish" => get_option("livelychatsupport_filter_finish", date("F j, Y", current_time("timestamp"))),
+      "show_powered_by" => get_option("livelychatsupport_show_powered_by", "true")
+    );
+    
+    LivelyChatSupport_settings($old_settings);
+    LivelyChatSupport_activate();
   }
 
 ?>

@@ -260,6 +260,7 @@
     if ($convo) { $referrers = json_decode($convo->referrers); }
     if (!is_array($referrers) || !isset($referrers)) { $referrers = array(); }
     
+    
     array_push($referrers, "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
 
     if (LIVELYCHATSUPPORT_ADMIN == false && isset($_COOKIE["livelychatsupport_convo_token"]))
@@ -371,6 +372,7 @@
       global $wpdb;
       $livelychatsupport = LivelyChatSupport_details();
       $convo = LivelyChatSupport_convo($convo_token);
+      $agent = LivelyChatSupport_agent($convo->agent_id);
       $now = date("Y-m-d H:i:s.u");
     
       if ($convo)
@@ -402,7 +404,9 @@
           }
         } else {
           $hour = LivelyChatSupport_hour();
-          if ($hour && $hour->via == "sms")
+          $sms_activated = strpos($livelychatsupport["addons"], "sms") !== false;
+          
+          if (($hour && $hour->via == "sms") || ($sms_activated && get_user_meta($agent->id, "livelychatsupport-mobile") != ""))
           {
             LivelyChatSupport_send_sms($convo->mini_token, $body);
             $details = array(
@@ -489,7 +493,7 @@
     		$headers .= "Content-type: text/html; charset=iso-8859-1" . "\r\n";
     		$headers .= "From: $name <$email>" . "\r\n";
 
-    		mail($to, $subject, $msg, $headers);
+    		wp_mail($to, $subject, $msg, $headers);
       }
 
     }
@@ -538,7 +542,7 @@
 		$headers .= "Content-type: text/html; charset=iso-8859-1" . "\r\n";
 		$headers .= "From: $name <$email>" . "\r\n";
 
-		mail($to, $subject, $msg, $headers);
+		wp_mail($to, $subject, $msg, $headers);
     
     die();
   }

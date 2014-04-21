@@ -1,14 +1,14 @@
 === Lively Chat Support ===
-Version: 1.0.19
+Version: 1.0.20
 URI: http://www.livelychatsupport.com
 Contributors: dallas22ca
 Author: Dallas Read
 Author URI: http://www.DallasRead.com
 Donate link: Purchase an addon!
-Tags: live chat, live support, online chat, customer service
+Tags: free live chat, live chat, live support, online chat, customer service
 Requires at least: 3.6
-Tested up to: 3.6.1
-Stable tag: 1.0.19
+Tested up to: 3.9
+Stable tag: 1.0.20
 License: MIT
 
 The best FREE live chat support for your WP website (supports images) - forget the hosted chat services.
@@ -65,6 +65,17 @@ Each message you receive begins with a small token and a colon (eg. 4k2:). To re
 
 Here's some scheduled features to be added:
 
+* options hash
+* update hits differently
+* There was a trigger set. It was an EMPTY TRIGGER. I deleted it and stopped the auto-open of LivelyChat.
+
+* Remove "define( 'SAVEQUERIES', true );"
+* NEED TEST: always online should use SMS
+* NEED TEST: use wp_mail
+* Turn off all error reporting
+* Update
+* Send email!
+
 * Detect which agents are online automatically
 * Don't require email address before starting a conversation.
 * Button for visitors to "Introduce Yourself"
@@ -74,6 +85,9 @@ Here's some scheduled features to be added:
 * Store Offline Mode form submissions
 
 == Changelog ==
+
+= 1.0.20 =
+* Removed a couple trailing commas in JS that were causing IE issues.
 
 = 1.0.19 =
 * Fixed an issue where previously sent messages would trigger a "ding" on page load.

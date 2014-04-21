@@ -207,7 +207,7 @@ $lcsq(function($lcsq){
 
         $lcsq.post(url, {
           "action": "cache_support",
-          "convo_token": $lcsq("#livelychatsupport-chatbox-token").val(),
+          "convo_token": $lcsq("#livelychatsupport-chatbox-token").val()
         }, function(data){
           LivelyChatSupport_popups = [];
 					var online = false;
@@ -333,7 +333,7 @@ $lcsq(function($lcsq){
       } else {
         $lcsq.post($lcsq(this).attr("action"), {
           "action": "save_survey",
-          "data": $lcsq(this).serializeArray(),
+          "data": $lcsq(this).serializeArray()
         });
 
         $lcsq(this).addClass("complete");

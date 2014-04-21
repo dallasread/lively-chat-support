@@ -169,43 +169,45 @@
       {
         $now = date("Y-m-d H:i:s", current_time("timestamp"));
         
-        if ($hour["id"] != "template")
-        {
-          if ($hour["delete"] == "1") {
-            $wpdb->delete(
-              $wpdb->prefix . "livelychatsupport_hours",
-              array(
-                "id" => $hour["id"]
-              )
-            );
-          } else if ($hour["id"] == "new") {
-            $wpdb->insert( 
-            	$wpdb->prefix . "livelychatsupport_hours", 
-              array(
-            	  "day" => $hour["day"],
-                "open_at" => date("Hi", strtotime($hour["open_at"])),
-                "close_at" => date("Hi", strtotime($hour["close_at"])),
-                "responder_id" => $hour["responder_id"],
-                "via" => $hour["via"],
-                "created_at" => $now,
-                "updated_at" => $now
-            	)
-            );
-          } else {
-            $wpdb->update( 
-            	$wpdb->prefix . "livelychatsupport_hours", 
-              array(
-            	  "day" => $hour["day"],
-                "open_at" => date("Hi", strtotime($hour["open_at"])),
-                "close_at" => date("Hi", strtotime($hour["close_at"])),
-                "responder_id" => $hour["responder_id"],
-                "via" => $hour["via"],
-                "updated_at" => $now
-            	),
-              array(
-                "id" => $hour["id"]
-              )
-            );
+        if (isset($hour["id"])) {
+          if ($hour["id"] != "template")
+          {
+            if ($hour["delete"] == "1") {
+              $wpdb->delete(
+                $wpdb->prefix . "livelychatsupport_hours",
+                array(
+                  "id" => $hour["id"]
+                )
+              );
+            } else if ($hour["id"] == "new") {
+              $wpdb->insert( 
+              	$wpdb->prefix . "livelychatsupport_hours", 
+                array(
+              	  "day" => $hour["day"],
+                  "open_at" => date("Hi", strtotime($hour["open_at"])),
+                  "close_at" => date("Hi", strtotime($hour["close_at"])),
+                  "responder_id" => $hour["responder_id"],
+                  "via" => $hour["via"],
+                  "created_at" => $now,
+                  "updated_at" => $now
+              	)
+              );
+            } else {
+              $wpdb->update( 
+              	$wpdb->prefix . "livelychatsupport_hours", 
+                array(
+              	  "day" => $hour["day"],
+                  "open_at" => date("Hi", strtotime($hour["open_at"])),
+                  "close_at" => date("Hi", strtotime($hour["close_at"])),
+                  "responder_id" => $hour["responder_id"],
+                  "via" => $hour["via"],
+                  "updated_at" => $now
+              	),
+                array(
+                  "id" => $hour["id"]
+                )
+              );
+            }
           }
         }
       }

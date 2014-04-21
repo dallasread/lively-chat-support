@@ -6,10 +6,10 @@ $upsells = array(
     "cta" => __("4 Add-ons + Support = $6.99/month!", "lively-chat-support"),
     "url" => "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=864Y2KZLB2Y44"
   ),
-  //(object) array(
-  //  "cta" => __("Use surveys to engage visitors!", "lively-chat-support"),
-  //  "url" => "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=T4Y8KB4RJLURW"
-  //),
+  (object) array(
+    "cta" => __("Use surveys to engage visitors!", "lively-chat-support"),
+    "url" => "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=T4Y8KB4RJLURW"
+  ),
   // (object) array(
   //   "cta" => __("Triggers engage visitors!", "lively-chat-support"),
   //   "url" => "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=2BKE7U7LNT46U"
@@ -18,12 +18,12 @@ $upsells = array(
   //   "cta" => __("Need Multiple Agents?", "lively-chat-support"),
   //   "url" => "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=M4F2RKSLV9X6Y"
   // ),
-  //(object) array(
-  //  "cta" => __("Chat with visitors from your phone!", "lively-chat-support"),
-  //  "url" => "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=R6WMR5FYAA2DU"
-  //),
   (object) array(
-    "cta" => __("4 Add-ons for $99!", "lively-chat-support"),
+    "cta" => __("Chat with visitors from your phone!", "lively-chat-support"),
+    "url" => "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=R6WMR5FYAA2DU"
+  ),
+  (object) array(
+    "cta" => __("4 Addons for $99!", "lively-chat-support"),
     "url" => "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4DNPUK74JEXFS"
   ),
   //(object) array(
@@ -93,5 +93,9 @@ if (isset($_POST["subscriber_email"]) && $_POST["subscriber_email"] != "" && iss
 <?php if (!empty($_POST)) { ?>
   <div class="updated">
     <p><?php _e("Your changes have been saved.", "lively-chat-support"); ?></p>
+  </div>
+<?php } else if ($livelychatsupport["activation_code"] == "") { ?>
+  <div class="updated">
+    <p><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=864Y2KZLB2Y44"><?php _e("Did you know you can get all 4 Lively Chat Support Addons (SMS, Multi-agent, Triggers, Surveys) for only $6.99 monthly? Click here!", "lively-chat-support"); ?></a></p>
   </div>
 <?php } ?>

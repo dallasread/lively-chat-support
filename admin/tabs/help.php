@@ -14,6 +14,7 @@
   <li>&rarr; <b>SMS</b>: receive and respond to messages on your mobile phone (<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=R6WMR5FYAA2DU"><?php echo sprintf( __("Buy Now - $40") ); ?></a>).</li>
   <li>&rarr; <b>Multi-agent</b>: use multiple agents (<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=M4F2RKSLV9X6Y"><?php echo sprintf( __("Buy Now - $40") ); ?></a>).</li>
   <li>&rarr; <b>All 4 features for $99!</b> (<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4DNPUK74JEXFS"><?php echo sprintf( __("Buy Now - $99") ); ?></a>).</li>
+  <li>&rarr; <b>All features</b> (<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=864Y2KZLB2Y44"><?php echo sprintf( __("Only $6.99 per month") ); ?></a>).</li>
 </ul>
 
 <h2><?php _e( "Need extra help?", "lively-chat-support" ); ?></h2>
