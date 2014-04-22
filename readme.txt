@@ -1,5 +1,5 @@
 === Lively Chat Support ===
-Version: 1.0.20
+Version: 1.0.21
 URI: http://www.livelychatsupport.com
 Contributors: dallas22ca
 Author: Dallas Read
@@ -8,33 +8,35 @@ Donate link: Purchase an addon!
 Tags: free live chat, live chat, live support, online chat, customer service
 Requires at least: 3.6
 Tested up to: 3.9
-Stable tag: 1.0.20
+Stable tag: 1.0.21
 License: MIT
 
 The best FREE live chat support for your WP website (no 3rd party dependencies)!
 
 == Description ==
 
-Lively Chat Support puts the power of connecting with visitors in the palm of your hand.
+**Lively Chat Support puts the power of connecting with visitors in the palm of your hand. You get:**
 
-**What do you get with Lively Chat Support?**
-* 
+* Extremely customizable live chat for your visitors to interact with.
 * "Offline Mode" works as a lead-capturing machine while you sleep. You can even customize your thank you message (maybe offer a freebie for signing up).
-* Great customer service
+* [Great customer service.](http://wordpress.org/support/view/plugin-reviews/lively-chat-support)
+* Boost your conversion rates with one of our premium addons!
 
-For Lively's features, most companies would charge at least twenty dollars per month. Lively Chat Support is FREE forever, but we offer a few premium addons to help you get the most out of your live chat:
+For Lively's features, most companies would charge at least 20 to 30 dollars per month. Lively Chat Support is FREE forever, but we offer a few premium addons to help you get more out of your live chat:
 
-* **Multiple Agents: Buy Now for $40](http://www.livelychatsupport.com/buy-multi)** - put the power of multiple customer service reps to work for you!
-* **Chat from your phone: Buy Now for $40](http://www.livelychatsupport.com/buy-sms)** - perfect for the small business owner. Through SMS (text messages), you'll be able to stay in touch with the visitors on your website.
+* **Multiple Agents: [Buy Now for $40](http://www.livelychatsupport.com/buy-multi)** - put the power of multiple customer service reps to work for you!
+* **Chat from your phone: [Buy Now for $40](http://www.livelychatsupport.com/buy-sms)** - perfect for the small business owner. Through SMS (text messages), you'll be able to stay in touch with the visitors on your website.
 * **Triggers: [Buy Now for $40](http://www.livelychatsupport.com/buy-triggers)** - start conversations based on your specified criteria. For example, if they've been on your checkout page too long, ask them "Do you need help checking out?"
 * **Surveys: [Buy Now for $40](http://www.livelychatsupport.com/buy-surveys)** - quick and unintrusive, surveys are a great way to learn more about your visitors (who love giving their input!).
 * **Cobrowsing: [Preorder for $129](http://livelychatsupport.com/pre-cobrowse)** - without installing anything, your visitors will be able to share their screen with you - safely and securely.
 
 > **Live Demos**
+
 > * [TheUltimateLock.com](http://www.theultimatelock.com)
 > * [KeithMarshall.ca](http://keithmarshall.ca)
 
 **DEALS (Big Savings)**
+
 * Want to buy all 4 Premium Addons with fast, reliable tech support? Right now, we're offering an incredible deal - [Buy Now for $99](http://www.livelychatsupport.com/buy-4)!
 * Don't have cash and want to try out all 4 Premium Addons? We're offering a huge cost savings - [Buy All 4 Addons for $6.99 a month](http://www.livelychatsupport.com/buy-monthly)!
 
@@ -50,8 +52,8 @@ For Lively's features, most companies would charge at least twenty dollars per m
 = Is Lively Chat Support completely free? =
 Lively is FREE to use, but there are a few premium addons. They are:
 
-* **Multiple Agents: Buy Now for $40](http://www.livelychatsupport.com/buy-multi)** - put the power of multiple customer service reps to work for you!
-* **Chat from your phone: Buy Now for $40](http://www.livelychatsupport.com/buy-sms)** - perfect for the small business owner. Through SMS (text messages), you'll be able to stay in touch with the visitors on your website.
+* **Multiple Agents: [Buy Now for $40](http://www.livelychatsupport.com/buy-multi)** - put the power of multiple customer service reps to work for you!
+* **Chat from your phone: [Buy Now for $40](http://www.livelychatsupport.com/buy-sms)** - perfect for the small business owner. Through SMS (text messages), you'll be able to stay in touch with the visitors on your website.
 * **Triggers: [Buy Now for $40](http://www.livelychatsupport.com/buy-triggers)** - start conversations based on your specified criteria. For example, if they've been on your checkout page too long, ask them "Do you need help checking out?"
 * **Surveys: [Buy Now for $40](http://www.livelychatsupport.com/buy-surveys)** - quick and unintrusive, surveys are a great way to learn more about your visitors (who love giving their input!).
 * **Cobrowsing: [Preorder for $129](http://livelychatsupport.com/pre-cobrowse)** - without installing anything, your visitors will be able to share their screen with you - safely and securely.
