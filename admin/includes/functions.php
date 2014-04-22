@@ -20,33 +20,45 @@
     if (isset($_POST)) {
       if (function_exists("flush_pgcache")) { flush_pgcache(); }
       if (function_exists("reset_oc_version")) { reset_oc_version(); }
+      
+      $posted_data = array();
+      $post_fields = array(
+        "subscriber_email", 
+        "subscriber_name", 
+        "default_responder_id", 
+        "visible_pages", 
+        "online", 
+        "offline_thanks", 
+        "colour", 
+        "position", 
+        "cta_online_text", 
+        "cta_offline_text", 
+        "cta_online_image_offset_y", 
+        "cta_online_image_offset_x", 
+        "cta_offline_image_offset_y", 
+        "cta_offline_image_offset_x", 
+        "cta_online_image", 
+        "cta_offline_image", 
+        "start", 
+        "finish", 
+        "twilio_sid", 
+        "twilio_auth", 
+        "sms_responder_id", 
+        "show_powered_by"
+      );
+      
+      foreach ($post_fields as $field) {
+        if (isset($_POST[$field]) && $_POST[$field] != "") {
+          $posted_data[$field] = trim(stripslashes( $_POST[$field] ));
+        }
+      }
+      
+      LivelyChatSupport_settings($posted_data);
     }
 
-    if (isset($_POST["subscriber_email"])) { update_option("livelychatsupport_email", $_POST["subscriber_email"]); }
-    if (isset($_POST["subscriber_name"])) { update_option("livelychatsupport_name", $_POST["subscriber_name"]); }
-    if (isset($_POST["default_responder_id"])) { update_option("livelychatsupport_default_responder_id", $_POST["default_responder_id"]); }
     if (isset($_POST["activation_code"])) { LivelyChatSupport_activate(); }
-    if (isset($_POST["visible_pages"])) { update_option("livelychatsupport_visible_pages", stripslashes($_POST["visible_pages"])); }
-    if (isset($_POST["online"])) { update_option("livelychatsupport_online", $_POST["online"]); }
-    if (isset($_POST["colour"]) && $_POST["colour"] != "") { update_option("livelychatsupport_colour", $_POST["colour"]); }
-    if (isset($_POST["position"]) && $_POST["position"] != "") { update_option("livelychatsupport_position", $_POST["position"]); }
-    if (isset($_POST["offline_thanks"])) { update_option("livelychatsupport_offline_thanks", $_POST["offline_thanks"]); }
-    if (isset($_POST["cta_online_text"]) && $_POST["cta_online_text"] != "") { update_option("livelychatsupport_cta_online_text", stripslashes($_POST["cta_online_text"])); }
-    if (isset($_POST["cta_offline_text"]) && $_POST["cta_offline_text"] != "") { update_option("livelychatsupport_cta_offline_text", stripslashes($_POST["cta_offline_text"])); }
-    if (isset($_POST["cta_online_image"])) { update_option("livelychatsupport_cta_online_image", $_POST["cta_online_image"]); }
-    if (isset($_POST["cta_online_image_offset_y"]) && $_POST["cta_online_image_offset_y"] != "") { update_option("livelychatsupport_cta_online_image_offset_y", $_POST["cta_online_image_offset_y"]); }
-    if (isset($_POST["cta_online_image_offset_x"]) && $_POST["cta_online_image_offset_x"] != "") { update_option("livelychatsupport_cta_online_image_offset_x", $_POST["cta_online_image_offset_x"]); }
-    if (isset($_POST["cta_offline_image"])) { update_option("livelychatsupport_cta_offline_image", $_POST["cta_offline_image"]); }
-    if (isset($_POST["cta_offline_image_offset_y"]) && $_POST["cta_offline_image_offset_y"] != "") { update_option("livelychatsupport_cta_offline_image_offset_y", $_POST["cta_offline_image_offset_y"]); }
-    if (isset($_POST["cta_offline_image_offset_x"]) && $_POST["cta_offline_image_offset_x"] != "") { update_option("livelychatsupport_cta_offline_image_offset_x", $_POST["cta_offline_image_offset_x"]); }
-    if (isset($_POST["start"])) { update_option("livelychatsupport_filter_start", $_POST["start"]); }
-    if (isset($_POST["finish"])) { update_option("livelychatsupport_filter_finish", $_POST["finish"]); }
-    if (isset($_POST["twilio_sid"])) { update_option("livelychatsupport_twilio_sid", trim($_POST["twilio_sid"])); }
-    if (isset($_POST["twilio_auth"])) { update_option("livelychatsupport_twilio_auth", trim($_POST["twilio_auth"])); }
-    if (isset($_POST["twilio_phone"])) { update_option("livelychatsupport_twilio_phone", "+" . preg_replace("/[^0-9]/", "", trim($_POST["twilio_phone"]))); LivelyChatSupport_send_sms("Site", "Your Lively Chat Support is installed!"); }
-    if (isset($_POST["sms_responder_id"])) { update_option("livelychatsupport_sms_responder_id", $_POST["sms_responder_id"]); }
-    if (isset($_POST["show_powered_by"])) { update_option("livelychatsupport_show_powered_by", $_POST["show_powered_by"]); }
     if (isset($_GET["delete_convo"])) { LivelyChatSupport_delete_convo($_GET["convo_token"]); }
+    if (isset($_POST["twilio_phone"])) { LivelyChatSupport_settings( array("twilio_phone" => "+" . preg_replace("/[^0-9]/", "", trim($_POST["twilio_phone"]))) ); LivelyChatSupport_send_sms("Site", "Your Lively Chat Support is installed!"); }
     
     if (isset($_POST["agents"])) {
       foreach($_POST["agents"] as $agent) {
@@ -81,30 +93,34 @@
                 "id" => $trigger["id"]
               )
             );
-          } else if ($trigger["id"] == "new") {
-            $wpdb->insert( 
-            	$wpdb->prefix . "livelychatsupport_triggers", 
-              array(
-            	  "urls" => $trigger["urls"],
-                "delay" => $trigger["delay"],
-                "body" => filter_var($trigger["body"], FILTER_SANITIZE_STRING),
-                "created_at" => $now,
-                "updated_at" => $now
-            	)
-            );
           } else {
-            $wpdb->update( 
-            	$wpdb->prefix . "livelychatsupport_triggers", 
-              array(
-            	  "urls" => $trigger["urls"],
-                "delay" => $trigger["delay"],
-                "body" => filter_var($trigger["body"], FILTER_SANITIZE_STRING),
-                "updated_at" => $now
-            	),
-              array(
-                "id" => $trigger["id"]
-              )
-            );
+            if ($trigger["body"] != "") {
+              if ($trigger["id"] == "new") {
+                $wpdb->insert( 
+                	$wpdb->prefix . "livelychatsupport_triggers", 
+                  array(
+                	  "urls" => $trigger["urls"],
+                    "delay" => $trigger["delay"],
+                    "body" => filter_var($trigger["body"], FILTER_SANITIZE_STRING),
+                    "created_at" => $now,
+                    "updated_at" => $now
+                	)
+                );
+              } else {
+                $wpdb->update( 
+                	$wpdb->prefix . "livelychatsupport_triggers", 
+                  array(
+                	  "urls" => $trigger["urls"],
+                    "delay" => $trigger["delay"],
+                    "body" => filter_var($trigger["body"], FILTER_SANITIZE_STRING),
+                    "updated_at" => $now
+                	),
+                  array(
+                    "id" => $trigger["id"]
+                  )
+                );
+              }
+            }
           }
         }
       }
@@ -130,34 +146,38 @@
                 "id" => $survey["id"]
               )
             );
-          } else if ($survey["id"] == "new") {
-            $wpdb->insert( 
-            	$wpdb->prefix . "livelychatsupport_surveys", 
-              array(
-                "title" => $title,
-            	  "urls" => $urls,
-                "delay" => $delay,
-                "questions" => $questions,
-                "thanks" => $thanks,
-                "created_at" => $now,
-                "updated_at" => $now
-            	)
-            );
           } else {
-            $wpdb->update( 
-            	$wpdb->prefix . "livelychatsupport_surveys", 
-              array(
-                "title" => $title,
-            	  "urls" => $urls,
-                "delay" => $delay,
-                "questions" => $questions,
-                "thanks" => $thanks,
-                "updated_at" => $now
-            	),
-              array(
-                "id" => $survey["id"]
-              )
-            );
+            if ($title != "") {
+              if ($survey["id"] == "new") {
+                $wpdb->insert( 
+                	$wpdb->prefix . "livelychatsupport_surveys", 
+                  array(
+                    "title" => $title,
+                	  "urls" => $urls,
+                    "delay" => $delay,
+                    "questions" => $questions,
+                    "thanks" => $thanks,
+                    "created_at" => $now,
+                    "updated_at" => $now
+                	)
+                );
+              } else {
+                $wpdb->update(
+                	$wpdb->prefix . "livelychatsupport_surveys", 
+                  array(
+                    "title" => $title,
+                	  "urls" => $urls,
+                    "delay" => $delay,
+                    "questions" => $questions,
+                    "thanks" => $thanks,
+                    "updated_at" => $now
+                	),
+                  array(
+                    "id" => $survey["id"]
+                  )
+                );
+              }
+            }
           }
         }
       }
@@ -262,8 +282,10 @@
       	)
       );
   
-      update_option("livelychatsupport_email", $subscriber["email"]);
-      update_option("livelychatsupport_name", $subscriber["name"]);
+      LivelyChatSupport_settings( array(
+        "subscriber_email" => $subscriber["email"],
+        "subscriber_name" => $subscriber["name"]
+      ) );
     }
   }
   
@@ -276,8 +298,8 @@
   function LivelyChatSupport_find_visitors() {
     global $wpdb;
     
-    if (isset($_POST["start"])) { update_option("livelychatsupport_filter_start", $_POST["start"]); }
-    if (isset($_POST["finish"])) { update_option("livelychatsupport_filter_finish", $_POST["finish"]); }
+    if (isset($_POST["start"])) { LivelyChatSupport_settings(array("start" => $_POST["start"])); }
+    if (isset($_POST["finish"])) { LivelyChatSupport_settings(array("finish" => $_POST["finish"])); }
     $messages_table = $wpdb->prefix . "livelychatsupport_messages";
     $convos_table = $wpdb->prefix . "livelychatsupport_convos";
     $livelychatsupport = LivelyChatSupport_details();
@@ -330,13 +352,15 @@
         {
           array_push($addons, $file);
         }
-      
-        update_option("livelychatsupport_addons", implode("|", $addons));
-        update_option("livelychatsupport_activation_code", trim($_POST["activation_code"]));
+        
+        LivelyChatSupport_settings(array(
+          "addons" => implode("|", $addons),
+          "activation_code" => trim($_POST["activation_code"])
+        ));
       }
     }
     
-    update_option("livelychatsupport_addon_version", $livelychatsupport_addon_version);
+    LivelyChatSupport_settings(array( "addon_version" => $livelychatsupport_addon_version ));
   }
   
   function LivelyChatSupport_delete_convo($convo_token) {

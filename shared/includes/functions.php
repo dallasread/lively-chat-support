@@ -32,12 +32,16 @@
       "show_powered_by" => "true"
     );
     
-    $merged_with_defaults = array_merge($defaults, $update);
-    
     if (!empty($update)) {
-      $settings_json = json_decode( update_option("livelychatsupport_settings", json_encode($merged_with_defaults, true)), true );
+      $settings_json = json_decode( get_option("livelychatsupport_settings"), true );
+      if (empty($settings_json)) { $settings_json = array(); }
+      $merged_with_defaults = array_merge($defaults, $settings_json);
+      $merged_with_defaults = array_merge($merged_with_defaults, $update);
+      $settings_json = update_option("livelychatsupport_settings", json_encode($merged_with_defaults, true));
+      return $merged_with_defaults;
     } else {
       $settings_json = json_decode(get_option("livelychatsupport_settings"), true);
+      if (empty($settings_json)) { $settings_json = array(); }
       $merged_with_defaults = array_merge($defaults, $settings_json);
       return $merged_with_defaults;
     }
@@ -95,10 +99,10 @@
       $user = new WP_User( get_current_user_id() );
       $user->add_cap( 'can_livelychatsupport' );
       LivelyChatSupport_installation();
-    }
-
-    if ((float) get_site_option( "livelychatsupport_addon_version", 0 ) < 1.5) {
-      LivelyChatSupport_settings_hash_updater();
+      
+      if ((float) get_site_option( "livelychatsupport_addon_version", 0 ) < 1.5) {
+        LivelyChatSupport_settings_hash_updater();
+      }
     }
   }
   
@@ -212,10 +216,10 @@
       $collate_sql = "ALTER TABLE $surveys_table CONVERT TO $charset_collate;";
       $wpdb->query($collate_sql);
       
-      update_option( "livelychatsupport_db_collation", true );
+      LivelyChatSupport_settings(array( "db_collation" => true ));
     }
     
-    update_option( "livelychatsupport_db_version", $livelychatsupport_db_version );
+    LivelyChatSupport_settings(array( "db_version" => $livelychatsupport_db_version ));
   }
   
   function LivelyChatSupport_uninstallation() {
@@ -241,31 +245,8 @@
     $wpdb->delete($wpdb->usermeta, array("meta_key" => "livelychatsupport-active"));
     
     delete_option("livelychatsupport_db_version");
-    delete_option("livelychatsupport_online");
-    delete_option("livelychatsupport_addons");
-    delete_option("livelychatsupport_visible_pages");
-    delete_option("livelychatsupport_colour");
-    delete_option("livelychatsupport_position");
-    delete_option("livelychatsupport_offline_thanks");
-    delete_option("livelychatsupport_cta_online_text");
-    delete_option("livelychatsupport_cta_offline_text");
-    delete_option("livelychatsupport_cta_online_image");
-    delete_option("livelychatsupport_cta_online_image_offset_y");
-    delete_option("livelychatsupport_cta_online_image_offset_x");
-    delete_option("livelychatsupport_cta_offline_image");
-    delete_option("livelychatsupport_cta_offline_image_offset_y");
-    delete_option("livelychatsupport_cta_offline_image_offset_x");
-    delete_option("livelychatsupport_email");
-    delete_option("livelychatsupport_name");
-    delete_option("livelychatsupport_activation_code");
-    delete_option("livelychatsupport_addons");
-    delete_option("livelychatsupport_sms_responder_id");
-    delete_option("livelychatsupport_twilio_sid");
-    delete_option("livelychatsupport_twilio_auth");
-    delete_option("livelychatsupport_twilio_phone");
-    delete_option("livelychatsupport_filter_start");
-    delete_option("livelychatsupport_filter_finish");
-    delete_option("livelychatsupport_show_powered_by");
+    delete_option("livelychatsupport_db_collation");
+    delete_option("livelychatsupport_settings");
   }
   
   function LivelyChatSupport_send_sms($mini_token, $body) {

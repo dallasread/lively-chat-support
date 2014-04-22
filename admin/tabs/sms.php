@@ -24,12 +24,12 @@ if (strpos($livelychatsupport["addons"], "sms") !== false) { ?>
   
     <div class="field">
       <label for=""><?php _e( "What is your Twilio SID?", "lively-chat-support" ); ?><br></label><br>
-      <input type="text" name="twilio_sid" value="<?php echo $livelychatsupport["twilio_sid"]; ?>" />
+      <input type="text" name="twilio_sid" value="<?php echo $livelychatsupport["twilio_sid"]; ?>" autocomplete="off" />
     </div>
   
     <div class="field">
       <label for=""><?php _e( "What is your Twilio Auth Token?", "lively-chat-support" ); ?></label><br>
-      <input type="password" name="twilio_auth" value="<?php echo $livelychatsupport["twilio_auth"]; ?>" />
+      <input type="password" name="twilio_auth" value="<?php echo $livelychatsupport["twilio_auth"]; ?>" autocomplete="off" />
     </div>
   
     <div class="field">

@@ -67,9 +67,9 @@
         <input type="hidden" class="id" name="triggers[][id]" value="template" />
         <input type="hidden" class="delete" name="triggers[][delete]" value="0" />
         When someone visits:<br>
-        <input type="text" name="triggers[][urls]" /><br>
-        wait <input type="text" name="triggers[][delay]" class="delay" /> seconds and say:<br>
-        <textarea name="triggers[][body]"></textarea>
+        <input type="text" name="triggers[][urls]" value="*" /><br>
+        wait <input type="text" name="triggers[][delay]" class="delay" value="3" /> seconds and say:<br>
+        <textarea name="triggers[][body]">Welcome to our site. Do you have any questions?</textarea>
       </li>
     </ul>
   

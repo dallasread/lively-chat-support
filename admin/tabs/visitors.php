@@ -11,12 +11,12 @@ if (isset($_GET["convo_token"])) {
 if ($convo != null) {
   if (strtotime($livelychatsupport["start"]) >= strtotime($convo->updated_at)) {
     $livelychatsupport["start"] = date("F j, Y", current_time("timestamp") - 86400);
-    update_option("livelychatsupport_filter_start", $livelychatsupport["start"]);
+    LivelyChatSupport_settings(array("start" => $livelychatsupport["start"]));
   }
 
   if (strtotime($livelychatsupport["finish"]) <= strtotime($convo->updated_at)) {
     $livelychatsupport["finish"] = date("F j, Y", current_time("timestamp") + 86400);
-    update_option("livelychatsupport_filter_finish", $livelychatsupport["finish"]);
+    LivelyChatSupport_settings(array("finish" => $livelychatsupport["finish"]));
   }
 }
 

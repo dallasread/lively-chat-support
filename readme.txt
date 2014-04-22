@@ -11,19 +11,32 @@ Tested up to: 3.9
 Stable tag: 1.0.20
 License: MIT
 
-The best FREE live chat support for your WP website (supports images) - forget the hosted chat services.
+The best FREE live chat support for your WP website (no 3rd party dependencies)!
 
 == Description ==
 
-Talk to your visitors in real time through your customizable chatbox (visit the Screenshots section for some samples).
+Lively Chat Support puts the power of connecting with visitors in the palm of your hand.
 
-Lively Chat Support has a few premium addons to help you get the most out of your live chat:
+**What do you get with Lively Chat Support?**
+* 
+* "Offline Mode" works as a lead-capturing machine while you sleep. You can even customize your thank you message (maybe offer a freebie for signing up).
+* Great customer service
 
-* **Chat from your phone** - perfect for the small business owner. Through SMS (text messages), you'll be able to stay in touch with the visitors on your website.
-* **Triggers** - start conversations based on your specified criteria. For example, if they've been on your checkout page too long, ask them "Do you need help checking out?".
-* **Surveys** - quick and unintrusive, surveys are a great way to learn more about your visitors (who love giving their input!).
+For Lively's features, most companies would charge at least twenty dollars per month. Lively Chat Support is FREE forever, but we offer a few premium addons to help you get the most out of your live chat:
 
-Lively Chat Support's "Offline Mode" works as a lead-capturing machine while you sleep. You can even customize your thank you message (maybe offer a freebie for signing up).
+* **Multiple Agents: Buy Now for $40](http://www.livelychatsupport.com/buy-multi)** - put the power of multiple customer service reps to work for you!
+* **Chat from your phone: Buy Now for $40](http://www.livelychatsupport.com/buy-sms)** - perfect for the small business owner. Through SMS (text messages), you'll be able to stay in touch with the visitors on your website.
+* **Triggers: [Buy Now for $40](http://www.livelychatsupport.com/buy-triggers)** - start conversations based on your specified criteria. For example, if they've been on your checkout page too long, ask them "Do you need help checking out?"
+* **Surveys: [Buy Now for $40](http://www.livelychatsupport.com/buy-surveys)** - quick and unintrusive, surveys are a great way to learn more about your visitors (who love giving their input!).
+* **Cobrowsing: [Preorder for $129](http://livelychatsupport.com/pre-cobrowse)** - without installing anything, your visitors will be able to share their screen with you - safely and securely.
+
+> **Live Demos**
+> * [TheUltimateLock.com](http://www.theultimatelock.com)
+> * [KeithMarshall.ca](http://keithmarshall.ca)
+
+**DEALS (Big Savings)**
+* Want to buy all 4 Premium Addons with fast, reliable tech support? Right now, we're offering an incredible deal - [Buy Now for $99](http://www.livelychatsupport.com/buy-4)!
+* Don't have cash and want to try out all 4 Premium Addons? We're offering a huge cost savings - [Buy All 4 Addons for $6.99 a month](http://www.livelychatsupport.com/buy-monthly)!
 
 == Installation ==
 
@@ -35,11 +48,20 @@ Lively Chat Support's "Offline Mode" works as a lead-capturing machine while you
 == Frequently Asked Questions ==
 
 = Is Lively Chat Support completely free? =
-Yes, but there are a few premium addons. They are:
+Lively is FREE to use, but there are a few premium addons. They are:
 
-* **Chat from your phone** - perfect for the small business owner. Through SMS (text messages), you'll be able to stay in touch with the visitors on your website.
-* **Triggers** - start conversations based on your specified criteria. For example, if they've been on your checkout page too long, ask them "Do you need help checking out?".
-* **Surveys** - quick and unintrusive, surveys are a great way to learn more about your visitors (who love giving their input!).
+* **Multiple Agents: Buy Now for $40](http://www.livelychatsupport.com/buy-multi)** - put the power of multiple customer service reps to work for you!
+* **Chat from your phone: Buy Now for $40](http://www.livelychatsupport.com/buy-sms)** - perfect for the small business owner. Through SMS (text messages), you'll be able to stay in touch with the visitors on your website.
+* **Triggers: [Buy Now for $40](http://www.livelychatsupport.com/buy-triggers)** - start conversations based on your specified criteria. For example, if they've been on your checkout page too long, ask them "Do you need help checking out?"
+* **Surveys: [Buy Now for $40](http://www.livelychatsupport.com/buy-surveys)** - quick and unintrusive, surveys are a great way to learn more about your visitors (who love giving their input!).
+* **Cobrowsing: [Preorder for $129](http://livelychatsupport.com/pre-cobrowse)** - without installing anything, your visitors will be able to share their screen with you - safely and securely.
+
+= When is Cobrowsing available? =
+We're working on it... with enough pre-sales, we'll be able to release it this Summer 2014!
+
+= Lively isn't showing up on my site? =
+* Are you using a caching plugin? If so, clear the cache.
+* Is wp_footer() found anywhere in your theme's files? It should be in footer.php.
 
 = Why are the timestamps in my chatbox wrong? =
 You probably haven't set your timezone. You can do so in the General settings page of Wordpress.
@@ -48,8 +70,8 @@ You probably haven't set your timezone. You can do so in the General settings pa
 Each message you receive begins with a small token and a colon (eg. 4k2:). To respond to a specific conversation, type "4k2: YOUR MESSAGE HERE". If you don't include this token in your response, we'll just send it back to the customer that last sent you a message.
 
 = Why doesn't my SMS doesn't work? =
-* The Wordpress ajax requests require access to the back end of your site. Ensure remote IPs aren't blocked for your back end, or you won't be able to send or receive SMS.
 * Ensure your phone numbers include the country code (1 for North America, 44 for UK, etc.)
+* The Wordpress ajax requests require access to the back end of your site. Ensure remote IPs aren't blocked for your back end, or you won't be able to send or receive SMS.
 
 == Screenshots ==
 
@@ -65,17 +87,6 @@ Each message you receive begins with a small token and a colon (eg. 4k2:). To re
 
 Here's some scheduled features to be added:
 
-* options hash
-* update hits differently
-* There was a trigger set. It was an EMPTY TRIGGER. I deleted it and stopped the auto-open of LivelyChat.
-
-* Remove "define( 'SAVEQUERIES', true );"
-* NEED TEST: always online should use SMS
-* NEED TEST: use wp_mail
-* Turn off all error reporting
-* Update
-* Send email!
-
 * Detect which agents are online automatically
 * Don't require email address before starting a conversation.
 * Button for visitors to "Introduce Yourself"
@@ -87,7 +98,13 @@ Here's some scheduled features to be added:
 == Changelog ==
 
 = 1.0.20 =
-* Removed a couple trailing commas in JS that were causing IE issues.
+* The Golden IE Fix: Removed 2 trailing commas in JS that were causing Lively to break in IE.
+* To combat memory issues, Lively stores all its configuration in one options hash (1000 less cache hits and more than 50% less get_options() calls)! To upgrade, you just need to install the latest version of the plugin - we update your old data to the new format automatically.
+* We're preselling Screen Sharing! To be released sometime this summer... :D
+* SMS is now supported in "Online" mode (instead of just "Office Hours").
+* Empty triggers no longer validate - body text is required.
+* Emails are now using wp_mail() function instead of mail().
+* New header for the plugin page on wordpress.org!
 
 = 1.0.19 =
 * Fixed an issue where previously sent messages would trigger a "ding" on page load.

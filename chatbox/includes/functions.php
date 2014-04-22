@@ -76,8 +76,9 @@
     
       if (!isset($agent) && $livelychatsupport["online"] == "online") {
         $agents = LivelyChatSupport_agents();
+
         if (!empty($agents)) {
-          $agent = $agents[rand(0, $agent_count - 1)];
+          $agent = $agents[rand(0, count($agents) - 1)];
         }
       }
       
