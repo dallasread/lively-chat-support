@@ -63,7 +63,7 @@ $agents = LivelyChatSupport_agents(true);
           <?php } ?>
           <td class="url">
             <input type="text" name="agents[<?php echo $n; ?>][avatar]" class="agent_avatar_url" value="<?php echo $agent->avatar; ?>" />
-            <a href="#" class="choose_agent_avatar button-secondary">Choose</a>
+            <a href="#!/lively-chat-support" class="choose_agent_avatar button-secondary">Choose</a>
           </td>
         </tr>
       <?php $n += 1; } ?>

@@ -13,7 +13,7 @@
   <p>
     Surveys can give you the insights you need into your customers attitudes and behaviours.<br>
     All surveys will be emailed to <strong><?php echo $livelychatsupport["subscriber_email"] ?></strong>.<br>
-    <a href="#" class="show_example" data-example="surveys">See Examples (you won't leave this page)</a>.
+    <a href="#!/lively-chat-support" class="show_example" data-example="surveys">See Examples (you won't leave this page)</a>.
   </p>
 
   <div class="surveys_example example updated">
@@ -33,7 +33,7 @@
   <form action="admin.php?page=livelychatsupport&tab=surveys" method="post">
     <ul id="surveys" data-surveys="<?php echo htmlspecialchars(json_encode($surveys)); ?>">
       <li class="survey survey_template template">
-        <a href="#" class="delete_row" data-row="survey">Delete This Survey</a>
+        <a href="#!/lively-chat-support" class="delete_row" data-row="survey">Delete This Survey</a>
         <input type="hidden" class="id" name="surveys[][id]" />
         <input type="hidden" class="delete" name="surveys[][delete]" value="0" />
       
@@ -49,8 +49,8 @@
         <div class="questions">
           <div class="question template question_template">
             <div class="field">
-              <a href="#" class="delete_row" data-row="question">Delete This Question</a>
-              <a href="#" class="handle">Drag to Reorder</a>
+              <a href="#!/lively-chat-support" class="delete_row" data-row="question">Delete This Question</a>
+              <a href="#!/lively-chat-support" class="handle">Drag to Reorder</a>
               <label>Question:</label><br>
               <input type="text" class="prompt" />
             </div>
@@ -66,17 +66,17 @@
                 <ol class="answers">
                   <li class="template answer_template answer">
                     <input type="text" class="body" />
-                    <a href="#" class="handle">Drag to Reorder</a>
-                    <a href="#" class="delete_row" data-row="answer">Delete</a>
+                    <a href="#!/lively-chat-support" class="handle">Drag to Reorder</a>
+                    <a href="#!/lively-chat-support" class="delete_row" data-row="answer">Delete</a>
                   </li>
                 </ol>
-                <a href="#" class="button-secondary add_row" data-row="answer">Add Answer</a>
+                <a href="#!/lively-chat-support" class="button-secondary add_row" data-row="answer">Add Answer</a>
               </div>
             </div>
           </div>
         </div>
       
-        <a href="#" class="button-secondary add_row" data-row="question">Add Question</a><br><br>
+        <a href="#!/lively-chat-support" class="button-secondary add_row" data-row="question">Add Question</a><br><br>
         <input type="hidden" name="surveys[][questions]" class="survey_questions" />
       
         <div class="field">
@@ -86,7 +86,7 @@
       </li>
     </ul>
   
-    <a href="#" class="button-secondary add_row" data-row="survey">Add Survey</a><br><br>
+    <a href="#!/lively-chat-support" class="button-secondary add_row" data-row="survey">Add Survey</a><br><br>
   
     <input type="submit" value="Save Surveys" class="button-primary">
   </form>

@@ -37,9 +37,9 @@ $convo = (object) array(
     <div class="field">
       <label for="cta_online_image"><?php _e( "Call To Action Image", "lively-chat-support" ); ?></label><br>
     
-      <a href="#" class="livelychatsupport-detail livelychatsupport-show-prebuilt_ctas"><?php _e( "Use pre-built", "lively-chat-support" ); ?></a>,
-      <a href="#" class="livelychatsupport-detail choose_cta_online_image"><?php _e( "Choose file", "lively-chat-support" ); ?></a>, <?php _e( "or", "lively-chat-support" ); ?>
-      <a href="#" class="livelychatsupport-detail no_cta_online_image"><?php _e( "No image", "lively-chat-support" ); ?></a><br>
+      <a href="#!/lively-chat-support" class="livelychatsupport-detail livelychatsupport-show-prebuilt_ctas"><?php _e( "Use pre-built", "lively-chat-support" ); ?></a>,
+      <a href="#!/lively-chat-support" class="livelychatsupport-detail choose_cta_online_image"><?php _e( "Choose file", "lively-chat-support" ); ?></a>, <?php _e( "or", "lively-chat-support" ); ?>
+      <a href="#!/lively-chat-support" class="livelychatsupport-detail no_cta_online_image"><?php _e( "No image", "lively-chat-support" ); ?></a><br>
       <ul class="livelychatsupport-prebuilt_ctas">
         <?php
           $ctas = opendir(LIVELYCHATSUPPORT_ROOT. "/chatbox/assets/ctas/online");
@@ -111,9 +111,9 @@ $convo = (object) array(
     <div class="field">
       <label for="cta_offline_image"><?php _e( "Call To Action Image", "lively-chat-support" ); ?></label><br>
   
-      <a href="#" class="livelychatsupport-detail livelychatsupport-show-prebuilt_ctas"><?php _e( "Use pre-built", "lively-chat-support" ); ?></a>,
-      <a href="#" class="livelychatsupport-detail choose_cta_offline_image"><?php _e( "Choose file", "lively-chat-support" ); ?></a>, <?php _e( "or", "lively-chat-support" ); ?>
-      <a href="#" class="livelychatsupport-detail no_cta_offline_image"><?php _e( "No image", "lively-chat-support" ); ?></a><br>
+      <a href="#!/lively-chat-support" class="livelychatsupport-detail livelychatsupport-show-prebuilt_ctas"><?php _e( "Use pre-built", "lively-chat-support" ); ?></a>,
+      <a href="#!/lively-chat-support" class="livelychatsupport-detail choose_cta_offline_image"><?php _e( "Choose file", "lively-chat-support" ); ?></a>, <?php _e( "or", "lively-chat-support" ); ?>
+      <a href="#!/lively-chat-support" class="livelychatsupport-detail no_cta_offline_image"><?php _e( "No image", "lively-chat-support" ); ?></a><br>
       <ul class="livelychatsupport-prebuilt_ctas">
         <?php
           $ctas = opendir(LIVELYCHATSUPPORT_ROOT. "/chatbox/assets/ctas/offline");
@@ -184,7 +184,7 @@ $convo = (object) array(
   <b><?php _e( "Danger Zone: This action is irreversible.", "lively-chat-support" ); ?></b><br>
   
   <div class="field">
-    <a href="#" class="delete_history button-secondary"><?php _e( "Delete All Conversation and Visitor History", "lively-chat-support" ); ?></a>
+    <a href="#!/lively-chat-support" class="delete_history button-secondary"><?php _e( "Delete All Conversation and Visitor History", "lively-chat-support" ); ?></a>
   </div>
 
 </form>

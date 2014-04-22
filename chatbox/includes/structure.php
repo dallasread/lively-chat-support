@@ -27,20 +27,20 @@ if (property_exists($convo, "agent_id")) {
   </audio>
   
   <?php if ($livelychatsupport["cta_online_image"] != "" || LIVELYCHATSUPPORT_ADMIN == true) { ?>
-    <a href="#" target="livelychatsupport-iframe" data-href="<?php echo plugins_url("lively-chat-support/chatbox/convos.php?open="); ?>" class="livelychatsupport-open">
+    <a href="#!/lively-chat-support" target="livelychatsupport-iframe" data-href="<?php echo plugins_url("lively-chat-support/chatbox/convos.php?open="); ?>" class="livelychatsupport-open">
       <img src="<?php echo $livelychatsupport["cta_online_image"] ?>" class="cta_online_image" />
     </a>
   <?php } ?>
   <?php if ($livelychatsupport["cta_offline_image"] != "" || LIVELYCHATSUPPORT_ADMIN == true) { ?>
-    <a href="#" target="livelychatsupport-iframe" data-href="<?php echo plugins_url("lively-chat-support/chatbox/convos.php?open="); ?>" class="livelychatsupport-open">
+    <a href="#!/lively-chat-support" target="livelychatsupport-iframe" data-href="<?php echo plugins_url("lively-chat-support/chatbox/convos.php?open="); ?>" class="livelychatsupport-open">
       <img src="<?php echo $livelychatsupport["cta_offline_image"] ?>" class="cta_offline_image livelychatsupport-open" />
     </a>
   <?php } ?>
   
   <div class="header livelychatsupport-chatbox-background-colour">
     <h3>
-      <a href="#" target="livelychatsupport-iframe" data-href="<?php echo plugins_url("lively-chat-support/chatbox/convos.php?open="); ?>" class="livelychatsupport-close">&mdash;</a>
-      <a href="#" target="livelychatsupport-iframe" data-href="<?php echo plugins_url("lively-chat-support/chatbox/convos.php?open="); ?>" class="livelychatsupport-open">
+      <a href="#!/lively-chat-support" target="livelychatsupport-iframe" data-href="<?php echo plugins_url("lively-chat-support/chatbox/convos.php?open="); ?>" class="livelychatsupport-close">&mdash;</a>
+      <a href="#!/lively-chat-support" target="livelychatsupport-iframe" data-href="<?php echo plugins_url("lively-chat-support/chatbox/convos.php?open="); ?>" class="livelychatsupport-open">
         <span class="cta_offline_text"><?php echo stripslashes($livelychatsupport["cta_offline_text"]); ?></span>
         <span class="cta_online_text"><?php echo stripslashes($livelychatsupport["cta_online_text"]); ?></span>
       </a>
@@ -55,7 +55,7 @@ if (property_exists($convo, "agent_id")) {
       <div class="actions field">
         <button class="next_step livelychatsupport-chatbox-border-colour livelychatsupport-chatbox-background-colour"><?php _e( "Next", "lively-chat-support" ); ?> (<span class="current_question">0</span> of <span class="question_count">0</span>) &rarr;</button>
         <button class="finish livelychatsupport-chatbox-border-colour livelychatsupport-chatbox-background-colour"><?php _e( "Submit", "lively-chat-support" ); ?></button>
-        <a href="#" class="back user_colour">&larr; <?php _e( "Prev Step", "lively-chat-support" ); ?></a>
+        <a href="#!/lively-chat-support" class="back user_colour">&larr; <?php _e( "Prev Step", "lively-chat-support" ); ?></a>
       </div>
     
       <div class="survey-thanks">
@@ -133,7 +133,7 @@ if (property_exists($convo, "agent_id")) {
     <img src="<?php echo plugins_url("lively-chat-support/chatbox/assets/loading.gif"); ?>" class="loading">
     
     <a href="http://wordpress.org/plugins/lively-chat-support" class="powered_by"><?php _e( "Powered by LivelyChat", "lively-chat-support" ); ?></a>
-    <a href="#" class="delete_history"><?php _e( "Delete History", "lively-chat-support" ); ?></a>
+    <a href="#!/lively-chat-support" class="delete_history"><?php _e( "Delete History", "lively-chat-support" ); ?></a>
     
     <<?php echo LIVELYCHATSUPPORT_ADMIN == true ? "div" : "form" ?> id="livelychatsupport-chatbox-new-message" action="<?php echo admin_url('admin-ajax.php'); ?>" method="post">
       <input type="hidden" id="livelychatsupport-chatbox-token" name="livelychatsupport-chatbox-token" value="<?php echo $convo->token; ?>" />

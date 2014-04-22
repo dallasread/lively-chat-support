@@ -12,7 +12,7 @@
 
   <p>
     Triggers can automatically start conversations for you based on certain criteria.
-    <a href="#" class="show_example" data-example="triggers">See Examples (you won't leave this page)</a>.
+    <a href="#!/lively-chat-support" class="show_example" data-example="triggers">See Examples (you won't leave this page)</a>.
   </p>
 
   <div class="triggers_example example updated">
@@ -53,7 +53,7 @@
     <ul id="triggers">
       <?php $n = 0; foreach($triggers as $trigger) { ?>
         <li class="trigger">
-          <a href="#" class="delete_row" data-row="trigger">Delete This Trigger</a>
+          <a href="#!/lively-chat-support" class="delete_row" data-row="trigger">Delete This Trigger</a>
           <input type="hidden" class="id" name="triggers[<?php echo $n; ?>][id]" value="<?php echo $trigger->id; ?>" />
           <input type="hidden" class="delete" name="triggers[<?php echo $n; ?>][delete]" value="0" />
           When someone visits:<br>
@@ -63,7 +63,7 @@
         </li>
       <?php $n += 1; } ?>
       <li class="trigger trigger_template template" data-row="trigger">
-        <a href="#" class="delete_row" data-row="trigger">Delete This Trigger</a>
+        <a href="#!/lively-chat-support" class="delete_row" data-row="trigger">Delete This Trigger</a>
         <input type="hidden" class="id" name="triggers[][id]" value="template" />
         <input type="hidden" class="delete" name="triggers[][delete]" value="0" />
         When someone visits:<br>
@@ -73,7 +73,7 @@
       </li>
     </ul>
   
-    <a href="#" class="button-secondary add_row" data-row="trigger">Add Trigger</a><br><br>
+    <a href="#!/lively-chat-support" class="button-secondary add_row" data-row="trigger">Add Trigger</a><br><br>
   
     <input type="submit" value="Save Triggers" class="button-primary">
   </form>

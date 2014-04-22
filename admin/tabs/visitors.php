@@ -30,9 +30,9 @@ $convos = LivelyChatSupport_find_visitors();
       <?php _e( "Start", "lively-chat-support" ); ?><br>
       <input type="text" id="start" value="<?php echo $livelychatsupport["start"] ?>" />
     </label>
-    <a href="#" class="set_as_today" data-value="<?php echo date("F j, Y", current_time("timestamp")); ?>"><?php _e( "Today", "lively-chat-support" ); ?></a>
-    <a href="#" class="set_as_today" data-value="<?php echo date("F j, Y", current_time("timestamp") - 86400); ?>"><?php _e( "Yesterday", "lively-chat-support" ); ?></a>
-    <a href="#" class="set_as_today" data-value="<?php echo date("F j, Y", current_time("timestamp") - 604800); ?>"><?php _e( "1 Week Ago", "lively-chat-support" ); ?></a>
+    <a href="#!/lively-chat-support" class="set_as_today" data-value="<?php echo date("F j, Y", current_time("timestamp")); ?>"><?php _e( "Today", "lively-chat-support" ); ?></a>
+    <a href="#!/lively-chat-support" class="set_as_today" data-value="<?php echo date("F j, Y", current_time("timestamp") - 86400); ?>"><?php _e( "Yesterday", "lively-chat-support" ); ?></a>
+    <a href="#!/lively-chat-support" class="set_as_today" data-value="<?php echo date("F j, Y", current_time("timestamp") - 604800); ?>"><?php _e( "1 Week Ago", "lively-chat-support" ); ?></a>
     <div class="clear"></div>
   </li>
   <li>
@@ -40,9 +40,9 @@ $convos = LivelyChatSupport_find_visitors();
       <?php _e( "Finish", "lively-chat-support" ); ?><br>
       <input type="text" id="finish" value="<?php echo $livelychatsupport["finish"] ?>" />
     </label>
-    <a href="#" class="set_as_today" data-value="<?php echo date("F j, Y", current_time("timestamp")); ?>"><?php _e( "Today", "lively-chat-support" ); ?></a>
-    <a href="#" class="set_as_today" data-value="<?php echo date("F j, Y", current_time("timestamp") - 86400); ?>"><?php _e( "Yesterday", "lively-chat-support" ); ?></a>
-    <a href="#" class="set_as_today" data-value="<?php echo date("F j, Y", current_time("timestamp") - 604800); ?>"><?php _e( "1 Week Ago", "lively-chat-support" ); ?></a>
+    <a href="#!/lively-chat-support" class="set_as_today" data-value="<?php echo date("F j, Y", current_time("timestamp")); ?>"><?php _e( "Today", "lively-chat-support" ); ?></a>
+    <a href="#!/lively-chat-support" class="set_as_today" data-value="<?php echo date("F j, Y", current_time("timestamp") - 86400); ?>"><?php _e( "Yesterday", "lively-chat-support" ); ?></a>
+    <a href="#!/lively-chat-support" class="set_as_today" data-value="<?php echo date("F j, Y", current_time("timestamp") - 604800); ?>"><?php _e( "1 Week Ago", "lively-chat-support" ); ?></a>
     <div class="clear"></div>
   </li>
   <li class="divider"></li>
@@ -96,7 +96,7 @@ $convos = LivelyChatSupport_find_visitors();
           <li class="<?php if (!isset($first_page)) { echo "first_page"; } ?>">
             <span class="on_first"><?php _e( "Now visiting:", "lively-chat-support" ); ?> </span>
             <a href="<?php echo $url; ?>" target="_blank"><?php echo $url; ?></a>
-            <span class="on_first">(<a href="#" class="show_all_pages"><?php _e( "see all", "lively-chat-support" ); ?></a>)</span>
+            <span class="on_first">(<a href="#!/lively-chat-support" class="show_all_pages"><?php _e( "see all", "lively-chat-support" ); ?></a>)</span>
           </li>
           <?php if (!isset($first_page)) { $first_page = true; } ?>
         <?php } ?>

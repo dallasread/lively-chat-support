@@ -75,7 +75,7 @@
             </td>
             <td>
               <input type="hidden" name="hours[<?php echo $n; ?>][delete]" value="0" class="delete" />
-              <a href="#" class="delete_row button-secondary" data-row="hour"><?php _e( "Delete", "lively-chat-support" ); ?></a>
+              <a href="#!/lively-chat-support" class="delete_row button-secondary" data-row="hour"><?php _e( "Delete", "lively-chat-support" ); ?></a>
             </td>
           </tr>
         <?php $n += 1; } ?>
@@ -117,7 +117,7 @@
           </td>
           <td>
             <input type="hidden" name="hours[][delete]" value="0" class="delete" />
-            <a href="#" class="delete_row button-secondary" data-row="hour"><?php _e( "Delete", "lively-chat-support" ); ?></a>
+            <a href="#!/lively-chat-support" class="delete_row button-secondary" data-row="hour"><?php _e( "Delete", "lively-chat-support" ); ?></a>
           </td>
         </tr>
       
@@ -125,7 +125,7 @@
     </table>
   
     <br>
-    <a href="#" class="add_row button-secondary" data-row="hour"><?php _e( "Add Another Time Slot", "lively-chat-support" ); ?></a>
+    <a href="#!/lively-chat-support" class="add_row button-secondary" data-row="hour"><?php _e( "Add Another Time Slot", "lively-chat-support" ); ?></a>
   </div>
 
   <div class="field">

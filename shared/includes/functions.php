@@ -37,7 +37,7 @@
       if (empty($settings_json)) { $settings_json = array(); }
       $merged_with_defaults = array_merge($defaults, $settings_json);
       $merged_with_defaults = array_merge($merged_with_defaults, $update);
-      $settings_json = update_option("livelychatsupport_settings", json_encode($merged_with_defaults, true));
+      $settings_json = update_option("livelychatsupport_settings", json_encode($merged_with_defaults));
       return $merged_with_defaults;
     } else {
       $settings_json = json_decode(get_option("livelychatsupport_settings"), true);
