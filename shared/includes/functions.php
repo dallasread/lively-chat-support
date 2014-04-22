@@ -309,6 +309,8 @@
   }
   
   function LivelyChatSupport_settings_hash_updater() {
+    global $livelychatsupport_addon_version;
+    
     $old_settings = array(
       "activation_code" => get_option("livelychatsupport_activation_code"),
       "addons" => get_option("livelychatsupport_addons"),
@@ -338,7 +340,7 @@
     );
     
     LivelyChatSupport_settings($old_settings);
-    LivelyChatSupport_activate();
+    LivelyChatSupport_settings(array( "addon_version" => $livelychatsupport_addon_version ));
   }
 
 ?>
