@@ -232,7 +232,7 @@
         }
       }
     }
-  
+    
     $livelychatsupport = LivelyChatSupport_details();
 
     echo '<div id="livelychatsupport" class="wrap">';
@@ -286,6 +286,10 @@
         "subscriber_email" => $subscriber["email"],
         "subscriber_name" => $subscriber["name"]
       ) );
+      
+      $user = new WP_User( get_current_user_id() );
+      $user->add_cap( 'can_livelychatsupport' );
+      update_user_meta( get_current_user_id(), "livelychatsupport-active", true);
     }
   }
   
@@ -355,12 +359,11 @@
         
         LivelyChatSupport_settings(array(
           "addons" => implode("|", $addons),
-          "activation_code" => trim($_POST["activation_code"])
+          "activation_code" => trim($_POST["activation_code"]),
+          "addon_version" => $livelychatsupport_addon_version
         ));
       }
     }
-    
-    LivelyChatSupport_settings(array( "addon_version" => $livelychatsupport_addon_version ));
   }
   
   function LivelyChatSupport_delete_convo($convo_token) {

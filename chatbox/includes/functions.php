@@ -44,6 +44,7 @@
   
   function LivelyChatSupport_agent($id = false) {
     global $wpdb;
+    $agent = false;
     $livelychatsupport = LivelyChatSupport_details();
   
     if ($id) {
@@ -68,7 +69,7 @@
               "name" => get_user_meta($hour->responder_id, "livelychatsupport-name", true),
               "mobile" => get_user_meta($hour->responder_id, "livelychatsupport-mobile", true),
               "avatar" => get_user_meta($hour->responder_id, "livelychatsupport-avatar", true),
-        "active" => get_user_meta($hour->responder_id, "livelychatsupport-active", true)
+              "active" => get_user_meta($hour->responder_id, "livelychatsupport-active", true)
             );
           }
         }
@@ -80,10 +81,6 @@
         if (!empty($agents)) {
           $agent = $agents[rand(0, count($agents) - 1)];
         }
-      }
-      
-      if (!isset($agent)) {
-        $agent = LivelyChatSupport_default_agent();
       }
     }
 
@@ -233,8 +230,7 @@
   {
     global $wpdb;
     $convos_table = $wpdb->prefix . "livelychatsupport_convos";
-    $agents_table = $wpdb->prefix . "livelychatsupport_agents";
-  
+    
     wp_register_style( "LivelyChatSupport-chatbox-reset", plugins_url( "lively-chat-support/chatbox/css/reset.css" ) );
     wp_register_style( "LivelyChatSupport-chatbox-style", plugins_url( "lively-chat-support/chatbox/css/style.css" ) );
     wp_register_script( "LivelyChatSupport-chatbox-script", plugins_url( "lively-chat-support/chatbox/js/chatbox.js" ) );
@@ -246,6 +242,11 @@
     $convo = LivelyChatSupport_convo($_COOKIE["livelychatsupport_convo_token"]);
     $agent = LivelyChatSupport_agent();
     
+    if (!$agent) {
+      $livelychatsupport_offline = true;
+    } else {
+      
+    }
     if ((isset($_COOKIE["livelychatsupport_convo_open"]) && $_COOKIE["livelychatsupport_convo_open"] == "true") || LIVELYCHATSUPPORT_ADMIN == true) { $livelychatsupport_open = true; }
     
     if ($livelychatsupport["online"] == "offline") {
@@ -258,14 +259,12 @@
       }
     }
   
-    if ($convo) { $referrers = json_decode($convo->referrers); }
-    if (!is_array($referrers) || !isset($referrers)) { $referrers = array(); }
-    
-    
-    array_push($referrers, "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
-
     if (LIVELYCHATSUPPORT_ADMIN == false && isset($_COOKIE["livelychatsupport_convo_token"]))
     {
+      if ($convo) { $referrers = json_decode($convo->referrers); }
+      if (!is_array($referrers) || !isset($referrers)) { $referrers = array(); }
+      $referrers = array_push($referrers, "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
+      
       if ($convo) {
         $wpdb->update( 
         	$convos_table, 

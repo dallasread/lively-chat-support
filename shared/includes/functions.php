@@ -1,10 +1,9 @@
 <?php
 
   function LivelyChatSupport_settings($update = false) {
-    if (!$update) { $update = array(); }
-    //FILTERS: nl2br(stripslashes
-      
     $defaults = array(
+      "addon_version" => 0,
+      "db_version" => 0,
       "activation_code" => "",
       "addons" => "",
       "visible_pages" => "*",
@@ -32,27 +31,28 @@
       "show_powered_by" => "true"
     );
     
-    if (!empty($update)) {
-      $settings_json = json_decode( get_option("livelychatsupport_settings"), true );
-      if (empty($settings_json)) { $settings_json = array(); }
-      $merged_with_defaults = array_merge($defaults, $settings_json);
+    $settings_json = json_decode( get_option("livelychatsupport_settings"), true );
+    if (empty($settings_json)) { $settings_json = array(); }
+    $merged_with_defaults = array_merge($defaults, $settings_json);
+    
+    if ($update) {
       $merged_with_defaults = array_merge($merged_with_defaults, $update);
       $settings_json = update_option("livelychatsupport_settings", json_encode($merged_with_defaults));
+      $_SESSION["livelychatsupport_options"] = $merged_with_defaults;
       return $merged_with_defaults;
     } else {
-      $settings_json = json_decode(get_option("livelychatsupport_settings"), true);
-      if (empty($settings_json)) { $settings_json = array(); }
-      $merged_with_defaults = array_merge($defaults, $settings_json);
       return $merged_with_defaults;
     }
   }
   
   function LivelyChatSupport_details() {
     global $wpdb;
-    $convos_table = $wpdb->prefix . "livelychatsupport_convos";
-    $settings_json = LivelyChatSupport_settings();
     
-    return $settings_json;
+    if (empty($_SESSION["livelychatsupport_options"])) {
+      $_SESSION["livelychatsupport_options"] = LivelyChatSupport_settings();
+    }
+    
+    return $_SESSION["livelychatsupport_options"];
   }
   
   function LivelyChatSupport_poll(){
@@ -92,15 +92,16 @@
   function LivelyChatSupport_update_db_check() {
     global $livelychatsupport_db_version;
     global $livelychatsupport_addon_version;
-
+    
+    $livelychatsupport = LivelyChatSupport_details();
     load_plugin_textdomain( "lively-chat-support", false, "lively-chat-support/i18n/mo/" );
     
-    if (get_site_option( "livelychatsupport_db_version" ) != $livelychatsupport_db_version) {
+    if ($livelychatsupport["db_version"] != $livelychatsupport_db_version) {
       $user = new WP_User( get_current_user_id() );
       $user->add_cap( 'can_livelychatsupport' );
       LivelyChatSupport_installation();
       
-      if ((float) get_site_option( "livelychatsupport_addon_version", 0 ) < 1.5) {
+      if ((float) $livelychatsupport["addon_version"] < 1.5) {
         LivelyChatSupport_settings_hash_updater();
       }
     }
@@ -251,6 +252,7 @@
   
   function LivelyChatSupport_send_sms($mini_token, $body) {
     global $wpdb;
+    
     $livelychatsupport = LivelyChatSupport_details();
     
     if ($livelychatsupport["twilio_auth"] != "") {
