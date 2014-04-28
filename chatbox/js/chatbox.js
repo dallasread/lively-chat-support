@@ -215,6 +215,8 @@ $lcsq(function($lcsq){
 
 					if (data.online == "online") {
 						online = true;
+					} else if (data.online == "offline") {
+						online = false;
 					} else if (data.online == "hidden") {
 						$lcsq("#livelychatsupport-chatbox").hide();
 					} else {
@@ -234,10 +236,14 @@ $lcsq(function($lcsq){
 					}
 					
 					if (data.online != "hidden") {
-						if (online === false) {
+						if (online == false) {
 							$lcsq("#livelychatsupport-chatbox").addClass("offline").show();
 						} else {
-							$lcsq("#livelychatsupport-chatbox").removeClass("offline").show();							
+							$lcsq("#livelychatsupport-chatbox").removeClass("offline").show();
+							if (data.messages.length) {
+								$lcsq("#livelychatsupport-chatbox").addClass("chatting");
+								LivelyChatSupport.poll(true);
+							}
 						}
 					}
         

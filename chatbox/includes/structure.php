@@ -1,13 +1,15 @@
 <?php
 
+if ($livelychatsupport["online"] == "offline") { $livelychatsupport_offline = true; }
 if (($convo->name != "" && $convo->email != "") || $convo->messages_count > 0 || LIVELYCHATSUPPORT_ADMIN == true) { $livelychatsupport_chatting = true; }
-$livelychatsupport_states = LivelyChatSupport_state(isset($livelychatsupport_open), false, isset($livelychatsupport_chatting));
+$livelychatsupport_states = LivelyChatSupport_state(isset($livelychatsupport_open), isset($livelychatsupport_offline), isset($livelychatsupport_chatting));
 
 if (property_exists($convo, "agent_id")) { 
   $agent = LivelyChatSupport_agent($convo->agent_id);
 } else {
   $agent = LivelyChatSupport_agent();
 }
+
 ?>
 
 <style type="text/css">

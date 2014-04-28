@@ -56,21 +56,16 @@
         "active" => get_user_meta($id, "livelychatsupport-active", true)
       );
     } else {
+      $agents = LivelyChatSupport_agents();
+      
       if ($livelychatsupport["online"] == "hours") {
         $hour = LivelyChatSupport_hour();
 
         if ($hour != null) {
           if ($hour->responder_id == 0) {
-            $agents = LivelyChatSupport_agents();
-            $agent = $agents[rand(0, sizeof($agents) - 1)];
+            $agent = array_rand($agents);
           } else {
-            $agent = (object) array(
-              "id" => $hour->responder_id,
-              "name" => get_user_meta($hour->responder_id, "livelychatsupport-name", true),
-              "mobile" => get_user_meta($hour->responder_id, "livelychatsupport-mobile", true),
-              "avatar" => get_user_meta($hour->responder_id, "livelychatsupport-avatar", true),
-              "active" => get_user_meta($hour->responder_id, "livelychatsupport-active", true)
-            );
+            $agents = LivelyChatSupport_agent($hour->responder_id);
           }
         }
       }
@@ -79,7 +74,7 @@
         $agents = LivelyChatSupport_agents();
 
         if (!empty($agents)) {
-          $agent = $agents[rand(0, count($agents) - 1)];
+          $agent = array_rand($agents);
         }
       }
     }
@@ -108,6 +103,7 @@
   function LivelyChatSupport_cache_support() {
     global $wpdb;
     $convo_token = $_POST["convo_token"];
+    $livelychatsupport = LivelyChatSupport_details();
     
     $messages_table = $wpdb->prefix . "livelychatsupport_messages";
     $triggers_table = $wpdb->prefix . "livelychatsupport_triggers";
@@ -170,7 +166,7 @@
       "messages" => $ms, 
       "popups" => $popups, 
       "hours" => $hrs, 
-      "online" => get_option("livelychatsupport_online"),
+      "online" => $livelychatsupport["online"],
       "gmt_offset" => get_option("gmt_offset")
     )));
   }
@@ -209,19 +205,11 @@
     }
     else
     {
-      if ($chatting == true)
-      {
-        array_push($classes, "chatting");
-      }
+      if ($chatting == true) { array_push($classes, "chatting"); }
     }
   
-    if ($open == true) {
-      array_push($classes, "open"); 
-    }
-    
-    if (isset($_COOKIE["livelychatsupport_surveyed"])) {
-      array_push($classes, "surveyed");
-    }
+    if ($open == true) { array_push($classes, "open"); }
+    if (isset($_COOKIE["livelychatsupport_surveyed"])) { array_push($classes, "surveyed"); }
     
     return $classes;
   }
@@ -374,6 +362,8 @@
       $convo = LivelyChatSupport_convo($convo_token);
       $agent = LivelyChatSupport_agent($convo->agent_id);
       $now = date("Y-m-d H:i:s.u");
+      
+      print_r(LivelyChatSupport_agent());
     
       if ($convo)
       {
@@ -408,7 +398,7 @@
           
           if (($hour && $hour->via == "sms") || ($sms_activated && get_user_meta($agent->id, "livelychatsupport-mobile") != ""))
           {
-            LivelyChatSupport_send_sms($convo->mini_token, $body);
+            LivelyChatSupport_send_sms($convo->mini_token, $body, $agent);
             $details = array(
               "messages_count" => $convo->messages_count + 1,
               "updated_at" => $now,
