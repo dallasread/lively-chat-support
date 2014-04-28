@@ -11,7 +11,7 @@ $upsells = array(
     "url" => "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=T4Y8KB4RJLURW"
   ),
   (object) array(
-    "cta" => __("Triggers engage visitors!", "lively-chat-support"),
+    "cta" => __("Use triggers to engage visitors!", "lively-chat-support"),
     "url" => "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=2BKE7U7LNT46U"
   ),
   (object) array(

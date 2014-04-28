@@ -58,7 +58,7 @@
 
     if (isset($_POST["activation_code"])) { LivelyChatSupport_activate(); }
     if (isset($_GET["delete_convo"])) { LivelyChatSupport_delete_convo($_GET["convo_token"]); }
-    if (isset($_POST["twilio_phone"])) { LivelyChatSupport_settings( array("twilio_phone" => "+" . preg_replace("/[^0-9]/", "", trim($_POST["twilio_phone"]))) ); LivelyChatSupport_send_sms("Site", "Your Lively Chat Support is installed!"); }
+    if (isset($_POST["twilio_phone"])) { $agent = LivelyChatSupport_agent(get_current_user_id()); LivelyChatSupport_settings( array("twilio_phone" => "+" . preg_replace("/[^0-9]/", "", trim($_POST["twilio_phone"]))) ); LivelyChatSupport_send_sms("Site", "Your Lively Chat Support is installed!", $agent); }
     
     if (isset($_POST["agents"])) {
       foreach($_POST["agents"] as $agent) {

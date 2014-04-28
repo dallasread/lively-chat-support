@@ -92,13 +92,16 @@ $convos = LivelyChatSupport_find_visitors();
   <?php }?>
   
       <ul id="all_pages">
-        <?php foreach (array_reverse(json_decode($convo->referrers)) as $url) { ?>
-          <li class="<?php if (!isset($first_page)) { echo "first_page"; } ?>">
-            <span class="on_first"><?php _e( "Now visiting:", "lively-chat-support" ); ?> </span>
-            <a href="<?php echo $url; ?>" target="_blank"><?php echo $url; ?></a>
-            <span class="on_first">(<a href="#!/lively-chat-support" class="show_all_pages"><?php _e( "see all", "lively-chat-support" ); ?></a>)</span>
-          </li>
-          <?php if (!isset($first_page)) { $first_page = true; } ?>
+        <?php $urls = json_decode($convo->referrers); ?>
+        <?php if (is_array($urls)) { ?>
+          <?php foreach (array_reverse($urls) as $url) { ?>
+            <li class="<?php if (!isset($first_page)) { echo "first_page"; } ?>">
+              <span class="on_first"><?php _e( "Now visiting:", "lively-chat-support" ); ?> </span>
+              <a href="<?php echo $url; ?>" target="_blank"><?php echo $url; ?></a>
+              <span class="on_first">(<a href="#!/lively-chat-support" class="show_all_pages"><?php _e( "see all", "lively-chat-support" ); ?></a>)</span>
+            </li>
+            <?php if (!isset($first_page)) { $first_page = true; } ?>
+          <?php } ?>
         <?php } ?>
       </ul>
   
