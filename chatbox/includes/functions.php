@@ -63,18 +63,16 @@
 
         if ($hour != null) {
           if ($hour->responder_id == 0) {
-            $agent = array_rand($agents);
+            $agent = $agents[rand(0, sizeof($agents) - 1)];
           } else {
             $agents = LivelyChatSupport_agent($hour->responder_id);
           }
         }
       }
     
-      if (!isset($agent) && $livelychatsupport["online"] == "online") {
-        $agents = LivelyChatSupport_agents();
-
+      if (!$agent) {
         if (!empty($agents)) {
-          $agent = array_rand($agents);
+          $agent = $agents[rand(0, sizeof($agents) - 1)];
         }
       }
     }
@@ -219,6 +217,8 @@
     global $wpdb;
     $convos_table = $wpdb->prefix . "livelychatsupport_convos";
     
+    if (isset($_GET["from_twilio"])) { LivelyChatSupport_receive_sms(); }
+    
     wp_register_style( "LivelyChatSupport-chatbox-reset", plugins_url( "lively-chat-support/chatbox/css/reset.css" ) );
     wp_register_style( "LivelyChatSupport-chatbox-style", plugins_url( "lively-chat-support/chatbox/css/style.css" ) );
     wp_register_script( "LivelyChatSupport-chatbox-script", plugins_url( "lively-chat-support/chatbox/js/chatbox.js" ) );
@@ -266,8 +266,7 @@
           )
         );
       } else if (!is_admin()) {
-        LivelyChatSupport_create_visitor($referrers);
-        $convo = (object) array( "name" => "", "email" => "", "token" => $_COOKIE["livelychatsupport_convo_token"] );
+        $convo = LivelyChatSupport_create_visitor($referrers);
       }
 
       if (LivelyChatSupport_is_visible_for_current_page()) {
@@ -323,6 +322,8 @@
     	$convos_table, 
     	$args
     );
+    
+    return (object) $args;
   }
   
   function LivelyChatSupport_is_visible_for_current_page() {
@@ -362,8 +363,6 @@
       $convo = LivelyChatSupport_convo($convo_token);
       $agent = LivelyChatSupport_agent($convo->agent_id);
       $now = date("Y-m-d H:i:s.u");
-      
-      print_r(LivelyChatSupport_agent());
     
       if ($convo)
       {
