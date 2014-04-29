@@ -65,7 +65,7 @@
           if ($hour->responder_id == 0) {
             $agent = $agents[rand(0, sizeof($agents) - 1)];
           } else {
-            $agents = LivelyChatSupport_agent($hour->responder_id);
+            $agent = LivelyChatSupport_agent($hour->responder_id);
           }
         }
       }
