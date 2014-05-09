@@ -13,11 +13,15 @@
     if ($all_users) {
       $users = $wpdb->get_results("SELECT * FROM $wpdb->users");
     } else {
+      $users = (object) array();
       $user_ids = array();
       $metas = $wpdb->get_results("SELECT user_id FROM $wpdb->usermeta WHERE meta_key = 'livelychatsupport-active' AND meta_value = '1'");
       foreach ($metas as $meta) { array_push($user_ids, $meta->user_id); }
       $user_ids = join(",", $user_ids);
-      $users = $wpdb->get_results("SELECT * FROM $wpdb->users WHERE id in ($user_ids)");
+
+      if (!empty($user_ids)) {
+        $users = $wpdb->get_results("SELECT * FROM $wpdb->users WHERE id IN ($user_ids)");
+      }
     }
     
     foreach ($users as $user) {
@@ -189,7 +193,7 @@
       setcookie("livelychatsupport_convo_open", $_COOKIE["livelychatsupport_convo_open"], mktime(0, 0, 0, 12, 31, date("Y") + 2), "/");
     }
 
-    if (!isset($_COOKIE["livelychatsupport_convo_token"])) {
+    if (!isset($_COOKIE["livelychatsupport_convo_token"]) || $_COOKIE["livelychatsupport_convo_token"] == "") {
       $_COOKIE["livelychatsupport_convo_token"] = md5(uniqid(rand(), true));
       setcookie("livelychatsupport_convo_token", $_COOKIE["livelychatsupport_convo_token"], mktime(0, 0, 0, 12, 31, date("Y") + 2), "/");
     }
@@ -216,6 +220,8 @@
   {
     global $wpdb;
     $convos_table = $wpdb->prefix . "livelychatsupport_convos";
+    
+    LivelyChatSupport_set_cookies();
     
     if (isset($_GET["from_twilio"])) { LivelyChatSupport_receive_sms(); }
     

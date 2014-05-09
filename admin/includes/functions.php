@@ -46,9 +46,10 @@
         "sms_responder_id", 
         "show_powered_by"
       );
+      $allow_blanks = array();
       
       foreach ($post_fields as $field) {
-        if (isset($_POST[$field]) && $_POST[$field] != "") {
+        if (isset($_POST[$field])) {
           $posted_data[$field] = trim(stripslashes( $_POST[$field] ));
         }
       }

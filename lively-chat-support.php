@@ -5,7 +5,7 @@
 Plugin Name: Lively Chat Support
 Plugin URI: http://www.livelychatsupport.com
 Description: The best FREE live chat for your WP website (supports images) - forget the hosted chat services.
-Version: 1.0.26
+Version: 1.0.28
 Contributors: dallas22ca
 Author: Dallas Read
 Author URI: http://www.DallasRead.com
@@ -13,8 +13,8 @@ Text Domain: lively-chat-support
 Donate link: Just purchase an addon!
 Tags: free live chat, live chat, live support, online chat, customer service
 Requires at least: 3.0.1
-Tested up to: 3.9
-Stable tag: 1.0.26
+Tested up to: 3.9.1
+Stable tag: 1.0.28
 License: MIT
 
 Copyright (c) 2013 Dallas Read.
@@ -51,7 +51,7 @@ global $livelychatsupport_version;
 global $livelychatsupport_db_version;
 global $livelychatsupport_addon_version;
 
-$livelychatsupport_version = "1.0.26";
+$livelychatsupport_version = "1.0.28";
 $livelychatsupport_db_version = 1.11;
 $livelychatsupport_addon_version = 1.5;
 
@@ -67,7 +67,6 @@ register_deactivation_hook( __FILE__,                   "LivelyChatSupport_unins
 
 add_action( "admin_menu",                               "register_LivelyChatSupport_admin_menu" );
 add_action( "wp_footer",                                "LivelyChatSupport_frontend_footer" );
-add_action( "wp_loaded",                                "LivelyChatSupport_set_cookies");
 add_action( "plugins_loaded",                           "LivelyChatSupport_update_db_check" );
 
 add_action( "wp_ajax_poll",                             "LivelyChatSupport_poll" );

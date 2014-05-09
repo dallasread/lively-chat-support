@@ -1,5 +1,5 @@
 === Lively Chat Support ===
-Version: 1.0.26
+Version: 1.0.28
 URI: http://www.livelychatsupport.com
 Contributors: dallas22ca
 Author: Dallas Read
@@ -7,8 +7,8 @@ Author URI: http://www.DallasRead.com
 Donate link: Purchase an addon!
 Tags: free live chat, live chat, live support, online chat, customer service
 Requires at least: 3.6
-Tested up to: 3.9
-Stable tag: 1.0.26
+Tested up to: 3.9.1
+Stable tag: 1.0.28
 License: MIT
 
 The best FREE live chat support for your WP website (no 3rd party dependencies)!
@@ -89,6 +89,7 @@ Each message you receive begins with a small token and a colon (eg. 4k2:). To re
 
 Here's some scheduled features to be added:
 
+* Louder, constant bell in the admin
 * Detect which agents are online automatically
 * Don't require email address before starting a conversation.
 * Button for visitors to "Introduce Yourself"
@@ -98,6 +99,13 @@ Here's some scheduled features to be added:
 * Store Offline Mode form submissions
 
 == Changelog ==
+
+= 1.0.28 =
+* Cache support for button text whether in online or offline mode.
+* New bell!
+
+= 1.0.27 =
+* Bug fix where fields weren't saving if they were blank strings.
 
 = 1.0.26 =
 * Scheduling bug squashed.

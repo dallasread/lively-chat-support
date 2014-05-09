@@ -100,7 +100,10 @@ if (property_exists($convo, "agent_id")) {
       <div class="field">
         <button type="submit" class="livelychatsupport-chatbox-border-colour livelychatsupport-chatbox-background-colour">
           <span class="loading"><?php _e( "Loading...", "lively-chat-support" ); ?></span>
-          <span class="nonloading"><?php echo isset($livelychatsupport_offline) ? __("Send Email!", "lively-chat-support") : __("Start Chatting Now!", "lively-chat-support"); ?></span>
+          <span class="nonloading">
+            <span class="offline_button"><?php _e("Send Email!", "lively-chat-support"); ?></span>
+            <span class="online_button"><?php _e("Start Chatting Now!", "lively-chat-support"); ?></span>
+          </span>
         </button>
       </div>
       

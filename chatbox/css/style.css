@@ -87,6 +87,7 @@
   color: #dedede;
   text-decoration: none;
   text-align: left;
+	border: 0;
 }
 
 #livelychatsupport-chatbox .header .livelychatsupport-open:hover {
@@ -443,9 +444,21 @@
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
 }
 
+#livelychatsupport-chatbox .offline_button {
+	display: none;
+}
+
 /*
   Offline mode
 */
+
+#livelychatsupport-chatbox.offline .offline_button {
+	display: inline;
+}
+
+#livelychatsupport-chatbox.offline .online_button {
+	display: none;
+}
 
 #livelychatsupport-chatbox.offline .livelychatsupport-offline-message {
   display: block;
@@ -506,7 +519,7 @@
   color: #777;
 }
 
-#livelychatsupport-chatbox audio {
+#livelychatsupport-chatbox audio, #livelychatsupport-chatbox .audiojs {
 	display: none !important;
 	height: 0px !important;
 	width: 0px !important;
