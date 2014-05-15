@@ -221,8 +221,6 @@
     global $wpdb;
     $convos_table = $wpdb->prefix . "livelychatsupport_convos";
     
-    LivelyChatSupport_set_cookies();
-    
     if (isset($_GET["from_twilio"])) { LivelyChatSupport_receive_sms(); }
     
     wp_register_style( "LivelyChatSupport-chatbox-reset", plugins_url( "lively-chat-support/chatbox/css/reset.css" ) );
