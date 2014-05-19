@@ -47,7 +47,7 @@ $lcsq(function($lcsq){
         LivelyChatSupport.scrollChatToBottom();
       },
     
-      poll: function(on_page_load) {
+      poll: function(on_page_load, callback) {
 				if (typeof on_page_load === "undefined") { on_page_load = false; }
         if ($lcsq("#livelychatsupport-chatbox").hasClass("chatting") && $lcsq(".messages").length)
         {
@@ -79,11 +79,12 @@ $lcsq(function($lcsq){
                 }
             
                 setTimeout(function(){
-                  LivelyChatSupport.poll();
+                  LivelyChatSupport.poll(false, false);
                 }, 3000);
               }
           );
         }
+				if (typeof callback === "function") { setTimeout(callback, 30); }
       },
     
       setCurrentSurvey: function(step) {
@@ -128,78 +129,82 @@ $lcsq(function($lcsq){
         var site_url = $lcsq("#livelychatsupport-chatbox").data("site_url")
         var popups = LivelyChatSupport_popups.sort(function(a, b) {return parseFloat(a["delay"]) - parseFloat(b["delay"])});
         var popped = false;
+      	
+				if (!$lcsq("#livelychatsupport-chatbox .message:not(.message_template)").length) {
+	        for(i = 0; i < popups.length; i++) {
+	          if (popped == false)
+	          {
+	          	var popup = popups[i];
+	            var current_path = window.location.href.replace(site_url, "");
+	            var urls = popup.urls.replace("*", "(.*?)").replace(" ", "").split(",");
+	            var regex = new RegExp(urls.join("|"), "gi");
       
-        for(i = 0; i < popups.length; i++) {
-          if (popped == false)
-          {
-          	var popup = popups[i];
-            var current_path = window.location.href.replace(site_url, "");
-            var urls = popup.urls.replace("*", "(.*?)").replace(" ", "").split(",");
-            var regex = new RegExp(urls.join("|"), "gi");
-      
-            if (popup.type == "trigger" && !$lcsq("#livelychatsupport-chatbox").hasClass("offline") && $lcsq("#livelychatsupport-chatbox .message").length < 2 && current_path.match(regex))
-            {
-              popped = true;
+	            if (popup.type == "trigger" && !$lcsq("#livelychatsupport-chatbox").hasClass("offline") && !$lcsq("#livelychatsupport-chatbox .message:not(.message_template)").length && current_path.match(regex))
+	            {
+	              popped = true;
           
-              setTimeout(function(){
-                $lcsq("#livelychatsupport-chatbox").addClass("open chatting");
-                LivelyChatSupport.scrollChatToBottom();
+	              setTimeout(function(){
+	                $lcsq("#livelychatsupport-chatbox").addClass("open chatting");
+	                LivelyChatSupport.scrollChatToBottom();
               
-                $lcsq.post($lcsq("#livelychatsupport-chatbox-new-message").attr("action"), {
-                  "action": "create_chatbox_message",
-                  "convo_token": $lcsq("#livelychatsupport-chatbox-token").val(),
-                  "body": popup.body,
-                  "from_agent": 1,
-                  "not_initiated": true
-                }, function(){
-                  LivelyChatSupport.poll();
-                });
+									if (!$lcsq(".message:not(.message_template)").length) {
+		                $lcsq.post($lcsq("#livelychatsupport-chatbox-new-message").attr("action"), {
+		                  "action": "create_chatbox_message",
+		                  "convo_token": $lcsq("#livelychatsupport-chatbox-token").val(),
+		                  "body": popup.body,
+		                  "from_agent": 1,
+		                  "not_initiated": true
+		                }, function(){
+		                  LivelyChatSupport.poll(false, false);
+		                });
+									}
               
-              }, parseFloat(popup.delay) * 1000);
-            } else if (popup.type == "survey" && !$lcsq("#livelychatsupport-chatbox").hasClass("open") && !$lcsq("#livelychatsupport-chatbox").hasClass("surveyed")) {
-              popped = true;
-              var questions = popup.questions;
+	              }, parseFloat(popup.delay) * 1000);
+	            } else if (popup.type == "survey" && !$lcsq("#livelychatsupport-chatbox").hasClass("open") && !$lcsq("#livelychatsupport-chatbox").hasClass("surveyed")) {
+	              popped = true;
+	              var questions = popup.questions;
             
-              setTimeout(function(){
-                for(q=0; q<questions.length; q++) {
-                  var question = questions[q];
-                  var template = $lcsq("<div>").addClass("field question invalid");
-                  var h3 = $lcsq("<h3>").text(question.prompt);
-                  h3.appendTo(template);
+	              setTimeout(function(){
+	                for(q=0; q<questions.length; q++) {
+	                  var question = questions[q];
+	                  var template = $lcsq("<div>").addClass("field question invalid");
+	                  var h3 = $lcsq("<h3>").text(question.prompt);
+	                  h3.appendTo(template);
                 
-                  if (question.data_type == "input") {
-                   var input = $lcsq("<input>").attr("type", "text").attr("name", "question-" + q);
-                   input.appendTo(template);
-                  } else if (question.data_type == "textarea") {
-                    var textarea = $lcsq("<textarea>").attr("name", "question-" + q);
-                    textarea.appendTo(template);
-                  } else if (question.data_type == "radio") {
-                    var ol = $lcsq("<ol>");
-                    var input = $lcsq("<input>").attr("type", "hidden").attr("name", "question-" + q).addClass("hidden");
+	                  if (question.data_type == "input") {
+	                   var input = $lcsq("<input>").attr("type", "text").attr("name", "question-" + q);
+	                   input.appendTo(template);
+	                  } else if (question.data_type == "textarea") {
+	                    var textarea = $lcsq("<textarea>").attr("name", "question-" + q);
+	                    textarea.appendTo(template);
+	                  } else if (question.data_type == "radio") {
+	                    var ol = $lcsq("<ol>");
+	                    var input = $lcsq("<input>").attr("type", "hidden").attr("name", "question-" + q).addClass("hidden");
                   
-                    for(a=0; a<question.answers.length; a++) {
-                      var answer = question.answers[a];
-                      var li = $lcsq("<li>").addClass("answer").text(answer);
-                      li.appendTo(ol);
-                    }
+	                    for(a=0; a<question.answers.length; a++) {
+	                      var answer = question.answers[a];
+	                      var li = $lcsq("<li>").addClass("answer").text(answer);
+	                      li.appendTo(ol);
+	                    }
                   
-                    input.appendTo(template);
-                    ol.appendTo(template);
-                  }
+	                    input.appendTo(template);
+	                    ol.appendTo(template);
+	                  }
                 
-                  template.appendTo("#livelychatsupport-chatbox .survey .questions");
-                  $lcsq("#livelychatsupport-chatbox .survey .id").val(popup.id);
-                }
+	                  template.appendTo("#livelychatsupport-chatbox .survey .questions");
+	                  $lcsq("#livelychatsupport-chatbox .survey .id").val(popup.id);
+	                }
 
-                $lcsq("#livelychatsupport-chatbox .header span").text(popup.title);
-                $lcsq("#livelychatsupport-chatbox .survey-thanks p").text(popup.thanks);
-                $lcsq("#livelychatsupport-chatbox").addClass("open surveying");
-                $lcsq("#livelychatsupport-chatbox .survey").data("steps", questions.length);
-                LivelyChatSupport.setCurrentSurvey(1);
-              }, parseFloat(popup.delay) * 1000);
-            }
-          }
-        }
+	                $lcsq("#livelychatsupport-chatbox .header span").text(popup.title);
+	                $lcsq("#livelychatsupport-chatbox .survey-thanks p").text(popup.thanks);
+	                $lcsq("#livelychatsupport-chatbox").addClass("open surveying");
+	                $lcsq("#livelychatsupport-chatbox .survey").data("steps", questions.length);
+	                LivelyChatSupport.setCurrentSurvey(1);
+	              }, parseFloat(popup.delay) * 1000);
+	            }
+	          }
+	        }
+				}
       },
     
       cacheSupport: function() {
@@ -242,7 +247,6 @@ $lcsq(function($lcsq){
 							$lcsq("#livelychatsupport-chatbox").removeClass("offline").show();
 							if (data.messages.length) {
 								$lcsq("#livelychatsupport-chatbox").addClass("chatting");
-								LivelyChatSupport.poll(true);
 							}
 						}
 					}
@@ -253,14 +257,13 @@ $lcsq(function($lcsq){
           }
         
           LivelyChatSupport.popups();
+					LivelyChatSupport.scrollChatToBottom();
         });
       }
     }
 
     $lcsq(document).ready(function(){
-      LivelyChatSupport.scrollChatToBottom();
-      LivelyChatSupport.poll(true);
-      LivelyChatSupport.cacheSupport();
+      LivelyChatSupport.poll(true, LivelyChatSupport.cacheSupport);
     });
   
     $lcsq(document).on("click", "#livelychatsupport-chatbox .delete_history", function(){

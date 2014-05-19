@@ -296,8 +296,10 @@
   
   function LivelyChatSupport_add_convo() {
     global $wpdb;
-    $convo = LivelyChatSupport_convo($_POST["convo_token"]);
-    die(json_encode($convo));
+    if (isset($_POST["convo_token"])) {
+      $convo = LivelyChatSupport_convo($_POST["convo_token"]);
+      die(json_encode($convo));
+    }
   }
   
   function LivelyChatSupport_find_visitors() {
@@ -328,18 +330,21 @@
   
   function LivelyChatSupport_read_convo() {
     global $wpdb;
-    $convo = LivelyChatSupport_convo($_POST["convo_token"]);
-    $wpdb->update( 
-    	$wpdb->prefix . "livelychatsupport_convos", 
-      array(
-    	  "pending" => false
-    	),
-      array(
-        "token" => $convo->token
-      )
-    );
+    if (isset($_POST["convo_token"])) {
+      $convo = LivelyChatSupport_convo($_POST["convo_token"]);
+      
+      $wpdb->update( 
+      	$wpdb->prefix . "livelychatsupport_convos", 
+        array(
+      	  "pending" => false
+      	),
+        array(
+          "token" => $convo->token
+        )
+      );
     
-    die(json_encode(array("success" => true)));
+      die(json_encode(array("success" => true)));
+    }
   }
   
   function LivelyChatSupport_activate() {
