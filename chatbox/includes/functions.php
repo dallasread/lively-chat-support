@@ -59,7 +59,9 @@
         "avatar" => get_user_meta($id, "livelychatsupport-avatar", true),
         "active" => get_user_meta($id, "livelychatsupport-active", true)
       );
-    } else {
+    }
+    
+    if (!$agent) {
       $agents = LivelyChatSupport_agents();
       
       if ($livelychatsupport["online"] == "hours") {

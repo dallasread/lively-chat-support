@@ -1,14 +1,8 @@
 <?php
 
-if ($livelychatsupport["online"] == "offline") { $livelychatsupport_offline = true; }
-if (($convo->name != "" && $convo->email != "") || $convo->messages_count > 0 || LIVELYCHATSUPPORT_ADMIN == true) { $livelychatsupport_chatting = true; }
-$livelychatsupport_states = LivelyChatSupport_state(isset($livelychatsupport_open), isset($livelychatsupport_offline), isset($livelychatsupport_chatting));
-
-if (property_exists($convo, "agent_id")) { 
-  $agent = LivelyChatSupport_agent($convo->agent_id);
-} else {
-  $agent = LivelyChatSupport_agent();
-}
+  global $livelychatsupport_version;
+  
+  if (property_exists($convo, "agent_id")) { $agent = LivelyChatSupport_agent($convo->agent_id); }
 
 ?>
 
@@ -22,7 +16,7 @@ if (property_exists($convo, "agent_id")) {
   <?php if ($livelychatsupport["show_powered_by"] != "true") { echo "#livelychatsupport-chatbox .powered_by { display: none; }"; } ?>
 </style>
 
-<div id="livelychatsupport-chatbox" data-site_url="<?php echo site_url(); ?>" class="<?php echo implode($livelychatsupport_states, " "); ?>" data-ip_url="<?php echo plugins_url("lively-chat-support/chatbox/find_ip.php"); ?>" data-version="<?php global $livelychatsupport_version; echo $livelychatsupport_version; ?>">
+<div id="livelychatsupport-chatbox" data-site_url="<?php echo site_url(); ?>" data-ip_url="<?php echo plugins_url("lively-chat-support/chatbox/find_ip.php"); ?>" data-version="<?php echo $livelychatsupport_version; ?>">
   <audio class="bell">
     <source src="<?php echo plugins_url("lively-chat-support/chatbox/assets/audio/bell.mp3"); ?>" type="audio/mpeg">
     <source src="<?php echo plugins_url("lively-chat-support/chatbox/assets/audio/bell.ogg"); ?>" type="audio/ogg">
