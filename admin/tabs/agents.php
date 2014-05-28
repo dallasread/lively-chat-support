@@ -8,12 +8,13 @@ $agents = LivelyChatSupport_agents(true);
 
 <h2><?php _e( "Customer Support Agents", "lively-chat-support" ); ?></h2>
 
+<p><?php echo sprintf( __( "Is one of your users not showing up on the list? <a href=\"%s\">Edit their profile</a> and check \"Lively Chat Access\".", "lively-chat-support" ), admin_url("users.php") ); ?></p>
+
 <div class="updated">
   <?php if (strpos($livelychatsupport["addons"], "sms") !== false) { ?>
-    <p><?php _e( "<strong>Phone Number</strong> - should include country code (eg. 19998887777). ", "lively-chat-support" ); ?></p>
+    <p><?php _e( "<strong>Phone Number</strong> - should include country code (eg. 1 in US/Canada). ", "lively-chat-support" ); ?></p>
   <?php } ?>
 
-  <p><?php echo sprintf( __( "<strong>Email Address</strong> - Can be changed in the <a href=\"%s\">WP Users</a> section.", "lively-chat-support" ), admin_url("users.php") ); ?></p>
   <p><?php _e( "<strong>Display Name</strong> - Shows in the \"You're Chatting With\" section of the chat box.", "lively-chat-support" ); ?></p>
   <p>
     <?php _e( "<strong>Active</strong> - When checked, the user can chat with visitors. At least 1 agent must be active for LivelyChatSupport to work.", "lively-chat-support" ); ?>

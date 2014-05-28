@@ -1,7 +1,9 @@
 <?php
 
   function register_LivelyChatSupport_admin_menu() {
-    add_menu_page( "Lively Chat", "Lively Chat", "read", "livelychatsupport", "LivelyChatSupport_admin", plugins_url( "lively-chat-support/assets/icon32.png" ) );
+    if (current_user_can("can_livelychatsupport") || current_user_can("manage_options")) {
+      add_menu_page( "Lively Chat", "Lively Chat", "read", "livelychatsupport", "LivelyChatSupport_admin", plugins_url( "lively-chat-support/assets/icon32.png" ) );
+    }
   }
   
   function LivelyChatSupport_admin() {
@@ -390,4 +392,27 @@
     return $output;
   }
   
+  function LivelyChatSupport_user_profile_fields( $user ) { ?>
+      <table class="form-table">
+          <tr>
+              <th><label for="livelychatsupport_access"><?php _e("Lively Chat Access", "lively-chat-support") ?></label></th>
+              <td>
+                  <input id="livelychatsupport_access" name="livelychatsupport_access" type="checkbox" value="1" <?php if ( user_can($user->ID, "can_livelychatsupport") ) { echo " checked=\"checked\""; } ?> />
+              </td>
+          </tr>
+      </table>
+  <?php }
+  
+  function LivelyChatSupport_save_user_profile_fields($user_id) {
+    if (!current_user_can("edit_user", $user_id)) { return false; }
+    
+    $user = new WP_User( $user_id );
+    
+    if (isset($_POST["livelychatsupport_access"])) {
+      $user->add_cap( "can_livelychatsupport" );
+    }
+    else {
+      $user->remove_cap( "can_livelychatsupport" );
+    }
+  }
 ?>

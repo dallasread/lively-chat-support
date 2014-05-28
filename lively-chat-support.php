@@ -5,7 +5,7 @@
 Plugin Name: Lively Chat Support
 Plugin URI: http://www.livelychatsupport.com
 Description: The best FREE live chat for your WP website (supports images) - forget the hosted chat services.
-Version: 1.0.30
+Version: 1.0.31
 Contributors: dallas22ca
 Author: Dallas Read
 Author URI: http://www.DallasRead.com
@@ -14,7 +14,7 @@ Donate link: Just purchase an addon!
 Tags: free live chat, live chat, live support, online chat, customer service
 Requires at least: 3.0.1
 Tested up to: 3.9.1
-Stable tag: 1.0.30
+Stable tag: 1.0.31
 License: MIT
 
 Copyright (c) 2013 Dallas Read.
@@ -51,7 +51,7 @@ global $livelychatsupport_version;
 global $livelychatsupport_db_version;
 global $livelychatsupport_addon_version;
 
-$livelychatsupport_version = "1.0.30";
+$livelychatsupport_version = "1.0.31";
 $livelychatsupport_db_version = 1.11;
 $livelychatsupport_addon_version = 1.5;
 
@@ -87,5 +87,13 @@ add_action( "wp_ajax_nopriv_create_chatbox_message",    "LivelyChatSupport_creat
 add_action( "wp_ajax_nopriv_save_survey",               "LivelyChatSupport_save_survey" );
 add_action( "wp_ajax_nopriv_cache_support",             "LivelyChatSupport_cache_support" );
 add_action( "wp_ajax_nopriv_delete_history",            "LivelyChatSupport_delete_history" );
+
+add_action( "show_user_profile",                        "LivelyChatSupport_user_profile_fields" );
+add_action( "edit_user_profile",                        "LivelyChatSupport_user_profile_fields" );
+add_action( "user_new_form",                            "LivelyChatSupport_user_profile_fields" );
+
+add_action( "user_register",                            "LivelyChatSupport_save_user_profile_fields");
+add_action( "personal_options_update",                            "LivelyChatSupport_save_user_profile_fields");
+add_action( "edit_user_profile_update",                 "LivelyChatSupport_save_user_profile_fields");
 
 ?>

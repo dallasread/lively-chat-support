@@ -66,12 +66,8 @@
       $convo_token = $_POST["convo_token"];
       $messages = $wpdb->get_results("SELECT * FROM $messages_table WHERE convo_token = '$convo_token' AND $messages_table.id > '$id'");
     } else if (LIVELYCHATSUPPORT_ADMIN == true) {
-      if (current_user_can("manage_options")) {
-        $messages = $wpdb->get_results("SELECT * FROM $messages_table INNER JOIN $convos_table ON $convos_table.token = $messages_table.convo_token WHERE $messages_table.id > '$id'");
-      } else {
-        $agent_id = get_current_user_id();
-        $messages = $wpdb->get_results("SELECT * FROM $messages_table INNER JOIN $convos_table ON $convos_table.token = $messages_table.convo_token WHERE $convos_table.agent_id = '$agent_id' AND $messages_table.id > '$id'");
-      }
+      $agent_id = get_current_user_id();
+      $messages = $wpdb->get_results("SELECT * FROM $messages_table INNER JOIN $convos_table ON $convos_table.token = $messages_table.convo_token WHERE $convos_table.agent_id = '$agent_id' AND $messages_table.id > '$id'");
     }
     
     if (!empty($messages)) {
