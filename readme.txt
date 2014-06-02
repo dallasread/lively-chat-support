@@ -1,5 +1,5 @@
 === Lively Chat Support ===
-Version: 1.0.31
+Version: 1.0.32
 URI: http://www.livelychatsupport.com
 Contributors: dallas22ca
 Author: Dallas Read
@@ -8,7 +8,7 @@ Donate link: Purchase an addon!
 Tags: free live chat, live chat, live support, online chat, customer service
 Requires at least: 3.6
 Tested up to: 3.9.1
-Stable tag: 1.0.31
+Stable tag: 1.0.32
 License: MIT
 
 The best FREE live chat support for your WP website (no 3rd party dependencies)!
@@ -28,7 +28,6 @@ For Lively's features, most companies would charge at least 20 to 30 dollars per
 * **Chat from your phone: [Buy Now for $40](http://www.livelychatsupport.com/buy-sms)** - perfect for the small business owner. Through SMS (text messages), you'll be able to stay in touch with the visitors on your website.
 * **Triggers: [Buy Now for $40](http://www.livelychatsupport.com/buy-triggers)** - start conversations based on your specified criteria. For example, if they've been on your checkout page too long, ask them "Do you need help checking out?"
 * **Surveys: [Buy Now for $40](http://www.livelychatsupport.com/buy-surveys)** - quick and unintrusive, surveys are a great way to learn more about your visitors (who love giving their input!).
-* **Cobrowsing: [Preorder for $129](http://livelychatsupport.com/pre-cobrowse)** - without installing anything, your visitors will be able to share their screen with you - safely and securely.
 
 > **Live Demos**
 
@@ -58,9 +57,6 @@ Lively is FREE to use, but there are a few premium addons. They are:
 * **Surveys: [Buy Now for $40](http://www.livelychatsupport.com/buy-surveys)** - quick and unintrusive, surveys are a great way to learn more about your visitors (who love giving their input!).
 * **Cobrowsing: [Preorder for $129](http://livelychatsupport.com/pre-cobrowse)** - without installing anything, your visitors will be able to share their screen with you - safely and securely.
 
-= When is Cobrowsing available? =
-We're working on it... with enough pre-sales, we'll be able to release it this Summer 2014!
-
 = Lively isn't showing up on my site? =
 * Are you using a caching plugin? If so, clear the cache.
 * Is wp_footer() found anywhere in your theme's files? It should be in footer.php.
@@ -89,6 +85,7 @@ Each message you receive begins with a small token and a colon (eg. 4k2:). To re
 
 Here's some scheduled features to be added:
 
+* Mark agents as busy
 * Constant bell in the admin
 * Detect which agents are online automatically
 * Don't require email address before starting a conversation.
@@ -99,6 +96,9 @@ Here's some scheduled features to be added:
 * Store Offline Mode form submissions
 
 == Changelog ==
+
+= 1.0.32 =
+* Bug fix while polling for new messages.
 
 = 1.0.31 =
 * Repaired permissions for multi-agent addon.
