@@ -98,7 +98,9 @@ Here's some scheduled features to be added:
 == Changelog ==
 
 = 1.0.32 =
+* If no agents are online, the chat stays in Offline mode.
 * Bug fix while polling for new messages.
+* Fixed a bug in the scheduling algorithm.
 
 = 1.0.31 =
 * Repaired permissions for multi-agent addon.

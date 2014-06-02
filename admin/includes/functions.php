@@ -383,10 +383,16 @@
   }
   
   function LivelyChatSupport_military_to_pretty($time) {
+    $int_time = (integer) $time;
+    if (strlen($time) == 2) { $time = "00$time"; }
     if (strlen($time) == 3) { $time = "0$time"; }
+    if ($int_time > 1159 && $int_time < 2400) { $pm = true; }
     $hour = (integer) substr($time, 0, 2);
-    if ($hour > 12) { $hour = $hour - 12; $pm = true; }
+    if ($int_time == 0) { $hour = 12; }
+    if ($int_time > 1200) { $hour = $hour - 12; }
     $minute = substr($time, 2, 2);
+    if (strlen($minute) == 0) { $minute = "00"; }
+    if (strlen($minute) == 1) { $minute = "0$minute"; }
     $output = "$hour:$minute ";
     if (isset($pm)) { $output .= "PM"; } else { $output .= "AM"; }
     return $output;
