@@ -1,5 +1,5 @@
 === Lively Chat Support ===
-Version: 1.0.32
+Version: 1.0.34
 URI: http://www.livelychatsupport.com
 Contributors: dallas22ca
 Author: Dallas Read
@@ -8,7 +8,7 @@ Donate link: Purchase an addon!
 Tags: free live chat, live chat, live support, online chat, customer service
 Requires at least: 3.6
 Tested up to: 3.9.1
-Stable tag: 1.0.32
+Stable tag: 1.0.34
 License: MIT
 
 The best FREE live chat support for your WP website (no 3rd party dependencies)!
@@ -85,6 +85,13 @@ Each message you receive begins with a small token and a colon (eg. 4k2:). To re
 
 Here's some scheduled features to be added:
 
+* http://wordpress.org/support/topic/issue-about-name-and-email-box?replies=2#post-5683726
+* DB bloat
+* change subscriber name and email
+* sound in chrome
+* initial chat notice go to multiple email addresses
+* I resolved this by changing port to ssl. Thanks.
+* Initial message from agent.
 * Mark agents as busy
 * Constant bell in the admin
 * Detect which agents are online automatically
@@ -96,6 +103,13 @@ Here's some scheduled features to be added:
 * Store Offline Mode form submissions
 
 == Changelog ==
+
+= 1.0.33 =
+* Avoid errors showing on the Name & Email boxes.
+
+= 1.0.33 =
+* Optional track hits for lively
+* Guaranteed support times added (24 hours for customers, 72 for non-customers)
 
 = 1.0.32 =
 * If no agents are online, the chat stays in Offline mode.

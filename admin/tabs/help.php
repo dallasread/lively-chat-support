@@ -13,7 +13,7 @@
   <li>&rarr; <?php echo sprintf( __("Is your question already on the <a href=\"%s\">Wordpress Plugin Forum</a>?"), "http://wordpress.org/support/plugin/lively-chat-support" ); ?></li>
   <li>&rarr; <?php echo sprintf( __("Download the <a href=\"%s\">Help PDF</a>."), content_url("plugins/lively-chat-support/assets/help.pdf") ); ?></li>
   <li>&rarr; <?php echo sprintf( __("Visit <a href=\"%s\">LivelyChatSupport.com</a> (will be live one of these days...)."), "http://www.livelychatsupport.com/" ); ?></li>
-  <li>&rarr; <?php _e("Email dallas at excitecreative.ca.");  ?></li>
+  <li>&rarr; <?php _e("Email dallas@excitecreative.ca (guaranteed response within 24 hours for customers, 72 hours for non-customers).");  ?></li>
 </ul>
 
 <h2><?php _e( "Need more features?", "lively-chat-support" ); ?></h2>

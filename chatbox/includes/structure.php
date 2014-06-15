@@ -1,7 +1,6 @@
 <?php
 
   global $livelychatsupport_version;
-  
   if (property_exists($convo, "agent_id")) { $agent = LivelyChatSupport_agent($convo->agent_id); }
 
 ?>
@@ -74,12 +73,12 @@
     <<?php echo LIVELYCHATSUPPORT_ADMIN == true ? "div" : "form" ?> id="livelychatsupport-register" method="post" target="livelychatsupport-iframe" action="<?php echo admin_url('admin-ajax.php'); ?>">
       <div class="field">
         <label for="livelychatsupport-chatbox-name"><?php _e( "What is your name?", "lively-chat-support" ); ?></label>
-        <input id="livelychatsupport-chatbox-name" type="text" name="Name" value="<?php echo $convo->name; ?>">
+        <input id="livelychatsupport-chatbox-name" type="text" name="Name" value="<?php if (property_exists($convo, "name")) { echo $convo->name; } ?>">
       </div>
     
       <div class="field">
         <label for="livelychatsupport-chatbox-email"><?php _e( "What is your email?", "lively-chat-support" ); ?></label>
-        <input id="livelychatsupport-chatbox-email" type="email" name="Email" value="<?php echo $convo->email; ?>">
+        <input id="livelychatsupport-chatbox-email" type="email" name="Email" value="<?php if (property_exists($convo, "email")) { echo $convo->email; } ?>">
       </div>
       
       <div class="field livelychatsupport-offline-message">

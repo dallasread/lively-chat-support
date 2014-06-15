@@ -267,9 +267,13 @@
   
     if (LIVELYCHATSUPPORT_ADMIN == false && isset($_COOKIE["livelychatsupport_convo_token"]))
     {
-      if ($convo) { $referrers = json_decode($convo->referrers); }
-      if (!is_array($referrers) || !isset($referrers)) { $referrers = array(); }
-      $referrers = array_push($referrers, "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
+      if ($livelychatsupport["track_pages"] == "true") {
+        if ($convo) { $referrers = json_decode($convo->referrers); }
+        if (!is_array($referrers) || !isset($referrers)) { $referrers = array(); }
+        $referrers = array_push($referrers, "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
+      } else {
+        $referrers = array();
+      }
       
       if ($convo) {
         $wpdb->update( 

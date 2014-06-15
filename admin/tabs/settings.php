@@ -79,6 +79,13 @@ $convo = (object) array(
       <input type="hidden" name="show_powered_by" id="hidden_show_powered_by" value="<?php echo $livelychatsupport["show_powered_by"]; ?>" />
       <label for="show_powered_by"><?php _e( "Show \"Powered By Lively Chat\"", "lively-chat-support" ); ?></label>
     </div>
+    
+    <div class="field">
+      <input type="checkbox" id="track_pages"<?php if ($livelychatsupport["track_pages"] == "true") { echo " checked=\"checked\""; } ?> />
+      <input type="hidden" name="track_pages" id="hidden_track_pages" value="<?php echo $livelychatsupport["track_pages"]; ?>" />
+      <label for="track_pages"><?php _e( "Track visited pages", "lively-chat-support" ); ?></label><br>
+      <span class="livelychatsupport-detail"><?php _e( "(uses more memory, hard drive, and database)", "lively-chat-support" ); ?></span>
+    </div>
   
     <div class="field">
       <input type="submit" value="<?php _e( "Save My Settings", "lively-chat-support" ); ?>" class="button-primary" />

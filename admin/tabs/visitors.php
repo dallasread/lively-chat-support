@@ -91,6 +91,7 @@ $convos = LivelyChatSupport_find_visitors();
       </p>
   <?php }?>
   
+    <?php if ($livelychatsupport["track_pages"] == "true") { ?>
       <ul id="all_pages">
         <?php $urls = json_decode($convo->referrers); ?>
         <?php if (is_array($urls)) { ?>
@@ -104,6 +105,7 @@ $convos = LivelyChatSupport_find_visitors();
           <?php } ?>
         <?php } ?>
       </ul>
+    <?php } ?>
   
     </div>
     

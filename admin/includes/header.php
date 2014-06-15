@@ -43,13 +43,13 @@ if (isset($_POST["subscriber_email"]) && $_POST["subscriber_email"] != "" && iss
 
 <script type="text/javascript">
 	this._RM || (this._RM = []);
-	_RM.push(["api_key", "VOTLf12Xko7afb1tnxBiZWMgU8AI3NjLIC8ZM5hV97eHf8"]);
+	_RM.push(["api_key", "iooSk8xgxoF4fPE8tLrY9siOFAI"]);
   _RM.push(["track", {
-    description: "{{ contact.name }} installed {{ product }}.",
+    description: "{{ member.name }} installed {{ product }}",
+    verb: "installed",
     product: "Lively Chat Support",
-    website: window.location.host,
     lcs_version: "<?php echo $livelychatsupport_version; ?>",
-    contact: {
+    member: {
   		name: "<?php echo $_POST["subscriber_name"]; ?>",
       email: "<?php echo $_POST["subscriber_email"]; ?>",
   		key: window.location.host + "-lively",

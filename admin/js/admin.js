@@ -520,6 +520,12 @@ $lcsq(function($lcsq){
     
     $lcsq("#hidden_show_powered_by").val(value);
   });
+	
+  $lcsq(document).on("click", "#track_pages", function(){
+    var value = "false";
+    if ($lcsq(this).is(":checked")) { value = "true"; }
+    $lcsq("#hidden_track_pages").val(value);
+  });
   
   $lcsq(document).on("click", ".delete_convo", function(){
     if (!confirm("This action is irreversible. Are you sure you want to delete this convo?")) {

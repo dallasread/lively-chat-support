@@ -18,7 +18,7 @@ if (strpos($livelychatsupport["addons"], "sms") !== false) { ?>
         <li><?php _e( "From the Twilio dashboard, copy your <b>ACCOUNT SID</b> and <b>AUTH TOKEN</b> into the boxes below.", "lively-chat-support" ); ?></li>
         <li><?php _e( "Click <b>Save My Credentials</b> on this page. You should receive an SMS confirming that everything's ready to go.", "lively-chat-support" ); ?></li>
         <li><?php echo sprintf( __( "Now, you must go to the <a href=\"%s\">Schedule</a> page and choose <b>Online</b> or <b>According to Office Hours</b> from the drop down list. Finally, add the hours you'd like to be available as an SMS customer support agent.", "lively-chat-support" ), "admin.php?page=livelychatsupport&tab=schedule" ); ?></li>
-        <li><?php _e( "Thanks for supporting Lively Chat Support! Email dallas@excitecreative.ca if you need any help!", "lively-chat-support" ); ?></li>
+        <li><?php _e( "Thanks for supporting Lively Chat Support! Email dallas@excitecreative.ca if you need any help (guaranteed 24-hour response)!", "lively-chat-support" ); ?></li>
       </ol>
     </div>
   

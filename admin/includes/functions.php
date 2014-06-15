@@ -46,7 +46,8 @@
         "twilio_sid", 
         "twilio_auth", 
         "sms_responder_id", 
-        "show_powered_by"
+        "show_powered_by",
+        "track_pages"
       );
       $allow_blanks = array();
       
