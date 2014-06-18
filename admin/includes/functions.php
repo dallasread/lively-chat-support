@@ -408,18 +408,4 @@
               </td>
           </tr>
       </table>
-  <?php }
-  
-  function LivelyChatSupport_save_user_profile_fields($user_id) {
-    if (!current_user_can("edit_user", $user_id)) { return false; }
-    
-    $user = new WP_User( $user_id );
-    
-    if (isset($_POST["livelychatsupport_access"])) {
-      $user->add_cap( "can_livelychatsupport" );
-    }
-    else {
-      $user->remove_cap( "can_livelychatsupport" );
-    }
-  }
-?>
+<?php } ?>

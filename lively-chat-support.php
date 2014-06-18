@@ -93,7 +93,7 @@ add_action( "edit_user_profile",                        "LivelyChatSupport_user_
 add_action( "user_new_form",                            "LivelyChatSupport_user_profile_fields" );
 
 add_action( "user_register",                            "LivelyChatSupport_save_user_profile_fields");
-add_action( "personal_options_update",                            "LivelyChatSupport_save_user_profile_fields");
+add_action( "personal_options_update",                  "LivelyChatSupport_save_user_profile_fields");
 add_action( "edit_user_profile_update",                 "LivelyChatSupport_save_user_profile_fields");
 
 ?>
