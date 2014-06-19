@@ -17,8 +17,9 @@
 
 <div id="livelychatsupport-chatbox" data-site_url="<?php echo site_url(); ?>" data-ip_url="<?php echo plugins_url("lively-chat-support/chatbox/find_ip.php"); ?>" data-version="<?php echo $livelychatsupport_version; ?>">
   <audio class="bell">
-    <source src="<?php echo plugins_url("lively-chat-support/chatbox/assets/audio/bell.mp3"); ?>" type="audio/mpeg">
-    <source src="<?php echo plugins_url("lively-chat-support/chatbox/assets/audio/bell.ogg"); ?>" type="audio/ogg">
+    <source src="<?php echo plugins_url("lively-chat-support/chatbox/assets/audio/bell.wav"); ?>">
+    <source src="<?php echo plugins_url("lively-chat-support/chatbox/assets/audio/bell.mp3"); ?>">
+    <source src="<?php echo plugins_url("lively-chat-support/chatbox/assets/audio/bell.ogg"); ?>">
   </audio>
   
   <?php if ($livelychatsupport["cta_online_image"] != "" || LIVELYCHATSUPPORT_ADMIN == true) { ?>

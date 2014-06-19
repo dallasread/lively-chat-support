@@ -85,9 +85,10 @@ if (isset($_POST["subscriber_email"]) && $_POST["subscriber_email"] != "" && iss
   <a href="admin.php?page=livelychatsupport&tab=help"        class="nav-tab <?php if ($_GET["tab"] == "help") { echo "nav-tab-active"; } ?>"><?php _e("Help", "lively-chat-support"); ?></a>
 </h3>
 
-<audio id="bell" data-latest_id="<?php echo LivelyChatSupport_latest_message_id(); ?>" data-read_url="<?php echo admin_url('admin-ajax.php'); ?>" data-url="<?php echo admin_url('admin-ajax.php'); ?>">
-  <source src="<?php echo plugins_url("lively-chat-support/chatbox/assets/audio/bell.mp3"); ?>" type="audio/mpeg">
-  <source src="<?php echo plugins_url("lively-chat-support/chatbox/assets/audio/bell.ogg"); ?>" type="audio/ogg">
+<audio id="bell" preload="auto" data-latest_id="<?php echo LivelyChatSupport_latest_message_id(); ?>" data-read_url="<?php echo admin_url('admin-ajax.php'); ?>" data-url="<?php echo admin_url('admin-ajax.php'); ?>">
+  <source src="<?php echo plugins_url("lively-chat-support/chatbox/assets/audio/bell.wav"); ?>">
+  <source src="<?php echo plugins_url("lively-chat-support/chatbox/assets/audio/bell.mp3"); ?>">
+  <source src="<?php echo plugins_url("lively-chat-support/chatbox/assets/audio/bell.ogg"); ?>">
 </audio>
 
 <?php if (!empty($_POST)) { ?>
