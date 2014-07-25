@@ -211,6 +211,10 @@
       $_COOKIE["livelychatsupport_convo_token"] = md5(uniqid(rand(), true));
       setcookie("livelychatsupport_convo_token", $_COOKIE["livelychatsupport_convo_token"], mktime(0, 0, 0, 12, 31, date("Y") + 2), "/");
     }
+    
+    if (isset($_REQUEST["from_twilio"])) {    
+      LivelyChatSupport_receive_sms();
+    }
   }
   
   function LivelyChatSupport_state($open, $offline, $chatting){
@@ -235,36 +239,34 @@
     global $wpdb;
     $convos_table = $wpdb->prefix . "livelychatsupport_convos";
     
-    if (isset($_GET["from_twilio"])) { LivelyChatSupport_receive_sms(); }
-    
     wp_register_style( "LivelyChatSupport-chatbox-reset", plugins_url( "lively-chat-support/chatbox/css/reset.css" ) );
     wp_register_style( "LivelyChatSupport-chatbox-style", plugins_url( "lively-chat-support/chatbox/css/style.css" ) );
     wp_register_script( "LivelyChatSupport-chatbox-script", plugins_url( "lively-chat-support/chatbox/js/chatbox.js" ) );
-    
+  
     wp_enqueue_style( array("LivelyChatSupport-chatbox-reset", "LivelyChatSupport-chatbox-style", "LivelyChatSupport-chatbox-colours") );
     wp_enqueue_script( array("jquery", "LivelyChatSupport-chatbox-script") );
-  
+
     $livelychatsupport = LivelyChatSupport_details();
     if (isset($_COOKIE["livelychatsupport_convo_token"])) { $convo = LivelyChatSupport_convo($_COOKIE["livelychatsupport_convo_token"]); }
     $agent = LivelyChatSupport_agent();
-    
+  
     if (!$agent) {
       $livelychatsupport_offline = true;
     } else {
-      
+    
     }
     if ((isset($_COOKIE["livelychatsupport_convo_open"]) && $_COOKIE["livelychatsupport_convo_open"] == "true") || LIVELYCHATSUPPORT_ADMIN == true) { $livelychatsupport_open = true; }
-    
+  
     if ($livelychatsupport["online"] == "offline") {
       $livelychatsupport_offline = true;
     } else if ($livelychatsupport["online"] == "hours") {
       $hour = LivelyChatSupport_hour();
-      
+    
       if (!$hour) {
         $livelychatsupport_offline = true;
       }
     }
-  
+
     if (LIVELYCHATSUPPORT_ADMIN == false && isset($_COOKIE["livelychatsupport_convo_token"]))
     {
       if ($livelychatsupport["track_pages"] == "true") {
@@ -274,7 +276,7 @@
       } else {
         $referrers = array();
       }
-      
+    
       if ($convo) {
         $wpdb->update( 
         	$convos_table, 

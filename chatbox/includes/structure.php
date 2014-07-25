@@ -129,6 +129,8 @@
       </li>
     </ul>
     
+    <div style="clear: both !important; "></div>
+    
     <img src="<?php echo plugins_url("lively-chat-support/chatbox/assets/loading.gif"); ?>" class="loading">
     
     <a href="http://wordpress.org/plugins/lively-chat-support" class="powered_by"><?php _e( "Powered by LivelyChat", "lively-chat-support" ); ?></a>

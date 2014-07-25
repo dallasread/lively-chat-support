@@ -48,14 +48,9 @@ For Lively's features, most companies would charge at least 20 to 30 dollars per
 
 == Frequently Asked Questions ==
 
-= Is Lively Chat Support completely free? =
-Lively is FREE to use, but there are a few premium addons. They are:
-
-* **Multiple Agents: [Buy Now for $40](http://www.livelychatsupport.com/buy-multi)** - put the power of multiple customer service reps to work for you!
-* **Chat from your phone: [Buy Now for $40](http://www.livelychatsupport.com/buy-sms)** - perfect for the small business owner. Through SMS (text messages), you'll be able to stay in touch with the visitors on your website.
-* **Triggers: [Buy Now for $40](http://www.livelychatsupport.com/buy-triggers)** - start conversations based on your specified criteria. For example, if they've been on your checkout page too long, ask them "Do you need help checking out?"
-* **Surveys: [Buy Now for $40](http://www.livelychatsupport.com/buy-surveys)** - quick and unintrusive, surveys are a great way to learn more about your visitors (who love giving their input!).
-* **Cobrowsing: [Preorder for $129](http://livelychatsupport.com/pre-cobrowse)** - without installing anything, your visitors will be able to share their screen with you - safely and securely.
+= After installing Lively, my site is showing a memory error. How do I fix it? =
+* The issue is likely caused from having many plugins installed in a small shared-hosting environment.
+* The solution is to increase your `WP_MEMORY_LIMIT`. In your wp-config.php, add `define('WP_MEMORY_LIMIT', '96M');` after the opening `<?php`. You may need to re-install the plugin.
 
 = Lively isn't showing up on my site? =
 * Are you using a caching plugin? If so, clear the cache.
@@ -70,6 +65,18 @@ Each message you receive begins with a small token and a colon (eg. 4k2:). To re
 = Why doesn't my SMS doesn't work? =
 * Ensure your phone numbers include the country code (1 for North America, 44 for UK, etc.)
 * The Wordpress ajax requests require access to the back end of your site. Ensure remote IPs aren't blocked for your back end, or you won't be able to send or receive SMS.
+
+= Is Lively Chat Support completely free? =
+Lively is FREE to use, but there are a few premium addons. They are:
+
+= Is Lively Chat Support compatible with Multi-Site? =
+No. Because of security concerns, we would advise NOT using it on Multi-Site installations.
+
+* **Multiple Agents: [Buy Now for $40](http://www.livelychatsupport.com/buy-multi)** - put the power of multiple customer service reps to work for you!
+* **Chat from your phone: [Buy Now for $40](http://www.livelychatsupport.com/buy-sms)** - perfect for the small business owner. Through SMS (text messages), you'll be able to stay in touch with the visitors on your website.
+* **Triggers: [Buy Now for $40](http://www.livelychatsupport.com/buy-triggers)** - start conversations based on your specified criteria. For example, if they've been on your checkout page too long, ask them "Do you need help checking out?"
+* **Surveys: [Buy Now for $40](http://www.livelychatsupport.com/buy-surveys)** - quick and unintrusive, surveys are a great way to learn more about your visitors (who love giving their input!).
+* **Cobrowsing: [Preorder for $129](http://livelychatsupport.com/pre-cobrowse)** - without installing anything, your visitors will be able to share their screen with you - safely and securely.
 
 == Screenshots ==
 
