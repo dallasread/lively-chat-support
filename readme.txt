@@ -7,7 +7,7 @@ Author URI: http://www.DallasRead.com
 Donate link: Purchase an addon!
 Tags: free live chat, live chat, live support, online chat, customer service
 Requires at least: 3.6
-Tested up to: 3.9.1
+Tested up to: 3.9.2
 Stable tag: 1.0.35
 License: MIT
 
@@ -92,6 +92,7 @@ No. Because of security concerns, we would advise NOT using it on Multi-Site ins
 
 Here's some scheduled features to be added:
 
+* Phone field
 * http://wordpress.org/support/topic/issue-about-name-and-email-box?replies=2#post-5683726
 * DB bloat
 * change subscriber name and email

@@ -281,9 +281,9 @@
     
     if ($livelychatsupport["twilio_auth"] != "") {
       if (isset($_GET["from_twilio"])) {
-        if ($_POST["AccountSid"] == $livelychatsupport["twilio_sid"]) {
+        if ($_REQUEST["AccountSid"] == $livelychatsupport["twilio_sid"]) {
           $convos_table = $wpdb->prefix . "livelychatsupport_convos";
-          $body_split = explode(":", $_POST["Body"]);
+          $body_split = explode(":", trim(urldecode($_REQUEST["Body"])));
       
           if (count($body_split) != 1) {
             $mini_token = trim(strtolower($body_split[0]));
@@ -296,7 +296,7 @@
           }
     
           if ($convo) {
-            if (!isset($body)) { $body = trim($_POST["Body"]); }
+            if (!isset($body)) { $body = trim(urldecode($_REQUEST["Body"])); }
             $return = LivelyChatSupport_create_message($convo->token, $body, 1);
           }
         }
