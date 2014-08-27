@@ -65,6 +65,7 @@ Each message you receive begins with a small token and a colon (eg. 4k2:). To re
 = Why doesn't my SMS doesn't work? =
 * Ensure your phone numbers include the country code (1 for North America, 44 for UK, etc.)
 * The Wordpress ajax requests require access to the back end of your site. Ensure remote IPs aren't blocked for your back end, or you won't be able to send or receive SMS.
+* Make sure http://yourdomain.com/?from_twilio=true actually links to a Wordpress page (sometimes, you may have a splash screen). If it doesn’t, you’re likely fine with http://yourdomain.com/index.php?from_twilio=true (or any other Wordpress page).
 
 = Is Lively Chat Support completely free? =
 Lively is FREE to use, but there are a few premium addons. They are:
