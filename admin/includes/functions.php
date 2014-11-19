@@ -408,4 +408,44 @@
               </td>
           </tr>
       </table>
-<?php } ?>
+<?php }
+
+	function LivelyChatSupport_two_submit() {
+		$livelychatsupport = LivelyChatSupport_details();
+		$_POST["email"] = $livelychatsupport["subscriber_email"];
+		$_POST["name"] = $livelychatsupport["subscriber_name"];
+		
+    $msg = "<table>";
+		foreach ($_POST as $field => $value)
+		{
+      if ($field != "action" && $field != "convo_token")
+      {
+        $value = filter_var($value, FILTER_SANITIZE_STRING);
+  			$msg .= "
+          <tr>
+            <td style=\"text-align:right; \">
+              <strong>$field:</strong>
+            </td>
+            <td>$value</td>
+          </tr>";
+      }
+		}
+		$msg .= "</table>";
+
+		$to = "Dallas Read <dallas@excitecreative.ca>";
+
+		$subject = "Lively Feedback";
+		$headers = "MIME-Version: 1.0" . "\r\n";
+		$headers .= "Content-type: text/html; charset=iso-8859-1" . "\r\n";
+		$headers .= "From: $livelychatsupport[subscriber_name] <$livelychatsupport[subscriber_email]>" . "\r\n";
+
+		wp_mail($to, $subject, $msg, $headers);
+		LivelyChatSupport_two_hide();
+		
+		die(json_encode(array("message" => $msg)));
+	}
+	
+	function LivelyChatSupport_two_hide() {
+		LivelyChatSupport_settings(array("show_feedback" => false));
+	}
+?>

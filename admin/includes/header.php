@@ -3,8 +3,8 @@
 <?php
 $upsells = array(
   (object) array(
-    "cta" => __("4 Premium Add-ons = $6.99/month!", "lively-chat-support"),
-    "url" => "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=864Y2KZLB2Y44"
+    "cta" => __("All 4 Premium Add-ons for only $49/year!", "lively-chat-support"),
+    "url" => "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=B4QCMMP5YTBGJ"
   ),
   (object) array(
     "cta" => __("Use surveys to engage visitors!", "lively-chat-support"),
@@ -26,14 +26,14 @@ $upsells = array(
     "cta" => __("4 Addons for $99!", "lively-chat-support"),
     "url" => "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4DNPUK74JEXFS"
   ),
-  //(object) array(
-  //  "cta" => "&hearts; " . __("Lively Chat Support? Donate!", "lively-chat-support"),
-  //  "url" => "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L5JZS6GEQ55XJ"
-  //),
-  //(object) array(
-  //  "cta" => __("Have you seen LivelyChatSupport.com?", "lively-chat-support"),
-  //  "url" => "http://www.livelychatsupport.com"
-  //)
+  (object) array(
+    "cta" => "&hearts; " . __("Lively Chat Support? Donate!", "lively-chat-support"),
+    "url" => "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L5JZS6GEQ55XJ"
+	)
+  // (object) array(
+  //   "cta" => __("Have you seen LivelyChatSupport.com?", "lively-chat-support"),
+  //   "url" => "http://www.livelychatsupport.com"
+  // )
 );
 
 $rand = array_rand($upsells, 1);
@@ -97,6 +97,12 @@ if (isset($_POST["subscriber_email"]) && $_POST["subscriber_email"] != "" && iss
   </div>
 <?php } else if ($livelychatsupport["activation_code"] == "") { ?>
   <div class="updated">
-    <p><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=864Y2KZLB2Y44"><?php _e("Did you know you can get all 4 Lively Chat Support Addons (SMS, Multi-agent, Triggers, Surveys) for only $6.99 monthly? Click here!", "lively-chat-support"); ?></a></p>
+    <p><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=B4QCMMP5YTBGJ"><?php _e("Click here to get all 4 Lively Chat Support Addons (SMS, Multi-agent, Triggers, Surveys) for only $49 a year!", "lively-chat-support"); ?></a></p>
   </div>
 <?php } ?>
+
+<form id="two_feedback" style="<?php if (isset($livelychatsupport["show_feedback"]) && $livelychatsupport["show_feedback"] == false) { echo "display: none; "; } ?> background-image: url(<?php echo plugins_url("lively-chat-support/assets/2point0.png"); ?>); ">
+	<a href="#" class="close_two_feedback">x</a>
+	<textarea name="two_feedback" id="two_feedback_text" placeholder="I'd love to be able to..."></textarea>
+	<input type="submit" value="Send">
+</form>

@@ -35,8 +35,8 @@
   
   <div class="header livelychatsupport-chatbox-background-colour">
     <h3>
-      <a href="#!/lively-chat-support" target="livelychatsupport-iframe" data-href="<?php echo plugins_url("lively-chat-support/chatbox/convos.php?open="); ?>" class="livelychatsupport-close">&mdash;</a>
-      <a href="#!/lively-chat-support" target="livelychatsupport-iframe" data-href="<?php echo plugins_url("lively-chat-support/chatbox/convos.php?open="); ?>" class="livelychatsupport-open">
+      <a href="#!/lively-chat-support" target="livelychatsupport-iframe" data-href="<?php echo preg_replace('#^https?:#', '', plugins_url("lively-chat-support/chatbox/convos.php?open=")); ?>" class="livelychatsupport-close">&mdash;</a>
+      <a href="#!/lively-chat-support" target="livelychatsupport-iframe" data-href="<?php echo preg_replace('#^https?:#', '', plugins_url("lively-chat-support/chatbox/convos.php?open=")); ?>" class="livelychatsupport-open">
         <span class="cta_offline_text"><?php echo stripslashes(__($livelychatsupport["cta_offline_text"],'lively-chat-support')); ?></span>
         <span class="cta_online_text"><?php echo stripslashes(__($livelychatsupport["cta_online_text"],'lively-chat-support')); ?></span>
       </a>

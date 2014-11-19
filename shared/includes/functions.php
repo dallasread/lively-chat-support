@@ -62,6 +62,7 @@
     $convos_table = $wpdb->prefix . "livelychatsupport_convos";
     
     $id = $_POST["latest_id"];
+		$agent_id = 0;
     
     if (isset($_POST["convo_token"])) {
       $convo_token = $_POST["convo_token"];
@@ -300,7 +301,7 @@
             $return = LivelyChatSupport_create_message($convo->token, $body, 1);
           }
         }
-        die( "Twilio message received." );
+        die( "<Response></Response>" );
       }
     }
   }

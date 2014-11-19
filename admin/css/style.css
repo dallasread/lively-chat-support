@@ -334,3 +334,55 @@
 .agent input[disabled] {
   background: #eee;
 }
+
+#two_feedback {
+	background-position: bottom right;
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	height: 203px;
+	width: 330px;
+	z-index: 999;
+}
+
+#two_feedback textarea {
+	border: 0;
+	resize: none;
+	box-shadow: 0 0 0;
+	margin-top: 120px;
+	margin-left: 20px;
+	width: 210px;
+	height: 53px;
+	padding: 0px;
+	font-size: 13px;
+	line-height: 18px;
+	padding-bottom: 30px;
+}
+
+#two_feedback input[type="submit"] {
+	background: #37991d;
+	background: -moz-linear-gradient(top,  #37991d 0%, #1f870a 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#37991d), color-stop(100%,#1f870a));
+	background: -webkit-linear-gradient(top,  #37991d 0%,#1f870a 100%);
+	background: -o-linear-gradient(top,  #37991d 0%,#1f870a 100%);
+	background: -ms-linear-gradient(top,  #37991d 0%,#1f870a 100%);
+	background: linear-gradient(to bottom,  #37991d 0%,#1f870a 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#37991d', endColorstr='#1f870a',GradientType=0 );
+	border: 1px solid #1f870a;
+	border-radius: 4px;
+	color: #fff;
+	padding: 2px 0.5em;
+	font-size: 11px;
+	position: absolute;
+	margin-top: 155px;
+	margin-left: -3em;
+}
+
+#two_feedback .close_two_feedback {
+	float: right;
+	display: block;
+	margin: 3px 15px 0 0;
+	text-decoration: none;
+	color: #777;
+	padding: 5px;
+}

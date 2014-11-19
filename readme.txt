@@ -1,5 +1,5 @@
 === Lively Chat Support ===
-Version: 1.0.36
+Version: 1.0.41
 URI: http://www.livelychatsupport.com
 Contributors: dallas22ca
 Author: Dallas Read
@@ -7,8 +7,8 @@ Author URI: http://www.DallasRead.com
 Donate link: Purchase an addon!
 Tags: free live chat, live chat, live support, online chat, customer service
 Requires at least: 3.6
-Tested up to: 3.9.2
-Stable tag: 1.0.36
+Tested up to: 4.0
+Stable tag: 1.0.41
 License: MIT
 
 The best FREE live chat support for your WP website (no 3rd party dependencies)!
@@ -22,22 +22,21 @@ The best FREE live chat support for your WP website (no 3rd party dependencies)!
 * [Great customer service.](http://wordpress.org/support/view/plugin-reviews/lively-chat-support)
 * Boost your conversion rates with one of our premium addons!
 
-For Lively's features, most companies would charge at least 20 to 30 dollars per month. Lively Chat Support is FREE forever, but we offer a few premium addons to help you get more out of your live chat:
+For Lively's features, most companies would charge at least $250 to $500 per year! Lively Chat Support is FREE forever, but we do offer a few premium addons to help you get more out of your live chat:
 
 * **Multiple Agents: [Buy Now for $40](http://www.livelychatsupport.com/buy-multi)** - put the power of multiple customer service reps to work for you!
 * **Chat from your phone: [Buy Now for $40](http://www.livelychatsupport.com/buy-sms)** - perfect for the small business owner. Through SMS (text messages), you'll be able to stay in touch with the visitors on your website.
 * **Triggers: [Buy Now for $40](http://www.livelychatsupport.com/buy-triggers)** - start conversations based on your specified criteria. For example, if they've been on your checkout page too long, ask them "Do you need help checking out?"
 * **Surveys: [Buy Now for $40](http://www.livelychatsupport.com/buy-surveys)** - quick and unintrusive, surveys are a great way to learn more about your visitors (who love giving their input!).
 
+**DEALS (Big Savings)**
+
+* [Get all 4 Premium Addons for $49 per year!](http://www.livelychatsupport.com/buy-annually)!
+
 > **Live Demos**
 
 > * [TheUltimateLock.com](http://www.theultimatelock.com)
 > * [KeithMarshall.ca](http://keithmarshall.ca)
-
-**DEALS (Big Savings)**
-
-* Want to buy all 4 Premium Addons with fast, reliable tech support? Right now, we're offering an incredible deal - [Buy Now for $99](http://www.livelychatsupport.com/buy-4)!
-* Don't have cash and want to try out all 4 Premium Addons? We're offering a huge cost savings - [Buy All 4 Addons for $6.99 a month](http://www.livelychatsupport.com/buy-monthly)!
 
 == Installation ==
 
@@ -73,12 +72,6 @@ Lively is FREE to use, but there are a few premium addons. They are:
 = Is Lively Chat Support compatible with Multi-Site? =
 No. Because of security concerns, we would advise NOT using it on Multi-Site installations.
 
-* **Multiple Agents: [Buy Now for $40](http://www.livelychatsupport.com/buy-multi)** - put the power of multiple customer service reps to work for you!
-* **Chat from your phone: [Buy Now for $40](http://www.livelychatsupport.com/buy-sms)** - perfect for the small business owner. Through SMS (text messages), you'll be able to stay in touch with the visitors on your website.
-* **Triggers: [Buy Now for $40](http://www.livelychatsupport.com/buy-triggers)** - start conversations based on your specified criteria. For example, if they've been on your checkout page too long, ask them "Do you need help checking out?"
-* **Surveys: [Buy Now for $40](http://www.livelychatsupport.com/buy-surveys)** - quick and unintrusive, surveys are a great way to learn more about your visitors (who love giving their input!).
-* **Cobrowsing: [Preorder for $129](http://livelychatsupport.com/pre-cobrowse)** - without installing anything, your visitors will be able to share their screen with you - safely and securely.
-
 == Screenshots ==
 
 1. A great looking chatbox that is easy to tailor to your brand.
@@ -93,6 +86,7 @@ No. Because of security concerns, we would advise NOT using it on Multi-Site ins
 
 Here's some scheduled features to be added:
 
+* SMS alert when new contact registers
 * Phone field
 * http://wordpress.org/support/topic/issue-about-name-and-email-box?replies=2#post-5683726
 * DB bloat
@@ -113,8 +107,22 @@ Here's some scheduled features to be added:
 
 == Changelog ==
 
+= 1.0.41 =
+* Tweaked how LCS responds to Twilio (SMS Addon).
+
+= 1.0.39 =
+* Added 4.0 style icon.
+* Added feedback section.
+
+= 1.0.38 =
+* Annual plan added.
+
+= 1.0.37 =
+* French version added.
+* SMS FAQ updated.
+
 = 1.0.36 =
-* Fix for issue where SMS was not being received (switch from accepting POST vars to REQUEST)
+* Fix for issue where SMS was not being received (switch from accepting POST vars to REQUEST).
 
 = 1.0.35 =
 * Fix sound issue.

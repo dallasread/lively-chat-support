@@ -5,7 +5,7 @@
 Plugin Name: Lively Chat Support
 Plugin URI: http://www.livelychatsupport.com
 Description: The best FREE live chat for your WP website (supports images) - forget the hosted chat services.
-Version: 1.0.36
+Version: 1.0.41
 Contributors: dallas22ca
 Author: Dallas Read
 Author URI: http://www.DallasRead.com
@@ -13,8 +13,8 @@ Text Domain: lively-chat-support
 Donate link: Just purchase an addon!
 Tags: free live chat, live chat, live support, online chat, customer service
 Requires at least: 3.0.1
-Tested up to: 3.9.1
-Stable tag: 1.0.36
+Tested up to: 4.0
+Stable tag: 1.0.41
 License: MIT
 
 Copyright (c) 2013-2014 Dallas Read.
@@ -51,14 +51,11 @@ global $livelychatsupport_version;
 global $livelychatsupport_db_version;
 global $livelychatsupport_addon_version;
 
-$livelychatsupport_version = "1.0.36";
+$livelychatsupport_version = "1.0.41";
 $livelychatsupport_db_version = 1.11;
 $livelychatsupport_addon_version = 1.5;
 
-if (LIVELYCHATSUPPORT_ADMIN == true) {
-  require_once LIVELYCHATSUPPORT_ROOT . "/admin/includes/functions.php";
-}
-
+require_once LIVELYCHATSUPPORT_ROOT . "/admin/includes/functions.php";
 require_once LIVELYCHATSUPPORT_ROOT . "/chatbox/includes/functions.php";
 require_once LIVELYCHATSUPPORT_ROOT . "/shared/includes/functions.php";
 
@@ -80,6 +77,8 @@ add_action( "wp_ajax_cache_support",                    "LivelyChatSupport_cache
 add_action( "wp_ajax_delete_all_convos",                "LivelyChatSupport_delete_all_convos" );
 add_action( "wp_ajax_find_visitors",                    "LivelyChatSupport_find_visitors" );
 add_action( "wp_ajax_delete_history",                   "LivelyChatSupport_delete_history" );
+add_action( "wp_ajax_two_hide", 			                  "LivelyChatSupport_two_hide" );
+add_action( "wp_ajax_two_submit", 			                "LivelyChatSupport_two_submit" );
 
 add_action( "wp_ajax_nopriv_poll",                      "LivelyChatSupport_poll" );
 add_action( "wp_ajax_nopriv_subscribe",                 "LivelyChatSupport_subscribe" );

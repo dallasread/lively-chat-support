@@ -559,6 +559,34 @@ $lcsq(function($lcsq){
     
     $lcsq("#online").change(); 
     $lcsq(".cta_image").keyup();
+		
+		$lcsq(document).on("submit", "#two_feedback", function() {
+			var url = $lcsq("#bell").data("url");
+      $lcsq.post(url, {
+	        action: "two_submit",
+	        feedback: $lcsq("#two_feedback_text").val()
+	      }, function(response){
+					alert("Thanks for your feedback!");
+					$lcsq("#two_feedback").fadeOut()
+			});
+			return false;
+		});
+		
+		$lcsq(document).on("click", ".show_feedback", function() {
+			$lcsq("#two_feedback").fadeIn(250, function() {
+				$lcsq("#two_feedback_text").focus()
+			})
+			return false;
+		});
+		
+		$lcsq(document).on("click", "#two_feedback .close_two_feedback", function() {
+			$lcsq("#two_feedback").fadeOut()
+			var url = $lcsq("#bell").data("url");
+      $lcsq.post(url, {
+        action: "two_hide"
+      });
+			return false;
+		});
     
     if ($lcsq(".agent_default_checkbox").length) {
       if (!$lcsq(".agent_default_checkbox:checked").length) {
