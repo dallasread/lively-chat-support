@@ -45,23 +45,30 @@ class LivelyChatSupport {
 		}
   }
 	
+	public static function wp_footer() {
+		if (get_option('livelychatsupport_active') || current_user_can("manage_options")) {
+			$url = LivelyChatSupport::debug ? "http://localhost:4200/assets/lcs.js" : "https://livelychatsupport.com/assets/lcs.js";
+			$debug = LivelyChatSupport::debug ? "data-debug" : "";
+			$settings = "";
+			if (!get_option('livelychatsupport_active', false)) { $settings = "data-settings=\"" . htmlspecialchars( get_option("livelychatsupport_settings"), true ) . "\""; }
+			if (LivelyChatSupport::debug) {
+				echo '<script src="http://localhost:4200/assets/vendor.js"></script>';
+			}
+			echo "<script src=\"$url\" data-wp=\"true\" data-lcs=\"GreatExpectations\" $debug $settings></script>";
+		}
+	}
+	
+	public static function mark_as_active() {
+		update_option('livelychatsupport_active', true);
+	}
+	
   public static function admin_panel() {
-		// wp_register_style( "livelychatsupport_admin", plugins_url("admin/css/style.min.css", __FILE__) );
-		// wp_enqueue_style( array( "livelychatsupport_admin" ) );
-		
-		if (ACTIVATED) {
+		if (get_option('livelychatsupport_active')) {
 			include 'tabs/help.php';
 		} else {
 			include 'tabs/activate.php';
 		}
   }
-	
-	public static function wp_footer() {
-		if (ACTIVATED || current_user_can("manage_options")) {
-			$debug = LivelyChatSupport::debug ? "data-debug" : "";
-			echo "<script src=\"https://livelychatsupport.com/assets/lcs.js\" data-lcs=\"TEST\" $debug></script>";
-		}
-	}
 }
 
 LivelyChatSupport::init();
