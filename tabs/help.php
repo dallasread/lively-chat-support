@@ -1,4 +1,8 @@
 <p>
+	IF NOT UPGRADED VIA JS: UPGRADE!!!
+</p>
+
+<p>
 	You've just joined an elite bunch of websites -- great decision.
 </p>
 

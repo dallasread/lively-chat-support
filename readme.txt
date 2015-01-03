@@ -1,76 +1,52 @@
 === Lively Chat Support ===
-Version: 1.0.41
+Version: 2.0
 URI: http://www.livelychatsupport.com
 Contributors: dallas22ca
 Author: Dallas Read
 Author URI: http://www.DallasRead.com
 Donate link: Purchase an addon!
-Tags: free live chat, live chat, live support, online chat, customer service
+Tags: Chat, chat free, chat live, chat plugin, chat support, chat tool, Chat Widget, instant chat, live chat, live chat button, live chat plugin, live chat software, live chat support, live chat tool, live chat widget, live support, live support button, lively chat support, website chat, customer help, customer support, pure chat, online support, support, zendesk, Zopim, clickdesk, olark, snapengage
 Requires at least: 3.6
-Tested up to: 4.0
-Stable tag: 1.0.41
+Tested up to: 4.1
+Stable tag: trunk
 License: MIT
 
-The best FREE live chat support for your WP website (no 3rd party dependencies)!
+Live Chat Support is a free live chat plugin for your WordPress website. Live chat will instantly capture leads and turn visitors into customers. Lively is a world-class personalized, engaging chat solution refined for businesses that need high conversions. Try it free!
 
 == Description ==
 
-**Lively Chat Support puts the power of connecting with visitors in the palm of your hand. You get:**
+## How Lively Turns Visitors Into Customers — Every Time**
 
-* Extremely customizable live chat for your visitors to interact with.
-* "Offline Mode" works as a lead-capturing machine while you sleep. You can even customize your thank you message (maybe offer a freebie for signing up).
-* [Great customer service.](http://wordpress.org/support/view/plugin-reviews/lively-chat-support)
-* Boost your conversion rates with one of our premium addons!
+#### *The step-by-step guide to install Lively Chat and get 2x more leads*
 
-For Lively's features, most companies would charge at least $250 to $500 per year! Lively Chat Support is FREE forever, but we do offer a few premium addons to help you get more out of your live chat:
+If you've ever used a live chat on your website, you've probably noticed that your sales and conversions increase exceptionally. This is because customers are risk-averse and need their questions answered.
+What many business owners don't realize is that potential customers also need to feel like their future questions can be answered as well.
 
-* **Multiple Agents: [Buy Now for $40](http://www.livelychatsupport.com/buy-multi)** - put the power of multiple customer service reps to work for you!
-* **Chat from your phone: [Buy Now for $40](http://www.livelychatsupport.com/buy-sms)** - perfect for the small business owner. Through SMS (text messages), you'll be able to stay in touch with the visitors on your website.
-* **Triggers: [Buy Now for $40](http://www.livelychatsupport.com/buy-triggers)** - start conversations based on your specified criteria. For example, if they've been on your checkout page too long, ask them "Do you need help checking out?"
-* **Surveys: [Buy Now for $40](http://www.livelychatsupport.com/buy-surveys)** - quick and unintrusive, surveys are a great way to learn more about your visitors (who love giving their input!).
+[KM QUOTE]
 
-**DEALS (Big Savings)**
+Today's leading chat-boxes are often cold and impersonal, so many consumers often think chat-boxes are run by UNHELPFUL ROBOTS.
 
-* [Get all 4 Premium Addons for $49 per year!](http://www.livelychatsupport.com/buy-annually)!
+To dispel this myth, Lively was shaped with trust built into every part of the chat-box experience.
 
-> **Live Demos**
+The Lively chat-box frame and function has been fine-tuned to build trust with your visitors by using a friendly call-to-action and response-engaging prompters. Here's how to maximize your chat-box:
 
-> * [TheUltimateLock.com](http://www.theultimatelock.com)
-> * [KeithMarshall.ca](http://keithmarshall.ca)
+1. **Install.** Install Lively Chat Support by searching for it in the WordPress Plugins in the Admin area of your WordPress site.
+1. **Register.** Visit your home page to register your Lively serial number (a popup should appear). If you're updating from a previous version of Lively, your data will be preserved.
+1. **Introducers.** Once registered, visit the Settings > Introducers tab. Introducers are the information fields your visitor must fill out. HINT: For more leads, disable all (visitors can be prompted by an agent later).
+1. **Triggers.** Go to the Settings > Triggers tab. Triggers are the backbone of a successful chat-box. Start conversations with visitors based on specific criteria. HINT: Use a short, casual question to bait warm leads.
+1. **Canned Messages.** Visit Settings > Canned. Set up canned messages to set shortcuts for frequently used responses.
+1. **Agents.** Visit the Agents tab. When you add and activate a new agent, they'll receive an email with a temporary login. Change your image by clicking on it. HINT: Use a friendly, smiling, genuine avatar for increased engagement.
 
 == Installation ==
 
 1. Visit the Plugins page. Click "Add New", search for "Lively Chat Support", and click install. "Activate" Lively Chat Support.
-1. On the left sidebar, click on "Lively Chat Support".
-1. Enter your name and email (so we know where to send the offline messages).
-1. Visit the settings page to customize your chatbox!
+1. On the left sidebar, click on "Lively Chat".
+1. Visit your site's home page to register your chat-box and begin using it!
 
 == Frequently Asked Questions ==
 
 = After installing Lively, my site is showing a memory error. How do I fix it? =
-* The issue is likely caused from having many plugins installed in a small shared-hosting environment.
-* The solution is to increase your `WP_MEMORY_LIMIT`. In your wp-config.php, add `define('WP_MEMORY_LIMIT', '96M');` after the opening `<?php`. You may need to re-install the plugin.
-
-= Lively isn't showing up on my site? =
-* Are you using a caching plugin? If so, clear the cache.
-* Is wp_footer() found anywhere in your theme's files? It should be in footer.php.
-
-= Why are the timestamps in my chatbox wrong? =
-You probably haven't set your timezone. You can do so in the General settings page of Wordpress.
-
-= For SMS, how do I handle multiple conversations? =
-Each message you receive begins with a small token and a colon (eg. 4k2:). To respond to a specific conversation, type "4k2: YOUR MESSAGE HERE". If you don't include this token in your response, we'll just send it back to the customer that last sent you a message.
-
-= Why doesn't my SMS doesn't work? =
-* Ensure your phone numbers include the country code (1 for North America, 44 for UK, etc.)
-* The Wordpress ajax requests require access to the back end of your site. Ensure remote IPs aren't blocked for your back end, or you won't be able to send or receive SMS.
-* Make sure http://yourdomain.com/?from_twilio=true actually links to a Wordpress page (sometimes, you may have a splash screen). If it doesn’t, you’re likely fine with http://yourdomain.com/index.php?from_twilio=true (or any other Wordpress page).
-
-= Is Lively Chat Support completely free? =
-Lively is FREE to use, but there are a few premium addons. They are:
-
-= Is Lively Chat Support compatible with Multi-Site? =
-No. Because of security concerns, we would advise NOT using it on Multi-Site installations.
+* The issue is likely caused from having many plugins installed in a 
 
 == Screenshots ==
 

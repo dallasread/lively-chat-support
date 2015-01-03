@@ -3,14 +3,14 @@
 
 Plugin Name: Lively Chat Support
 Plugin URI: http://www.livelychatsupport.com
-Description: The best FREE live chat for your WP website (supports images) - forget the hosted chat services.
+Description: Live Chat Support is a free live chat plugin for your WordPress website. Live chat will instantly capture leads and turn visitors into customers. Lively is a world-class personalized, engaging chat solution refined for businesses that need high conversions. Try it free!
 Version: 2.0
 Contributors: dallas22ca
 Author: Dallas Read
 Author URI: http://www.DallasRead.com
 Text Domain: lively-chat-support
 Donate link: Just purchase an addon!
-Tags: free live chat, live chat, live support, online chat, customer service
+Tags: Chat, chat free, chat live, chat plugin, chat support, chat tool, Chat Widget, instant chat, live chat, live chat button, live chat plugin, live chat software, live chat support, live chat tool, live chat widget, live support, live support button, lively chat support, website chat, customer help, customer support, pure chat, online support, support, zendesk, Zopim, clickdesk, olark, snapengage
 Requires at least: 3.0.1
 Tested up to: 4.1
 Stable tag: trunk
@@ -37,6 +37,9 @@ class LivelyChatSupport {
   private function __construct() {
 		add_action( "admin_menu", array( $this, "menu_page" ) );
 		add_action( "wp_footer", array( $this, "wp_footer" ) );
+		
+		add_action( "wp_ajax_mark_as_active", array( $this, 'mark_as_active' ) );
+		add_action( "wp_ajax_nopriv_mark_as_active", array( $this, 'mark_as_active' ) );
   }
   
   public static function menu_page() {
@@ -49,16 +52,30 @@ class LivelyChatSupport {
 		if (get_option('livelychatsupport_active') || current_user_can("manage_options")) {
 			$url = LivelyChatSupport::debug ? "http://localhost:4200/assets/lcs.js" : "https://livelychatsupport.com/assets/lcs.js";
 			$debug = LivelyChatSupport::debug ? "data-debug" : "";
+			$token = get_option('livelychatsupport_token', substr(str_shuffle("0123456789ABCDEFGHIJKLMNPQRSTUVWXYZ"), 0, 20));
 			$settings = "";
-			if (!get_option('livelychatsupport_active', false)) { $settings = "data-settings=\"" . htmlspecialchars( get_option("livelychatsupport_settings"), true ) . "\""; }
+			
+			if (!get_option('livelychatsupport_active', false)) {
+				$settings = "data-settings=\"" . htmlspecialchars( get_option("livelychatsupport_settings"), true ) . "\"";
+				
+				echo '<script type="text/javascript">
+					window.afterCreateChatbox = function(data) {
+						data.action = "mark_as_active";
+						jQuery.post("' . admin_url('admin-ajax.php') . '", data);
+					}
+				</script>';
+			}
+			
 			if (LivelyChatSupport::debug) {
 				echo '<script src="http://localhost:4200/assets/vendor.js"></script>';
 			}
-			echo "<script src=\"$url\" data-wp=\"true\" data-lcs=\"GreatExpectations\" $debug $settings></script>";
+			
+			echo "<script src=\"$url\" data-lcs=\"$token\" $debug $settings></script>";
 		}
 	}
 	
 	public static function mark_as_active() {
+		update_option('livelychatsupport_token', $_POST['id']);
 		update_option('livelychatsupport_active', true);
 	}
 	
@@ -70,6 +87,9 @@ class LivelyChatSupport {
 		}
   }
 }
+
+//delete_option('livelychatsupport_token');
+//delete_option('livelychatsupport_active');
 
 LivelyChatSupport::init();
 
