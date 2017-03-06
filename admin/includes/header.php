@@ -3,33 +3,37 @@
 <?php
 $upsells = array(
   (object) array(
-    "cta" => __("All 4 Premium Add-ons for only $49/year!", "lively-chat-support"),
-    "url" => "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=B4QCMMP5YTBGJ"
+    "cta" => __("Upgrade to Remetric &raquo;", "lively-chat-support"),
+    "url" => "?page=livelychatsupport&IS_REMETRIC=1"
   ),
-  (object) array(
-    "cta" => __("Use surveys to engage visitors!", "lively-chat-support"),
-    "url" => "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=T4Y8KB4RJLURW"
-  ),
-  (object) array(
-    "cta" => __("Use triggers to engage visitors!", "lively-chat-support"),
-    "url" => "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=2BKE7U7LNT46U"
-  ),
-  (object) array(
-    "cta" => __("Need Multiple Agents?", "lively-chat-support"),
-    "url" => "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=M4F2RKSLV9X6Y"
-  ),
-  (object) array(
-    "cta" => __("Chat with visitors from your phone!", "lively-chat-support"),
-    "url" => "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=R6WMR5FYAA2DU"
-  ),
-  (object) array(
-    "cta" => __("4 Addons for $99!", "lively-chat-support"),
-    "url" => "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4DNPUK74JEXFS"
-  ),
-  (object) array(
-    "cta" => "&hearts; " . __("Lively Chat Support? Donate!", "lively-chat-support"),
-    "url" => "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L5JZS6GEQ55XJ"
-	)
+ //  (object) array(
+ //    "cta" => __("All 4 Premium Add-ons for only $49/year!", "lively-chat-support"),
+ //    "url" => "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=B4QCMMP5YTBGJ"
+ //  ),
+ //  (object) array(
+ //    "cta" => __("Use surveys to engage visitors!", "lively-chat-support"),
+ //    "url" => "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=T4Y8KB4RJLURW"
+ //  ),
+ //  (object) array(
+ //    "cta" => __("Use triggers to engage visitors!", "lively-chat-support"),
+ //    "url" => "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=2BKE7U7LNT46U"
+ //  ),
+ //  (object) array(
+ //    "cta" => __("Need Multiple Agents?", "lively-chat-support"),
+ //    "url" => "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=M4F2RKSLV9X6Y"
+ //  ),
+ //  (object) array(
+ //    "cta" => __("Chat with visitors from your phone!", "lively-chat-support"),
+ //    "url" => "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=R6WMR5FYAA2DU"
+ //  ),
+ //  (object) array(
+ //    "cta" => __("4 Addons for $99!", "lively-chat-support"),
+ //    "url" => "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4DNPUK74JEXFS"
+ //  ),
+ //  (object) array(
+ //    "cta" => "&hearts; " . __("Lively Chat Support? Donate!", "lively-chat-support"),
+ //    "url" => "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L5JZS6GEQ55XJ"
+	// )
   // (object) array(
   //   "cta" => __("Have you seen LivelyChatSupport.com?", "lively-chat-support"),
   //   "url" => "http://www.livelychatsupport.com"
@@ -39,37 +43,10 @@ $upsells = array(
 $rand = array_rand($upsells, 1);
 $upsell = $upsells[$rand];
 
-if (isset($_POST["subscriber_email"]) && $_POST["subscriber_email"] != "" && isset($_POST["subscriber_name"]) && $_POST["subscriber_name"] != "") { ?>
-
-<script type="text/javascript">
-	this._RM || (this._RM = []);
-	_RM.push(["api_key", "iooSk8xgxoF4fPE8tLrY9siOFAI"]);
-  _RM.push(["track", {
-    description: "{{ member.name }} installed {{ product }}",
-    verb: "installed",
-    product: "Lively Chat Support",
-    lcs_version: "<?php echo $livelychatsupport_version; ?>",
-    member: {
-  		name: "<?php echo $_POST["subscriber_name"]; ?>",
-      email: "<?php echo $_POST["subscriber_email"]; ?>",
-  		key: window.location.host + "-lively",
-      website: window.location.host,
-      initiated: "LivelyChatSupport",
-      has_lively: 1
-    }
-  }]);
-	
-  (function() {
-    var rm = document.createElement("script"); rm.type = "text/javascript";
-		rm.async = true;  rm.src = "https://secure.remetric.com/track.js";
-		var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(rm, s);
-  })();
-</script>
-
-<?php } ?>
+?>
 
 <p class="upsell">
-  <a href="<?php echo $upsell->url; ?>" target="_blank"><?php echo $upsell->cta; ?></a>
+  <a href="<?php echo $upsell->url; ?>"><?php echo $upsell->cta; ?></a>
 </p>
 
 <h3 class="nav-tab-wrapper">
